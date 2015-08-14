@@ -1,9 +1,11 @@
-var React = require('react');
+import React from "react"
 
 var Login = React.createClass({
   render: function() {
     return (
-      <h2>Login</h2>
+      <div>
+        <h2>Login</h2>
+      </div>
     )
   }
 });

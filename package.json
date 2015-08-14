@@ -39,6 +39,8 @@
     "yeticss": "^7.0.3"
   },
   "dependencies": {
+    "color": "^0.10.1",
+    "radium": "^0.13.7",
     "react-router": "^0.13.3"
   }
 }
