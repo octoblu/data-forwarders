@@ -37,5 +37,8 @@
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1",
     "yeticss": "^7.0.3"
+  },
+  "dependencies": {
+    "react-router": "^0.13.3"
   }
 }

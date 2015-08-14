@@ -1,11 +1,22 @@
 var React = require('react');
+var Router = require('react-router');
+var RouteHandler = Router.RouteHandler;
+
+var routes = require('./config/routes');
+var Login = require('./components/login');
+var NotFound = require('./components/not-found');
 
 var App = React.createClass({
   render: function() {
     return (
-      <h1>App</h1>
+      <div>
+        <h1>App</h1>
+        <RouteHandler />
+      </div>
     );
   }
 });
 
-React.render(<App />, document.body);
+Router.run(routes, Router.HashLocation, (Root) => {
+  React.render(<Root/>, document.body);
+});
