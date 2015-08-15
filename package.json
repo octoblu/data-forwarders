@@ -7,7 +7,7 @@
     "start": "webpack-dev-server",
     "build": "webpack",
     "deploy": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "css-loader": "^0.16.0",
     "file-loader": "^0.8.4",
     "hjs-webpack": "^2.12.2",
+    "jest-cli": "^0.4.19",
     "json-loader": "^0.5.2",
     "postcss-loader": "^0.5.1",
     "react": "^0.13.3",
