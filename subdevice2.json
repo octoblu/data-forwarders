@@ -1,0 +1,11 @@
+{
+  "uuid": "bc28ec2d-b1e8-459a-9397-83e38e1e9a1e",
+  "token": "ba2eeffebac4ba19e46ecd266423582a1d55153b",
+  "owner" : "a283241f-d585-440e-84da-67608847eced",
+  "configureWhiteList" : ["*"],
+  "discoverWhiteList" : ["*"],
+  "sendWhiteList" : ["*"],
+  "receiveWhiteList" : ["*"],
+  "type": "device:subdevice",
+  "name" : "Subdevice 2"
+}

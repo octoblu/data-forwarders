@@ -1,29 +1,27 @@
 import React, {Component, PropTypes} from "react"
 import Radium from "radium"
-import Color from "color"
-import Link from "./link"
 import colors from "../../config/colors"
 
-class EmptyState extends Component {
+class Loading extends Component {
   render() {
-    if (this.props.collection.length !== 0) return null
-    if (this.props.isFetching) return null
+    if (!this.props.isFetching) return null;
+    if (this.props.collection.length > 0 ) return null;
 
     return (
       <div>
-        <h1>Empty State</h1>
+        Loading...
         {this.props.children}
       </div>
     )
   }
 }
 
-EmptyState.defaultProps = {
+Loading.defaultProps = {
   collection: [],
-  isFetching: false
+  isFetching: true
 }
 
-EmptyState.propTypes = {
+Loading.propTypes = {
   collection: PropTypes.array.isRequired,
   isFetching: PropTypes.bool,
   children: PropTypes.node
@@ -36,14 +34,7 @@ var styles = {
     color: colors.bluBlue,
     cursor: 'pointer',
     padding: '6px 12px',
-
-    ':hover': {
-    },
-
-    ':focus': {
-      outline: 'none'
-    }
   }
 }
 
-export default Radium(EmptyState)
+export default Radium(Loading)

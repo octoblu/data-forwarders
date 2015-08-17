@@ -29,3 +29,5 @@ node_modules
 
 # Generated application files
 public
+
+.DS_Store
