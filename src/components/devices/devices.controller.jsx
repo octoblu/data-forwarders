@@ -16,23 +16,22 @@ var Devices = React.createClass({
 
   componentDidMount: function(){
     var devices = this;
+
     var meshbluConnection = meshblu.createConnection({
       uuid: "64e47761-294b-4f77-a7a4-c9a4cbfe64e2",
       token: "988f11704c01de29c16ee3ae1917e1db3de19927"
     });
 
-    meshbluConnection.on('ready', function(results, error){
-      console.log('Ready', results, error);
-      if(!error){
-        //get list of devices.
-        meshbluConnection.mydevices({}, function(deviceResult, error){
-          console.log(deviceResult);
-          devices.setState({
-            devices: deviceResult.devices,
-            isFetching: false
-          });
+    meshbluConnection.on('ready', function(connection){
+      console.log('Ready', connection);
+      //get list of devices.
+      meshbluConnection.mydevices({}, function(deviceResult, error){
+        console.log(deviceResult);
+        devices.setState({
+          devices: deviceResult.devices,
+          isFetching: false
         });
-      }
+      });
     });
   },
 
@@ -41,10 +40,11 @@ var Devices = React.createClass({
   },
 
   subscribeToAllDevices: function() {
-    var deviceUUIDs = _.pluck(this.state.devices, 'uuid')
-    this.setState({
-      subscriptions: deviceUUIDs
+    var subscriptions = _.map(this.state.devices, function(device){
+      return {"uuid" : device.uuid};
     });
+    
+    this.setState({ subscriptions: subscriptions });
   },
 
   unsubscribeFromAllDevices: function() {
@@ -54,7 +54,20 @@ var Devices = React.createClass({
   },
 
   subscribeToDevice: function(device)  {
-    console.log('Select Device: ', device);
+    var subscriptions = this.state.subscriptions;
+
+    subscriptions.push(_.pick(device, 'uuid'));
+
+    this.setState({
+      subscriptions: subscriptions
+    });
+  },
+
+  unsubscribeFromDevice: function(device) {
+    var subscriptions = this.state.subscriptions;
+    this.setState({
+      subscriptions: _.reject(subscriptions, {"uuid" : device.uuid})
+    });
   },
 
   render: function() {
@@ -67,7 +80,10 @@ var Devices = React.createClass({
           <DeviceTable
             devices={this.state.devices}
             subscriptions={this.state.subscriptions}
-            onToggleSelection={this.toggleSubscriptionToAllDevices}/>
+            onSubscribeToDevice={this.subscribeToDevice}
+            onUnsubscribeFromDevice={this.unsubscribeFromDevice}
+            onSubscribeToAllDevices={this.subscribeToAllDevices}
+            onUnsubscribeFromAllDevices={this.unsubscribeFromAllDevices} />
         }
       </div>
     )
