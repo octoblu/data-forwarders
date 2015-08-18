@@ -1,5 +1,4 @@
-var getConfig = require('hjs-webpack')
-
+var getConfig = require('hjs-webpack');
 
 module.exports = getConfig({
   // entry point for the app
@@ -17,8 +16,6 @@ module.exports = getConfig({
   // but since it's destructive we make it
   // false by default
   clearBeforeBuild: true,
-
   port: '7777',
-
   host: '0.0.0.0'
-})
+});
