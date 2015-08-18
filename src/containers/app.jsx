@@ -1,5 +1,10 @@
-var React = require('react');
-var RouteHandler = require('react-router').RouteHandler;
+import React from 'react'
+import { RouteHandler } from 'react-router'
+import { Provider } from 'react-redux'
+import { combineReducers, createStore } from 'redux'
+
+var reducer = combineReducers(reducers);
+var store = createStore(reducer);
 
 var App = React.createClass({
   render: function() {
