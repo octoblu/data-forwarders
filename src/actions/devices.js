@@ -8,8 +8,8 @@ module.exports.unsubscribeDevice = function(device) {
   return { type: types.UNSUBSCRIBE_DEVICE, device };
 };
 
-module.exports.subscribeAllDevices = function() {
-  return { type: types.SUBSCRIBE_ALL_DEVICES };
+module.exports.subscribeAllDevices = function(devices) {
+  return { type: types.SUBSCRIBE_ALL_DEVICES, devices };
 };
 
 module.exports.unsubscribeAllDevices = function() {

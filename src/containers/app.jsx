@@ -2,9 +2,8 @@ import React from 'react'
 import { RouteHandler } from 'react-router'
 import { Provider } from 'react-redux'
 import { combineReducers, createStore } from 'redux'
-
-var reducer = combineReducers(reducers);
-var store = createStore(reducer);
+import reducers from '../reducers/'
+var store = createStore(reducers);
 
 var App = React.createClass({
   render: function() {

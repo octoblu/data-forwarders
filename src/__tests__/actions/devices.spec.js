@@ -19,8 +19,9 @@ describe('Device actions', function() {
   });
 
   it('should create a SUBSCRIBE_ALL_DEVICES action when subscribeAllDevices is called', function() {
-    expect(actions.subscribeAllDevices()).toEqual({
-      type: types.SUBSCRIBE_ALL_DEVICES
+    expect(actions.subscribeAllDevices(['one', 'two'])).toEqual({
+      type: types.SUBSCRIBE_ALL_DEVICES,
+      devices: ['one', 'two']
     });
   });
 
