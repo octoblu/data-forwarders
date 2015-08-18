@@ -1,6 +1,4 @@
-module.exports.ADD_TODO = 'ADD_TODO';
-module.exports.DELETE_TODO = 'DELETE_TODO';
-module.exports.EDIT_TODO = 'EDIT_TODO';
-module.exports.COMPLETE_TODO = 'COMPLETE_TODO';
-module.exports.COMPLETE_ALL = 'COMPLETE_ALL';
-module.exports.CLEAR_COMPLETED = 'CLEAR_COMPLETED';
+module.exports.SUBSCRIBE_DEVICE        = 'SUBSCRIBE_DEVICE';
+module.exports.UNSUBSCRIBE_DEVICE      = 'UNSUBSCRIBE_DEVICE';
+module.exports.SUBSCRIBE_ALL_DEVICES   = 'SUBSCRIBE_ALL_DEVICES';
+module.exports.UNSUBSCRIBE_ALL_DEVICES = 'UNSUBSCRIBE_ALL_DEVICES';
