@@ -19,6 +19,6 @@ module.exports = getConfig({
   clearBeforeBuild: true,
 
   port: '7777',
-  
+
   host: '0.0.0.0'
 })
