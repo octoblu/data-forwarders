@@ -31,22 +31,4 @@ Filter.propTypes = {
   placeholder: PropTypes.string
 }
 
-var styles = {
-  base: {
-    border: 'none',
-    background: 'transparent',
-    color: colors.bluBlue,
-    cursor: 'pointer',
-    padding: '6px 12px',
-
-    ':hover': {
-      textDecoration: 'underline'
-    },
-
-    ':focus': {
-      outline: 'none'
-    }
-  }
-}
-
 export default Radium(Filter)

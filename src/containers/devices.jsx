@@ -1,8 +1,8 @@
 import React from "react"
 import meshblu from "meshblu"
-import SnapLoading from "../snap/loading"
-import SnapEmptyState from "../snap/empty-state"
-import DeviceTable from "./device-table"
+import SnapLoading from "../components/snap/loading"
+import SnapEmptyState from "../components/snap/empty-state"
+import DeviceTable from "../components/devices/device-table"
 
 
 var Devices = React.createClass({
@@ -43,7 +43,7 @@ var Devices = React.createClass({
     var subscriptions = _.map(this.state.devices, function(device){
       return {"uuid" : device.uuid};
     });
-    
+
     this.setState({ subscriptions: subscriptions });
   },
 
