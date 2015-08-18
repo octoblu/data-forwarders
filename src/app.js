@@ -2,6 +2,6 @@ var React = require('react');
 var Router = require('react-router');
 var routes = require('./config/routes');
 
-Router.run(routes, Router.HistoryLocation, (Root) => {
-  React.render(<Root/>, document.body);
+Router.run(routes, Router.HistoryLocation, (Root, state) => {
+  React.render(<Root params={state.params}/>, document.body);
 });
