@@ -1,10 +1,10 @@
 import React from "react"
 
-import Alert from "./snap/alert"
-import Button from "./snap/button"
-import EmptyState from "./snap/empty-state"
-import Filter from "./snap/filter"
-import Link from "./snap/link"
+import Alert from "../components/snap/alert"
+import Button from "../components/snap/button"
+import EmptyState from "../components/snap/empty-state"
+import Filter from "../components/snap/filter"
+import Link from "../components/snap/link"
 
 var StyleGuide = React.createClass({
   handleFilter: function(value) {

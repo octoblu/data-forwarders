@@ -29,21 +29,4 @@ EmptyState.propTypes = {
   children: PropTypes.node
 }
 
-var styles = {
-  base: {
-    border: 'none',
-    background: 'transparent',
-    color: colors.bluBlue,
-    cursor: 'pointer',
-    padding: '6px 12px',
-
-    ':hover': {
-    },
-
-    ':focus': {
-      outline: 'none'
-    }
-  }
-}
-
 export default Radium(EmptyState)

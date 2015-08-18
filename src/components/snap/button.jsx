@@ -11,10 +11,12 @@ class Button extends Component {
     return (
       <button
         onClick={this.props.onClick}
+        disabled={this.props.disabled}
         style={[
           styles.base,
           styles[this.props.kind],
-          this.props.block && styles.block
+          this.props.block && styles.block,
+          this.props.disabled && styles.disabled
         ]}>
         {this.props.children}
       </button>
@@ -24,12 +26,14 @@ class Button extends Component {
 
 Button.defaultProps = {
   kind: 'primary',
+  disabled: false,
   block: false
 }
 
 Button.propTypes = {
   kind: PropTypes.oneOf(['primary', 'warning', 'outline']).isRequired,
   onClick: PropTypes.func,
+  disabled: PropTypes.bool,
   block: PropTypes.bool
 }
 
@@ -68,6 +72,16 @@ var styles = {
 
   outline: {
     border: '1px solid #14568F'
+  },
+
+  disabled: {
+    background: '#CCC',
+    border: '1px solid #CCC',
+    cursor: 'not-allowed',
+
+    ':hover': {
+      background: Color('#CCC').darken(0.2).hexString()
+    }
   },
 
   block: {
