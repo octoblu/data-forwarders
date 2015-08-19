@@ -1,8 +1,13 @@
 import React from "react"
+import { bindActionCreators } from 'redux';
 import meshblu from "meshblu"
 import SnapLoading from "../components/snap/loading"
 import SnapEmptyState from "../components/snap/empty-state"
 import DeviceTable from "../components/devices/device-table"
+import DeviceActions from "../actions/devices"
+import { connect } from 'react-redux';
+
+
 
 
 var Devices = React.createClass({
@@ -35,42 +40,9 @@ var Devices = React.createClass({
     });
   },
 
-  toggleSubscriptionToAllDevices: function() {
-    console.log('Select All');
-  },
-
-  subscribeToAllDevices: function() {
-    var subscriptions = _.map(this.state.devices, function(device){
-      return {"uuid" : device.uuid};
-    });
-
-    this.setState({ subscriptions: subscriptions });
-  },
-
-  unsubscribeFromAllDevices: function() {
-    this.setState({
-      subscriptions: []
-    });
-  },
-
-  subscribeToDevice: function(device)  {
-    var subscriptions = this.state.subscriptions;
-
-    subscriptions.push(_.pick(device, 'uuid'));
-
-    this.setState({
-      subscriptions: subscriptions
-    });
-  },
-
-  unsubscribeFromDevice: function(device) {
-    var subscriptions = this.state.subscriptions;
-    this.setState({
-      subscriptions: _.reject(subscriptions, {"uuid" : device.uuid})
-    });
-  },
-
   render: function() {
+    var actions = bindActionCreators(DeviceActions, this.props.dispatch);
+
     return (
       <div>
         <SnapLoading collection={this.state.devices} isFetching={this.state.isFetching} />
@@ -79,15 +51,20 @@ var Devices = React.createClass({
         {this.state.devices.length > 0 &&
           <DeviceTable
             devices={this.state.devices}
-            subscriptions={this.state.subscriptions}
-            onSubscribeToDevice={this.subscribeToDevice}
-            onUnsubscribeFromDevice={this.unsubscribeFromDevice}
-            onSubscribeToAllDevices={this.subscribeToAllDevices}
-            onUnsubscribeFromAllDevices={this.unsubscribeFromAllDevices} />
+            subscriptions={this.props.devices}
+            onSubscribeToDevice={actions.subscribeDevice}
+            onUnsubscribeFromDevice={actions.unsubscribeDevice}
+            onSubscribeToAllDevices={actions.subscribeAllDevices}
+            onUnsubscribeFromAllDevices={actions.unsubscribeAllDevices} />
         }
       </div>
     )
   }
 });
 
-module.exports = Devices
+function select(state) {
+  return {
+    devices: state.devices
+  };
+}
+module.exports =  connect(select)(Devices);

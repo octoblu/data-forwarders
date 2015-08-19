@@ -16,7 +16,7 @@ var DeviceTable = React.createClass({
 
   toggleSelectionForAllDevices: function(e) {
     if (e.target.checked) {
-      this.props.onSubscribeToAllDevices();
+      this.props.onSubscribeToAllDevices(this.props.devices);
     } else {
       this.props.onUnsubscribeFromAllDevices();
     }
@@ -24,6 +24,7 @@ var DeviceTable = React.createClass({
 
   renderDeviceRow: function(device) {
     var isInSubscriptionList = !!_.findWhere(this.props.subscriptions, {"uuid": device.uuid})
+
 
     return (
       <DeviceRow
@@ -36,7 +37,6 @@ var DeviceTable = React.createClass({
   },
 
   render: function() {
-
     return (
       <table>
         <thead>
