@@ -1,6 +1,6 @@
 jest.autoMockOff();
 var types = require('../../constants/action-types');
-var actions = require('../../actions/devices');
+var actions = require('../../actions/devices.actions');
 
 describe('Device actions', function() {
 

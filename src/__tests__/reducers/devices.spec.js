@@ -1,6 +1,6 @@
 jest.autoMockOff();
 var types = require('../../constants/action-types');
-var devices = require('../../reducers/devices');
+var devices = require('../../reducers/devices.reducers');
 
 describe('Reducers Devices', function() {
   it('should handle initial state', function() {

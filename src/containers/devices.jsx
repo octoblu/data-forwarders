@@ -4,7 +4,7 @@ import meshblu from "meshblu"
 import SnapLoading from "../components/snap/loading"
 import SnapEmptyState from "../components/snap/empty-state"
 import DeviceTable from "../components/devices/device-table"
-import DeviceActions from "../actions/devices"
+import DeviceActions from "../actions/devices.actions"
 import { connect } from 'react-redux';
 
 
