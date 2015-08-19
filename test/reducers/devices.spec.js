@@ -1,8 +1,8 @@
-jest.autoMockOff();
-var types = require('../../constants/action-types');
-var devices = require('../../reducers/devices.reducers');
+var expect = require('expect');
+var types = require('../../src/constants/action-types');
+var devices = require('../../src/reducers/devices.reducers');
 
-describe('Reducers Devices', function() {
+describe('Devices.Reducers', function() {
   it('should handle initial state', function() {
     expect(devices(undefined, {})).toEqual([]);
   });
