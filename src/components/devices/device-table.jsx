@@ -1,37 +1,36 @@
-import React from "react"
-import meshblu from "meshblu"
-import _ from "lodash"
+var _ = require('lodash');
+var React = require('react');
+var meshblu = require('meshblu');
 
-import DeviceRow from "./device-row"
+var DeviceRow = require('./device-row');
 
 var DeviceTable = React.createClass({
   propTypes: {
     devices: React.PropTypes.array.isRequired,
     subscriptions: React.PropTypes.array.isRequired,
-    onSubscribeToDevice: React.PropTypes.func.isRequired,
-    onUnsubscribeFromDevice: React.PropTypes.func.isRequired,
-    onSubscribeToAllDevices: React.PropTypes.func.isRequired,
-    onUnsubscribeFromAllDevices: React.PropTypes.func.isRequired
+    onSubscribeDevice: React.PropTypes.func.isRequired,
+    onUnsubscribeDevice: React.PropTypes.func.isRequired,
+    onSubscribeAllDevices: React.PropTypes.func.isRequired,
+    onUnsubscribeAllDevices: React.PropTypes.func.isRequired
   },
 
   toggleSelectionForAllDevices: function(e) {
     if (e.target.checked) {
-      this.props.onSubscribeToAllDevices(this.props.devices);
+      this.props.onSubscribeAllDevices(this.props.devices);
     } else {
-      this.props.onUnsubscribeFromAllDevices();
+      this.props.onUnsubscribeAllDevices();
     }
   },
 
   renderDeviceRow: function(device) {
     var isInSubscriptionList = !!_.findWhere(this.props.subscriptions, {"uuid": device.uuid})
 
-
     return (
       <DeviceRow
         device={device}
         isInSubscriptionList={isInSubscriptionList}
-        subscribeToDevice={this.props.onSubscribeToDevice}
-        unsubscribeFromDevice={this.props.onUnsubscribeFromDevice}
+        subscribeToDevice={this.props.onSubscribeDevice}
+        unsubscribeFromDevice={this.props.onUnsubscribeDevice}
         key={device.uuid} />
     );
   },

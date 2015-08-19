@@ -8,13 +8,10 @@ import DeviceActions from "../actions/devices"
 import { connect } from 'react-redux';
 
 
-
-
 var Devices = React.createClass({
   getInitialState: function() {
     return {
       devices: [],
-      subscriptions: [],
       isFetching: true
     }
   },
@@ -31,7 +28,6 @@ var Devices = React.createClass({
       console.log('Ready', connection);
       //get list of devices.
       meshbluConnection.mydevices({}, function(deviceResult, error){
-        console.log(deviceResult);
         devices.setState({
           devices: deviceResult.devices,
           isFetching: false
@@ -52,10 +48,10 @@ var Devices = React.createClass({
           <DeviceTable
             devices={this.state.devices}
             subscriptions={this.props.devices}
-            onSubscribeToDevice={actions.subscribeDevice}
-            onUnsubscribeFromDevice={actions.unsubscribeDevice}
-            onSubscribeToAllDevices={actions.subscribeAllDevices}
-            onUnsubscribeFromAllDevices={actions.unsubscribeAllDevices} />
+            onSubscribeDevice={actions.subscribeDevice}
+            onUnsubscribeDevice={actions.unsubscribeDevice}
+            onSubscribeAllDevices={actions.subscribeAllDevices}
+            onUnsubscribeAllDevices={actions.unsubscribeAllDevices} />
         }
       </div>
     )
