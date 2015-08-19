@@ -5,7 +5,6 @@ module.exports = function(state = [], action) {
   switch(action.type) {
     case types.SUBSCRIBE_DEVICE:
       state.push(action.device);
-      console.log('Subscribe Device', action,state);
       return state;
 
     case types.UNSUBSCRIBE_DEVICE:
