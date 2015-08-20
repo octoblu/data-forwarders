@@ -1,16 +1,23 @@
-import React from "react"
+import React from 'react'
 import { bindActionCreators } from 'redux';
-import meshblu from "meshblu"
-import SnapLoading from "../components/snap/loading"
-import SnapEmptyState from "../components/snap/empty-state"
-import DeviceTable from "../components/devices/device-table"
-import ForwarderActions from "../actions/forwarders.actions"
 import { connect } from 'react-redux';
+import DeviceActions from '../actions/devices.actions'
+import ForwarderActions from '../actions/forwarders.actions'
+
+import DeviceTable from '../components/devices/device-table'
+import SnapLoading from '../components/snap/loading'
+import SnapEmptyState from '../components/snap/empty-state'
 
 
 var Devices = React.createClass({
+  componentDidMount: function() {
+    this.props.dispatch(DeviceActions.fetchDevices());
+  },
+
   render: function() {
-    var actions = bindActionCreators(ForwarderActions, this.props.dispatch);
+    var forwarderActions = bindActionCreators(ForwarderActions, this.props.dispatch);
+    var deviceActions = bindActionCreators(DeviceActions, this.props.dispatch);
+
     return (
       <div>
         <SnapLoading collection={this.props.devices.devices} isFetching={this.props.devices.isFetching} />
@@ -20,18 +27,17 @@ var Devices = React.createClass({
           <DeviceTable
             devices={this.props.devices.devices}
             subscriptions={this.props.devices.devices}
-            onSubscribeDevice={actions.subscribeDevice}
-            onUnsubscribeDevice={actions.unsubscribeDevice}
-            onSubscribeAllDevices={actions.subscribeAllDevices}
-            onUnsubscribeAllDevices={actions.unsubscribeAllDevices} />
+            onSubscribeDevice={forwarderActions.subscribeDevice}
+            onUnsubscribeDevice={forwarderActions.unsubscribeDevice}
+            onSubscribeAllDevices={forwarderActions.subscribeAllDevices}
+            onUnsubscribeAllDevices={forwarderActions.unsubscribeAllDevices} />
         }
       </div>
-    )
+    );
   }
 });
 
 function select(state) {
-  console.log('STATE', state.devices);
   return {
     devices: state.devices
   };

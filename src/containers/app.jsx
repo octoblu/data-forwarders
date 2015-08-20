@@ -36,9 +36,6 @@ if (process.env.NODE_ENV === 'production') {
 
 var store = finalCreateStore(reducers);
 
-store.dispatch(DeviceActions.fetchDevices())
-console.log('Store state', store.getState());
-
 var App = React.createClass({
   render: function() {
     return (
