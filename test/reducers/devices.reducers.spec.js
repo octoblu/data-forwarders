@@ -4,8 +4,9 @@ var devices = require('../../src/reducers/devices.reducers');
 
 describe('Forwarders.Reducers', function() {
   var initialState = {
+    items: [],
     isFetching: false,
-    devices: []
+    error: false
   };
 
   it('should handle initial state', function() {
@@ -15,7 +16,9 @@ describe('Forwarders.Reducers', function() {
   describe('when fetching a device starts', function() {
     it('should set isFetching to true', function() {
       expect(devices({}, { type: types.FETCH_DEVICES_REQUEST })).toEqual({
-        isFetching: true
+        items: [],
+        isFetching: true,
+        error: false
       });
     });
   });
@@ -33,7 +36,8 @@ describe('Forwarders.Reducers', function() {
         devices: []
       })).toEqual({
         isFetching: false,
-        devices: []
+        items: [],
+        error: false
       });
     });
 
@@ -45,9 +49,23 @@ describe('Forwarders.Reducers', function() {
         devices: { devices: fakeDevices }
       })).toEqual({
         isFetching: false,
-        devices: { devices: fakeDevices }
+        items: { devices: fakeDevices },
+        error: false
       })
     });
-
   });
+
+  describe('when fetch for devices return an error', function() {
+    it('should return an error property', function() {
+      expect(devices({}, {
+        type: types.FETCH_DEVICES_ERROR,
+        error: {}
+      })).toEqual({
+        isFetching: false,
+        items: [],
+        error: {}
+      });
+    });
+  });
+
 });

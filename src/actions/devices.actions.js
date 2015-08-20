@@ -1,20 +1,27 @@
-var types = require('../constants/action-types');
-var meshblu = require('meshblu');
+import * as types from '../constants/action-types';
+import meshblu from 'meshblu';
 
-var fetchDevicesRequest = module.exports.fetchDevicesRequest = function() {
+export function fetchDevicesRequest() {
   return {
     type: types.FETCH_DEVICES_REQUEST
   };
 };
 
-var fetchDevicesSuccess = module.exports.fetchDevicesSuccess = function(devices) {
+export function fetchDevicesSuccess(devices) {
   return {
     type: types.FETCH_DEVICES_SUCCESS,
     devices: devices
   };
 };
 
-module.exports.fetchDevices = function() {
+export function fetchDevicesError(error) {
+  return {
+    type: types.FETCH_DEVICES_ERROR,
+    error: error
+  }
+}
+
+export function fetchDevices() {
   return function(dispatch) {
     dispatch(fetchDevicesRequest());
 
@@ -24,8 +31,15 @@ module.exports.fetchDevices = function() {
     });
 
     meshbluConnection.on('ready', function(connection){
-      meshbluConnection.mydevices({}, function(deviceResult, error){
-        dispatch(fetchDevicesSuccess(deviceResult.devices));
+      meshbluConnection.mydevices({}, function(result, error){
+        console.log('device result', result, result.error);
+
+        if (result.error) {
+          dispatch(fetchDevicesError(result.error));
+          return;
+        }
+
+        dispatch(fetchDevicesSuccess(result.devices));
       });
     });
   }

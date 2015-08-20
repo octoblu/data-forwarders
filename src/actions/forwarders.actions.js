@@ -1,26 +1,26 @@
-var types = require('../constants/action-types');
+import * as types from '../constants/action-types'
 
-module.exports.subscribeDevice = function(device) {
+export function subscribeDevice(device) {
   return {
     type: types.SUBSCRIBE_DEVICE,
     device: device
   };
 };
 
-module.exports.unsubscribeDevice = function(device) {
+export function unsubscribeDevice(device) {
   return {
     type: types.UNSUBSCRIBE_DEVICE,
     device: device
   };
 };
 
-module.exports.subscribeAllDevices = function(devices) {
+export function subscribeAllDevices(devices) {
   return {
     type: types.SUBSCRIBE_ALL_DEVICES,
     devices: devices
   };
 };
 
-module.exports.unsubscribeAllDevices = function() {
+export function unsubscribeAllDevices() {
   return { type: types.UNSUBSCRIBE_ALL_DEVICES };
 };

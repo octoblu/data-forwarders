@@ -1,8 +1,8 @@
 import React from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import DeviceActions from '../actions/devices.actions'
-import ForwarderActions from '../actions/forwarders.actions'
+import * as DeviceActions from '../actions/devices.actions'
+import * as ForwarderActions from '../actions/forwarders.actions'
 
 import DeviceTable from '../components/devices/device-table'
 import SnapLoading from '../components/snap/loading'
@@ -18,15 +18,17 @@ var Devices = React.createClass({
     var forwarderActions = bindActionCreators(ForwarderActions, this.props.dispatch);
     var deviceActions = bindActionCreators(DeviceActions, this.props.dispatch);
 
+    let {devices} = this.props;
+
     return (
       <div>
-        <SnapLoading collection={this.props.devices.devices} isFetching={this.props.devices.isFetching} />
-        <SnapEmptyState collection={this.props.devices.devices} isFetching={this.props.devices.isFetching} />
+        <SnapLoading collection={devices.items} isFetching={devices.isFetching} />
+        <SnapEmptyState collection={devices.items} isFetching={devices.isFetching} />
 
-        {this.props.devices.devices.length > 0 &&
+        {devices.items.length > 0 &&
           <DeviceTable
-            devices={this.props.devices.devices}
-            subscriptions={this.props.devices.devices}
+            devices={devices.items}
+            subscriptions={devices.items}
             onSubscribeDevice={forwarderActions.subscribeDevice}
             onUnsubscribeDevice={forwarderActions.unsubscribeDevice}
             onSubscribeAllDevices={forwarderActions.subscribeAllDevices}

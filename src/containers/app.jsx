@@ -6,7 +6,7 @@ import ThunkMiddleware from 'redux-thunk'
 import { devTools, persistState } from 'redux-devtools';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
-import DeviceActions from '../actions/devices.actions';
+import * as DeviceActions from '../actions/devices.actions';
 
 import reducers from '../reducers/';
 

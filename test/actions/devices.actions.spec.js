@@ -15,4 +15,11 @@ describe('Devices.Actions', function() {
       devices: {}
     });
   });
+
+  it('should create FETCH_DEVICES_ERROR action', function() {
+    expect(actions.fetchDevicesError({})).toEqual({
+      type: types.FETCH_DEVICES_ERROR,
+      error: {}
+    });
+  });
 });
