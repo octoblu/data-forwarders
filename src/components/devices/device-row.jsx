@@ -1,11 +1,11 @@
-import React from "react"
+import React, { PropTypes } from "react"
 
 var DeviceTableRow = React.createClass({
   propTypes: {
-    device: React.PropTypes.object.isRequired,
-    isInSubscriptionList: React.PropTypes.bool,
-    subscribeToDevice: React.PropTypes.func.isRequired,
-    unsubscribeFromDevice: React.PropTypes.func.isRequired
+    device: PropTypes.object.isRequired,
+    isInSubscriptionList: PropTypes.bool,
+    subscribeToDevice: PropTypes.func.isRequired,
+    unsubscribeFromDevice: PropTypes.func.isRequired
   },
 
   handleToggle: function(event){

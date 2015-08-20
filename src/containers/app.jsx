@@ -6,7 +6,7 @@ import ThunkMiddleware from 'redux-thunk'
 import { devTools, persistState } from 'redux-devtools';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
-import * as DeviceActions from '../actions/devices.actions';
+import * as MeshbluActions from '../actions/meshblu.actions';
 
 import reducers from '../reducers/';
 
@@ -35,6 +35,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 var store = finalCreateStore(reducers);
+store.dispatch(MeshbluActions.createConnection());
 
 var App = React.createClass({
   render: function() {

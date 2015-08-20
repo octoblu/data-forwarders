@@ -1,9 +1,9 @@
 import React from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
 import * as DeviceActions from '../actions/devices.actions'
 import * as ForwarderActions from '../actions/forwarders.actions'
-
 import DeviceTable from '../components/devices/device-table'
 import SnapLoading from '../components/snap/loading'
 import SnapEmptyState from '../components/snap/empty-state'
@@ -11,14 +11,14 @@ import SnapEmptyState from '../components/snap/empty-state'
 
 var Devices = React.createClass({
   componentDidMount: function() {
-    this.props.dispatch(DeviceActions.fetchDevices());
+    if (!this.props.meshblu.connection) return;
+
+    this.props.dispatch(DeviceActions.fetchDevices(this.props.meshblu));
   },
 
   render: function() {
-    var forwarderActions = bindActionCreators(ForwarderActions, this.props.dispatch);
-    var deviceActions = bindActionCreators(DeviceActions, this.props.dispatch);
-
-    let {devices} = this.props;
+    let {devices, dispatch} = this.props;
+    let forwarderActions = bindActionCreators(ForwarderActions, dispatch);
 
     return (
       <div>
@@ -28,7 +28,8 @@ var Devices = React.createClass({
         {devices.items.length > 0 &&
           <DeviceTable
             devices={devices.items}
-            subscriptions={devices.items}
+            subscriptions={[]}
+            actions={forwarderActions}
             onSubscribeDevice={forwarderActions.subscribeDevice}
             onUnsubscribeDevice={forwarderActions.unsubscribeDevice}
             onSubscribeAllDevices={forwarderActions.subscribeAllDevices}
@@ -41,7 +42,9 @@ var Devices = React.createClass({
 
 function select(state) {
   return {
-    devices: state.devices
+    devices: state.devices,
+    meshblu: state.meshblu
   };
 }
+
 module.exports =  connect(select)(Devices);

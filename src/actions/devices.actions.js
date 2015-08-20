@@ -21,19 +21,19 @@ export function fetchDevicesError(error) {
   }
 }
 
-export function fetchDevices() {
+export function fetchDevices(meshblu) {
   return function(dispatch) {
     dispatch(fetchDevicesRequest());
 
-    var meshbluConnection = meshblu.createConnection({
-      uuid: "64e47761-294b-4f77-a7a4-c9a4cbfe64e2",
-      token: "988f11704c01de29c16ee3ae1917e1db3de19927"
-    });
+    console.log('DEVICE ACTIONS', this);
 
-    meshbluConnection.on('ready', function(connection){
-      meshbluConnection.mydevices({}, function(result, error){
-        console.log('device result', result, result.error);
+    // var meshbluConnection = meshblu.createConnection({
+    //   uuid: "64e47761-294b-4f77-a7a4-c9a4cbfe64e2",
+    //   token: "988f11704c01de29c16ee3ae1917e1db3de19927"
+    // });
 
+    meshblu.connection.on('ready', function(connection){
+      meshblu.connection.mydevices({}, function(result, error){
         if (result.error) {
           dispatch(fetchDevicesError(result.error));
           return;

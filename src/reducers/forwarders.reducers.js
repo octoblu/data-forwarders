@@ -1,15 +1,17 @@
-var _ = require('lodash');
-var types = require('../constants/action-types');
+import _ from 'lodash';
+import * as types from '../constants/action-types';
 
-module.exports = function(state = [], action) {
+var initialState = [];
+
+module.exports = function(state = initialState, action) {
   switch(action.type) {
     case types.SUBSCRIBE_DEVICE:
-      state.push(action.device);
-      return state;
+
+      return [action.device.uuid, ...state];
 
     case types.UNSUBSCRIBE_DEVICE:
       return _.filter(state, function(device) {
-        return device !== action.device;
+        return device !== action.device.uuid;
       });
 
     case types.UNSUBSCRIBE_ALL_DEVICES:
