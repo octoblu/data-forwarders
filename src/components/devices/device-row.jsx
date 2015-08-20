@@ -9,10 +9,9 @@ var DeviceTableRow = React.createClass({
   },
 
   handleToggle: function(event){
-    var isChecked = event.target.checked;
     var device = this.props.device;
 
-    if(isChecked){
+    if(event.target.checked){
        this.props.subscribeToDevice(device);
     } else {
       this.props.unsubscribeFromDevice(device);

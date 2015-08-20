@@ -24,8 +24,6 @@ module.exports.fetchDevices = function() {
     });
 
     meshbluConnection.on('ready', function(connection){
-      console.log('Ready', connection);
-      //get list of devices.
       meshbluConnection.mydevices({}, function(deviceResult, error){
         dispatch(fetchDevicesSuccess(deviceResult.devices));
       });

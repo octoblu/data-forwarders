@@ -11,8 +11,6 @@ import { connect } from 'react-redux';
 var Devices = React.createClass({
   render: function() {
     var actions = bindActionCreators(ForwarderActions, this.props.dispatch);
-
-    console.log(this.props.devices.devices);
     return (
       <div>
         <SnapLoading collection={this.props.devices.devices} isFetching={this.props.devices.isFetching} />
@@ -21,7 +19,7 @@ var Devices = React.createClass({
         {this.props.devices.devices.length > 0 &&
           <DeviceTable
             devices={this.props.devices.devices}
-            subscriptions={this.props.devices}
+            subscriptions={this.props.devices.devices}
             onSubscribeDevice={actions.subscribeDevice}
             onUnsubscribeDevice={actions.unsubscribeDevice}
             onSubscribeAllDevices={actions.subscribeAllDevices}
@@ -33,6 +31,7 @@ var Devices = React.createClass({
 });
 
 function select(state) {
+  console.log('STATE', state.devices);
   return {
     devices: state.devices
   };
