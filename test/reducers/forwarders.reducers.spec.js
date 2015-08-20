@@ -1,16 +1,16 @@
-var expect = require('expect');
-var types = require('../../src/constants/action-types');
-var devices = require('../../src/reducers/devices.reducers');
+var expect     = require('expect');
+var types      = require('../../src/constants/action-types');
+var forwarders = require('../../src/reducers/forwarders.reducers');
 
-describe('Devices.Reducers', function() {
+describe('Forwarders.Reducers', function() {
   it('should handle initial state', function() {
-    expect(devices(undefined, {})).toEqual([]);
+    expect(forwarders(undefined, {})).toEqual([]);
   });
 
   it('should subscribe a device', function() {
     var deviceUUID = 'fake-device-uuid';
 
-    expect(devices([], {
+    expect(forwarders([], {
       type: types.SUBSCRIBE_DEVICE,
       device: deviceUUID
     })).toEqual([deviceUUID]);
@@ -21,7 +21,7 @@ describe('Devices.Reducers', function() {
     var device2 = 'fake-device-uuid2';
     var device3 = 'fake-device-uuid3';
 
-    expect(devices([device1, device2], {
+    expect(forwarders([device1, device2], {
       type: types.SUBSCRIBE_DEVICE,
       device: device3
     })).toEqual([device1, device2, device3]);
@@ -30,7 +30,7 @@ describe('Devices.Reducers', function() {
   it('should unsubscribe a device', function() {
     var device = 'fake-device'
 
-    expect(devices(['device'], {
+    expect(forwarders(['device'], {
       type: types.UNSUBSCRIBE_DEVICE,
       device: 'device'
     })).toEqual([]);
@@ -41,7 +41,7 @@ describe('Devices.Reducers', function() {
     var device2 = 'fake-device-uuid2';
     var device3 = 'fake-device-uuid3';
 
-    expect(devices([device1, device2, device3], {
+    expect(forwarders([device1, device2, device3], {
       type: types.UNSUBSCRIBE_DEVICE,
       device: device1
     })).toEqual([device2, device3]);
@@ -52,7 +52,7 @@ describe('Devices.Reducers', function() {
     var device2 = 'fake-device-uuid2';
     var device3 = 'fake-device-uuid3';
 
-    expect(devices([device1 ,device2, device3], {
+    expect(forwarders([device1 ,device2, device3], {
       type: types.UNSUBSCRIBE_ALL_DEVICES
     })).toEqual([]);
   });
@@ -63,7 +63,7 @@ describe('Devices.Reducers', function() {
     var device3 = 'fake-device-uuid3';
     var deviceList = [device1, device2, device3];
 
-    expect(devices([], {
+    expect(forwarders([], {
       type: types.SUBSCRIBE_ALL_DEVICES,
       devices: deviceList
     })).toEqual([device1, device2, device3]);

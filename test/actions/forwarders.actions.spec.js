@@ -1,8 +1,8 @@
 var expect  = require('expect');
 var types   = require('../../src/constants/action-types');
-var actions = require('../../src/actions/devices.actions');
+var actions = require('../../src/actions/forwarders.actions');
 
-describe('Device actions', function() {
+describe('Forwarders.Actions', function() {
 
   it('should create SUBSCRIBE_DEVICE action', function(){
     expect(actions.subscribeDevice({})).toEqual({

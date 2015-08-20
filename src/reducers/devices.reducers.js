@@ -1,22 +1,23 @@
 var _ = require('lodash');
 var types = require('../constants/action-types');
 
-module.exports = function(state = [], action) {
-  switch(action.type) {
-    case types.SUBSCRIBE_DEVICE:
-      state.push(action.device);
-      return state;
+var initialState = {
+  isFetching: false,
+  devices: []
+};
 
-    case types.UNSUBSCRIBE_DEVICE:
-      return _.filter(state, function(device) {
-        return device !== action.device;
+module.exports = function(state = initialState, action) {
+  switch(action.type) {
+    case types.FETCH_DEVICES_REQUEST:
+      return _.assign({}, state, {
+        isFetching: true
       });
 
-    case types.UNSUBSCRIBE_ALL_DEVICES:
-      return [];
-
-    case types.SUBSCRIBE_ALL_DEVICES:
-      return action.devices;
+    case types.FETCH_DEVICES_SUCCESS:
+      return _.assign({}, state, {
+        isFetching: false,
+        devices: action.devices
+      });
 
     default:
       return state;

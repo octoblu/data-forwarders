@@ -25,6 +25,7 @@ var DeviceTable = React.createClass({
   renderDeviceRow: function(device) {
     var isInSubscriptionList = !!_.findWhere(this.props.subscriptions, {"uuid": device.uuid})
 
+    console.log('device', device);
     return (
       <DeviceRow
         device={device}
@@ -36,6 +37,8 @@ var DeviceTable = React.createClass({
   },
 
   render: function() {
+    console.log('devices', this.props);
+
     return (
       <table>
         <thead>
