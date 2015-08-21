@@ -6,7 +6,7 @@ import ThunkMiddleware from 'redux-thunk'
 import { devTools, persistState } from 'redux-devtools';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
-import * as MeshbluActions from '../actions/meshblu.actions';
+import * as MeshbluActions from '../actions/meshblu-actions';
 
 import reducers from '../reducers/';
 

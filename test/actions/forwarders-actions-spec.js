@@ -1,6 +1,6 @@
 var expect  = require('expect');
 var types   = require('../../src/constants/action-types');
-var actions = require('../../src/actions/forwarders.actions');
+var actions = require('../../src/actions/forwarders-actions');
 
 describe('Forwarders.Actions', function() {
 

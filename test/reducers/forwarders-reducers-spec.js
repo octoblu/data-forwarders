@@ -1,8 +1,8 @@
 var expect     = require('expect');
 var types      = require('../../src/constants/action-types');
-var forwarders = require('../../src/reducers/forwarders.reducers');
+var forwarders = require('../../src/reducers/forwarders-reducers');
 
-describe('Forwarders.Reducers', function() {
+describe('forwarders-reducers', function() {
   it('should handle initial state', function() {
     expect(forwarders(undefined, {})).toEqual([]);
   });

@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-router';
 
-import * as DeviceActions from '../actions/devices.actions'
-import * as ForwarderActions from '../actions/forwarders.actions'
+import * as DeviceActions from '../actions/devices-actions'
+import * as ForwarderActions from '../actions/forwarders-actions'
 import DeviceTable from '../components/devices/device-table'
 import SnapLoading from '../components/snap/loading'
 import SnapEmptyState from '../components/snap/empty-state'

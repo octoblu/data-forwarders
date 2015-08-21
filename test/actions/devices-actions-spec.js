@@ -1,6 +1,6 @@
 var expect  = require('expect');
 var types   = require('../../src/constants/action-types');
-var actions = require('../../src/actions/devices.actions');
+var actions = require('../../src/actions/devices-actions');
 
 describe('Devices.Actions', function() {
   it('should create FETCH_DEVICES_REQUEST action', function(){

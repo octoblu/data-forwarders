@@ -1,6 +1,6 @@
 import expect from 'expect';
 import * as types from '../../src/constants/action-types';
-import * as actions from '../../src/actions/meshblu.actions';
+import * as actions from '../../src/actions/meshblu-actions';
 
 describe('Meshblu.Actions', function() {
 
