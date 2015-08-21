@@ -10,14 +10,6 @@ import * as MeshbluActions from '../actions/meshblu-actions';
 
 import reducers from '../reducers/';
 
-// var finalCreateStore = compose(
-//   devTools(),
-//   persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/)),
-//   createStore
-// );
-//
-// var store = finalCreateStore(reducers);
-
 var middleware = [ThunkMiddleware];
 var finalCreateStore;
 
@@ -37,14 +29,14 @@ if (process.env.NODE_ENV === 'production') {
 var store = finalCreateStore(reducers);
 store.dispatch(MeshbluActions.createConnection());
 
-var App = React.createClass({
+var Root = React.createClass({
   render: function() {
     return (
       <Provider store={store}>
         {function() {
           return (
           <div>
-            <h1>App</h1>
+            <h1>App Layout</h1>
 
             <RouteHandler />
 
@@ -59,4 +51,4 @@ var App = React.createClass({
   }
 });
 
-module.exports = App;
+module.exports = Root;
