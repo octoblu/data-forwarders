@@ -1,10 +1,10 @@
+import _ from "lodash"
 import React from "react"
 
 import SnapLoading from "../components/snap/loading"
 import SnapEmptyState from "../components/snap/empty-state"
 
-var ForwarderNew = React.createClass({
-
+var Forwarders = React.createClass({
   render: function() {
     return (
       <div>
@@ -15,4 +15,10 @@ var ForwarderNew = React.createClass({
   }
 });
 
-module.exports = ForwarderNew
+_.assign(Forwarders, {
+  willTransitionTo(transition) {
+    console.log('willTransitionTo');
+  }
+});
+
+module.exports = Forwarders;

@@ -25,22 +25,20 @@ export function fetchDevices(meshblu) {
   return function(dispatch) {
     dispatch(fetchDevicesRequest());
 
-    console.log('DEVICE ACTIONS', this);
+    const { connection } = meshblu;
 
-    // var meshbluConnection = meshblu.createConnection({
-    //   uuid: "64e47761-294b-4f77-a7a4-c9a4cbfe64e2",
-    //   token: "988f11704c01de29c16ee3ae1917e1db3de19927"
-    // });
+    if (!connection) {
+      console.log('No Meshblu Connection');
+      return;
+    }
 
-    meshblu.connection.on('ready', function(connection){
-      meshblu.connection.mydevices({}, function(result, error){
-        if (result.error) {
-          dispatch(fetchDevicesError(result.error));
-          return;
-        }
+    connection.mydevices({}, function(result, error){
+      if (result.error) {
+        dispatch(fetchDevicesError(result.error));
+        return;
+      }
 
-        dispatch(fetchDevicesSuccess(result.devices));
-      });
+      dispatch(fetchDevicesSuccess(result.devices));
     });
   }
 };

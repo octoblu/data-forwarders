@@ -36,7 +36,7 @@ export function createConnection() {
     });
 
     meshbluConnection.on('ready', function(response){
-      dispatch(createConnectionSuccess(response));
+      dispatch(createConnectionSuccess(meshbluConnection));
     });
   };
 };

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import * as types from '../constants/action-types';
 
 var initialState = {
-  connection: undefined,
+  connection: null,
   isConnecting: false,
   error: false
 };
@@ -12,7 +12,7 @@ module.exports = function(state = initialState, action) {
   switch(action.type) {
     case types.MESHBLU_CREATE_CONNECTION_REQUEST:
       return _.assign({}, state, {
-        connection: undefined,
+        connection: null,
         isConnecting: true,
         error: false
       });
@@ -26,7 +26,7 @@ module.exports = function(state = initialState, action) {
 
     case types.MESHBLU_CREATE_CONNECTION_ERROR:
       return _.assign({}, state, {
-        connection: undefined,
+        connection: null,
         isConnecting: false,
         error: action.error
       });

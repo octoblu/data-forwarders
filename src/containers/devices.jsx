@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Navigation } from 'react-router';
 
 import * as DeviceActions from '../actions/devices.actions'
 import * as ForwarderActions from '../actions/forwarders.actions'
@@ -10,9 +11,15 @@ import SnapEmptyState from '../components/snap/empty-state'
 
 
 var Devices = React.createClass({
-  componentDidMount: function() {
-    if (!this.props.meshblu.connection) return;
+  mixins: [Navigation],
 
+  componentWillReceiveProps: function() {
+    if (!this.props.meshblu.connection) {
+      this.transitionTo('login')
+    }
+  },
+
+  componentDidMount: function() {
     this.props.dispatch(DeviceActions.fetchDevices(this.props.meshblu));
   },
 

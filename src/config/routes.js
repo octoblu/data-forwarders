@@ -18,9 +18,9 @@ var routes = (
     <Route name="login" path="login" handler={Login}/>
     <Route name="session" path="session" handler={Session}/>
     <Route name="forwarders" path="forwarders" handler={Forwarder}/>
-    <Route path="forwarders/new" handler={ForwarderNew}/>
-    <Route path="forwarders/:uuid/devices" handler={Devices}/>
-    <Route path="style-guide" handler={StyleGuide}/>
+    <Route name="forwarders-new" path="forwarders/new" handler={ForwarderNew}/>
+    <Route name="devices" path="forwarders/:uuid/devices" handler={Devices}/>
+    <Route name="style-guide" path="style-guide" handler={StyleGuide}/>
     <NotFoundRoute handler={NotFound} />
   </Route>
 )
