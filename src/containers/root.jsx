@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 var store = finalCreateStore(reducers);
-store.dispatch(MeshbluActions.createConnection());
+// store.dispatch(MeshbluActions.createConnection());
 
 var Root = React.createClass({
   render: function() {

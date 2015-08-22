@@ -29,6 +29,4 @@ function mapStateToProps(state) {
   };
 };
 
-connect(mapStateToProps)(Forwarders);
-
-module.exports = Forwarders;
+export default connect(mapStateToProps)(Forwarders);

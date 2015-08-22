@@ -22,17 +22,24 @@ export function createConnectionError(error) {
   }
 }
 
-export function createConnection() {
+export function createConnection(device) {
   return function(dispatch) {
     dispatch(createConnectionRequest());
 
-    var meshbluConnection = meshblu.createConnection({
-      uuid: "64e47761-294b-4f77-a7a4-c9a4cbfe64e2",
-      token: "988f11704c01de29c16ee3ae1917e1db3de19927"
+    if (!device.uuid || !device.token) {
+      dispatch(createConnectionError({
+        message: "UUID & Token Required"
+      }));
+      return;
+    }
+
+    const meshbluConnection = meshblu.createConnection({
+      uuid: device.uuid,
+      token: device.token
     });
 
     meshbluConnection.on('notReady', function(response){
-      dispatch(createConnectionError(response));
+      dispatch(createConnectionError({message: 'Authentication Failed'}));
     });
 
     meshbluConnection.on('ready', function(response){

@@ -9,18 +9,16 @@ var Forwarder = require('../containers/forwarders');
 var ForwarderNew = require('../containers/forwarders-new');
 var Login = require('../containers/login');
 var NotFound = require('../containers/not-found');
-var Session = require('../containers/session');
 var StyleGuide = require('../containers/style-guide');
 
 
 var routes = (
   <Route handler={Root}>
-    <Route name="" path="" handler={Forwarder}/>
-    <Route name="forwarders-new" path="forwarders/new" handler={ForwarderNew}/>
+    <Route name="forwarders.index" path="/" handler={Forwarder}/>
+    <Route name="forwarders.new" path="forwarders/new" handler={ForwarderNew}/>
     <Route name="devices" path="forwarders/:uuid/devices" handler={Devices}/>
     <Route name="style-guide" path="style-guide" handler={StyleGuide}/>
     <Route name="login" path="login" handler={Login}/>
-    <Route name="session" path="session" handler={Session}/>
     <NotFoundRoute handler={NotFound} />
   </Route>
 )

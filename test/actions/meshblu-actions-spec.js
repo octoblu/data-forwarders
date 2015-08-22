@@ -4,13 +4,6 @@ import * as actions from '../../src/actions/meshblu-actions';
 
 describe('Meshblu.Actions', function() {
 
-  it('should create MESHBLU_CREATE_CONNECTION action', function(){
-    expect(actions.createConnection({})).toEqual({
-      type: types.MESHBLU_CREATE_CONNECTION,
-      device: {}
-    });
-  });
-
   // MESHBLU_CREATE_CONNECTION_REQUEST
   it('should create a MESHBLU_CREATE_CONNECTION_REQUEST action', function(){
     expect(actions.createConnectionRequest()).toEqual({
