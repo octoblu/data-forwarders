@@ -3,7 +3,7 @@ import devices from './devices-reducers';
 import forwarders from './forwarders-reducers';
 import meshblu from './meshblu-reducers';
 
-var rootReducer = combineReducers({
+const rootReducer = combineReducers({
   devices,
   forwarders,
   meshblu

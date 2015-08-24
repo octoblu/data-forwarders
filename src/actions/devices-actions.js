@@ -1,4 +1,5 @@
 import * as types from '../constants/action-types';
+import * as MeshbluActions from './meshblu-actions';
 import meshblu from 'meshblu';
 
 export function fetchDevicesRequest() {
@@ -29,6 +30,14 @@ export function fetchDevices(meshblu) {
 
     if (!connection) {
       console.log('No Meshblu Connection');
+
+      const uuid = localStorage.getItem('meshblu-uuid');
+      const token = localStorage.getItem('meshblu-token');
+
+      if ( uuid && token ) {
+        dispatch(MeshbluActions.createConnection({ uuid, token }))
+      }
+
       return;
     }
 

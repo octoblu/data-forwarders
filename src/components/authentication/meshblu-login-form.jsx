@@ -13,9 +13,9 @@ var MeshbluLoginForm = React.createClass({
   mixins: [Navigation],
 
   propTypes: {
-    uuid: PropTypes.string,
-    token: PropTypes.string,
     onLogin: PropTypes.func.isRequired,
+    errorMessage: PropTypes.string,
+    isConnecting: PropTypes.bool
   },
 
   getInitialState: function() {
@@ -26,11 +26,8 @@ var MeshbluLoginForm = React.createClass({
     event.preventDefault();
 
     const { uuid, token } = this.state;
+    const device = { uuid, token };
     const { onLogin } = this.props;
-    const device = {
-      uuid,
-      token
-    };
 
     onLogin(device);
     this.setState(initialState);
