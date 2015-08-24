@@ -24,17 +24,18 @@ var Devices = React.createClass({
   },
 
   render: function() {
-    let {devices, dispatch} = this.props;
-    let forwarderActions = bindActionCreators(ForwarderActions, dispatch);
+    const { devices, dispatch } = this.props;
+    const { subDevices } = devices;
+    const forwarderActions = bindActionCreators(ForwarderActions, dispatch);
 
     return (
       <div>
-        <SnapLoading collection={devices.items} isFetching={devices.isFetching} />
-        <SnapEmptyState collection={devices.items} isFetching={devices.isFetching} />
+        <SnapLoading collection={subDevices} isFetching={devices.isFetching} />
+        <SnapEmptyState collection={subDevices} isFetching={devices.isFetching} />
 
-        {devices.items.length > 0 &&
+        {subDevices.length > 0 &&
           <DeviceTable
-            devices={devices.items}
+            devices={subDevices}
             subscriptions={[]}
             actions={forwarderActions}
             onSubscribeDevice={forwarderActions.subscribeDevice}

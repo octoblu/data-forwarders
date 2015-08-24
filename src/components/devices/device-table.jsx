@@ -14,10 +14,6 @@ var DeviceTable = React.createClass({
     onUnsubscribeAllDevices: PropTypes.func.isRequired
   },
 
-  componentDidMount: function() {
-    console.log(this.props.actions);
-  },
-
   toggleSelectionForAllDevices: function(e) {
     const { actions, devices } = this.props;
 

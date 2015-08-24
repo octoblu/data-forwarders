@@ -17,6 +17,7 @@ var Forwarders = React.createClass({
       <div>
         <h1 className="Page-title">Forwarders</h1>
         <Link to="forwarders.new" params={{userId: "123"}}>Create Forwarder</Link>
+        <Link to="devices" params={{uuid: "123"}}>Devices</Link>
       </div>
     )
   }
