@@ -1,18 +1,15 @@
-var React = require('react');
-var Router = require('react-router');
-var Route = Router.Route;
-var NotFoundRoute = Router.NotFoundRoute;
+import React from 'react';
+import Router, { Route, NotFoundRoute } from 'react-router';
 
-var Root = require('../containers/root');
-var Devices = require('../containers/devices');
-var Forwarder = require('../containers/forwarders');
-var ForwarderNew = require('../containers/forwarders-new');
-var Login = require('../containers/login');
-var NotFound = require('../containers/not-found');
-var StyleGuide = require('../containers/style-guide');
+import Root from '../containers/root';
+import Devices from '../containers/devices';
+import Forwarder from '../containers/forwarders';
+import ForwarderNew from '../containers/forwarders-new';
+import Login from '../containers/login';
+import NotFound from '../containers/not-found';
+import StyleGuide from '../containers/style-guide';
 
-
-var routes = (
+const routes = (
   <Route handler={Root}>
     <Route name="forwarders.index" path="/" handler={Forwarder}/>
     <Route name="forwarders.new" path="forwarders/new" handler={ForwarderNew}/>

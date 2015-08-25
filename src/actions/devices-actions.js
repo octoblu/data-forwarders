@@ -11,14 +11,14 @@ export function fetchDevicesRequest() {
 export function fetchDevicesSuccess(devices) {
   return {
     type: types.FETCH_DEVICES_SUCCESS,
-    devices: devices
+    devices
   };
 };
 
 export function fetchDevicesError(error) {
   return {
     type: types.FETCH_DEVICES_ERROR,
-    error: error
+    error
   }
 }
 
@@ -29,15 +29,15 @@ export function fetchDevices(meshblu) {
     const { connection } = meshblu;
 
     if (!connection) {
-      console.log('No Meshblu Connection');
-
       const uuid = localStorage.getItem('meshblu-uuid');
       const token = localStorage.getItem('meshblu-token');
 
-      if ( uuid && token ) {
-        dispatch(MeshbluActions.createConnection({ uuid, token }))
+      if (!uuid || !token) {
+        // Dispatch Action to redirect to login page
+        return;
       }
 
+      dispatch(MeshbluActions.createConnection({ uuid, token }));
       return;
     }
 
