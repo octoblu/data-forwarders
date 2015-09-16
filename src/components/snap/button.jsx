@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react'
+import React, { Component, PropTypes } from 'react'
 import Radium from 'radium'
 import Color from 'color'
 import colors from '../../config/colors'
@@ -40,23 +40,40 @@ Button.propTypes = {
 var styles = {
   base: {
     border: 'none',
+    borderRadius: '2px',
+    display: 'inline-block',
+    padding: '10px 15px',
+    margin: '5px',
+
     background: 'transparent',
     color: '#14568f',
+    fontSize: '16px',
+    textAlign: 'center',
+
+    transitionDelay: '0',
+    transitionDuration: '.3s',
+    transitionTimingFunction: 'ease-in',
+    transitionProperty: 'background,border-color',
+
+    userSelect: 'none',
+    appearance: 'none',
     cursor: 'pointer',
-    padding: '6px 12px',
+
+    ':hover': {
+      background: Color(colors.bluBlue).darken(0.1).hexString()
+    },
 
     ':focus': {
-      outline: 'none'
+      outline: '0'
     }
   },
 
   primary: {
     background: colors.bluBlue,
-    border: '1px solid ' + colors.bluBlue,
     color: '#FFF',
 
     ':hover': {
-      background: Color(colors.bluBlue).darken(0.2).hexString()
+      background: Color(colors.bluBlue).darken(0.1).hexString()
     }
   },
 
@@ -66,22 +83,16 @@ var styles = {
     color: '#FFF',
 
     ':hover': {
-      background: Color(colors.bluRed).darken(0.2).hexString()
+      background: Color(colors.bluRed).darken(0.1).hexString()
     }
   },
 
   outline: {
-    border: '1px solid #14568F'
+    border: '1px solid ' + colors.bluBlue
   },
 
   disabled: {
-    background: '#CCC',
-    border: '1px solid #CCC',
-    cursor: 'not-allowed',
-
-    ':hover': {
-      background: Color('#CCC').darken(0.2).hexString()
-    }
+    opacity: '0.9'
   },
 
   block: {
