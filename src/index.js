@@ -4,5 +4,5 @@ import routes from './config/routes';
 import Root from './containers/root'
 
 Router.run(routes, HistoryLocation, (Root, state) => {
-  React.render(<Root params={state.params}/>, document.body);
+  React.render(<Root params={state.params}/>, document.getElementById('root'));
 });

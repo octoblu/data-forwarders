@@ -5,6 +5,7 @@ import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 import createStore from '../lib/create-store';
 
 let store = createStore();
+console.log('Store', store);
 
 var Root = React.createClass({
   render: function() {
