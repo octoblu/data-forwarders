@@ -1,24 +1,31 @@
 import _ from 'lodash';
 import * as types from '../constants/action-types';
 
-var initialState = [];
+var initialState = {
+  type: '',
+  connector: '',
+  options : {
+  },
+  optionsSchema : {
+    "type": "object",
+    "properties":{
+      "EventCollectorToken" : {
+        "title": "Event Collector Token",
+        "type": "string",
+        "required" : true
+      }
+    }
+  },
+  gateblu: '',
+  subcriptions: [ ]
+};
 
 module.exports = function(state = initialState, action) {
   switch(action.type) {
-    case types.SUBSCRIBE_DEVICE:
-
-      return [action.device.uuid, ...state];
-
-    case types.UNSUBSCRIBE_DEVICE:
-      return _.filter(state, function(device) {
-        return device !== action.device.uuid;
+    case types.FORWARDER_ADD_DATA_STORE:
+      return _.assign({}, state, {
+        type: action.dataStore
       });
-
-    case types.UNSUBSCRIBE_ALL_DEVICES:
-      return [];
-
-    case types.SUBSCRIBE_ALL_DEVICES:
-      return action.devices;
 
     default:
       return state;

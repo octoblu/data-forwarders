@@ -1,38 +1,24 @@
 module.exports = [
   {
-    "name" : "Splunk",
+    "name" : "Splunk Event Collector",
     "logoUrl" : "",
     "type" : "device:forwarder",
-    "forwarderType" : "splunk",
+    "forwarderType" : "splunk-event-collector",
+    "connector" : "meshblu-splunk-event-collector",
     "optionsSchema" : {
-
-    }
-  },
-  {
-    "name" : "Elastic Search",
-    "logoUrl" : "",
-    "type" : "device:forwarder",
-    "forwarderType" : "elasticsearch",
-    "optionsSchema" : {
-
-    }
-  },
-  {
-    "name" : "Citrix Insight",
-    "logoUrl" : "",
-    "type" : "device:forwarder",
-    "forwarderType" : "citrix-insight",
-    "optionsSchema" : {
-
-    }
-  },
-  {
-    "name" : "TempoIQ",
-    "logoUrl" : "",
-    "type" : "device:forwarder",
-    "forwarderType" : "tempoiq",
-    "optionsSchema" : {
-
+      "type": "object",
+      "properties":{
+        "EventCollectorToken" : {
+          "title": "Event Collector Token",
+          "type": "string",
+          "required" : true
+        },
+        "SplunkEventUrl" : {
+          "title": "Event Collector Token",
+          "type" : "string",
+          "required" : true
+        }
+      }
     }
   }
 ]

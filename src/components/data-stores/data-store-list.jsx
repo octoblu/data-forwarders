@@ -11,7 +11,7 @@ var DataStoreList = React.createClass({
 
     console.log(store);
     return (
-      <a href={"/data-store/" + store.name}>{store.name}</a>
+      <a href={"/forwarder/options/" + store.forwarderType}>{store.name}</a>
     )
   },
 

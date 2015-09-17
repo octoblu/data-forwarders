@@ -1,5 +1,12 @@
 import * as types from '../constants/action-types'
 
+export function addDataStore(dataStore) {
+  return {
+    type: types.FORWARDER_ADD_DATA_STORE,
+    dataStore
+  }
+};
+
 export function subscribeDevice(device) {
   return {
     type: types.SUBSCRIBE_DEVICE,

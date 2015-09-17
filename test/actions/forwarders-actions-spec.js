@@ -4,10 +4,16 @@ var actions = require('../../src/actions/forwarders-actions');
 
 describe('Forwarders.Actions', function() {
 
+  it('should create FORWARDER_ADD_DATA_STORE action', function() {
+    expect(actions.addDataStore({}).toEqual({
+
+    }));
+  });
+
   it('should create SUBSCRIBE_DEVICE action', function(){
-    expect(actions.subscribeDevice({})).toEqual({
+    expect(actions.subscribeDevice('data-store-uuid')).toEqual({
       type: types.SUBSCRIBE_DEVICE,
-      device: {}
+      dataStore: 'data-store-uuid'
     });
   });
 
