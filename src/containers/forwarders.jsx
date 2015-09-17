@@ -6,7 +6,7 @@ import { Link, Navigation } from 'react-router';
 
 import * as DeviceActions from '../actions/devices-actions';
 
-import ForwarderList from '../components/forwarders/forwarder-list';
+import DeviceList from '../components/devices/device-list';
 
 var Forwarders = React.createClass({
   componentDidMount: function() {
@@ -15,11 +15,11 @@ var Forwarders = React.createClass({
 
   render: function() {
     const { devices } = this.props;
-    
+
     return (
       <div>
         <h1 className="Page-title">Forwarders</h1>
-        <ForwarderList forwarders={devices.forwarders} isFetching={devices.isFetching} />
+        <DeviceList devices={devices.forwarders} isFetching={devices.isFetching} />
         <Link to="forwarders.new" params={{userId: "123"}}>Create Forwarder</Link>
         <Link to="devices" params={{uuid: "123"}}>Devices</Link>
       </div>

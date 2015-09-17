@@ -1,32 +1,25 @@
-import React from "react"
+import React, { PropTypes } from "react";
+import _ from "lodash";
 
 var DataStoreListItem = React.createClass({
   propTypes: {
-    store: React.PropTypes.object.isRequired,
-    onSelection: React.PropTypes.func.isRequired
+    store: PropTypes.object.isRequired,
+    onSelection: PropTypes.func.isRequired
   },
 
-  handleClick: function(event){
-    var isChecked = event.target.checked;
-
-    if(isChecked){
-       this.props.subscribeToDevice(this.props.device);
-    } else {
-      this.props.unsubscribeFromDevice(this.props.device);
-    }
+  handleSelection: function() {
+    const { onSelection, store } = this.props
+    onSelection(store.uuid);
   },
 
   render: function() {
+    const { store } = this.props
+
     return (
-      <tr>
-        <td>
-          <input type="checkbox" checked={this.props.isInSubscriptionList} onChange={this.handleToggle}/>
-        </td>
-        <td>{this.props.device.uuid}</td>
-        <td>{this.props.device.name}</td>
-        <td>{this.props.device.type || '-'}</td>
-      </tr>
-    )
+      <button onClick={this.handleSelection} key={store.uuid} store={store}>
+        {store.name}
+      </button>
+    );
   }
 });
 

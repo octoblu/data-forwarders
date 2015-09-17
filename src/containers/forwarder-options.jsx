@@ -6,8 +6,6 @@ import { Link, Navigation } from 'react-router';
 
 import * as DeviceActions from '../actions/devices-actions';
 
-import ForwarderList from '../components/forwarders/forwarder-list';
-
 var ForwarderOptions = React.createClass({
   componentDidMount: function() {
     // this.props.dispatch(DeviceActions.fetchDevices(this.props.meshblu));
@@ -15,7 +13,7 @@ var ForwarderOptions = React.createClass({
 
   render: function() {
     let { forwarder } = this.props;
-    
+
     console.log('Forwarder', forwarder);
 
     return (

@@ -10,21 +10,21 @@ export function addDataStore(dataStore) {
 export function subscribeDevice(device) {
   return {
     type: types.SUBSCRIBE_DEVICE,
-    device: device
+    device
   };
 };
 
 export function unsubscribeDevice(device) {
   return {
     type: types.UNSUBSCRIBE_DEVICE,
-    device: device
+    device
   };
 };
 
 export function subscribeAllDevices(devices) {
   return {
     type: types.SUBSCRIBE_ALL_DEVICES,
-    devices: devices
+    devices
   };
 };
 

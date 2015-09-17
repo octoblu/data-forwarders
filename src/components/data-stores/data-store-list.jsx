@@ -1,18 +1,24 @@
-import React from "react"
+import React, { PropTypes } from "react"
 import _ from "lodash"
+
+import DataStoreListItem from './data-store-list-item';
 
 
 var DataStoreList = React.createClass({
   propTypes: {
-    stores: React.PropTypes.array.isRequired
+    stores: PropTypes.array.isRequired,
+    onSelection: PropTypes.func.isRequired
   },
 
   renderListItem: function(store) {
-
-    console.log(store);
     return (
-      <a href={"/forwarder/options/" + store.forwarderType}>{store.name}</a>
-    )
+      <DataStoreListItem
+        store={store}
+        onSelection={this.props.onSelection}
+        key={store.uuid}>
+        {store.name}
+      </DataStoreListItem>
+    );
   },
 
   render: function() {
