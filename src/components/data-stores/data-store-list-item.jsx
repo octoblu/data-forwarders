@@ -8,8 +8,8 @@ var DataStoreListItem = React.createClass({
   },
 
   handleSelection: function() {
-    const { onSelection, store } = this.props
-    onSelection(store.uuid);
+    const { onSelection, store } = this.props;
+    onSelection(store);
   },
 
   render: function() {

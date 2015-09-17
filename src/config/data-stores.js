@@ -15,7 +15,7 @@ module.exports = [
           "required" : true
         },
         "SplunkEventUrl" : {
-          "title": "Event Collector Token",
+          "title": "Splunk Event URL",
           "type" : "string",
           "required" : true
         }

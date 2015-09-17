@@ -5,17 +5,29 @@ var actions = require('../../src/actions/forwarders-actions');
 describe('Forwarders.Actions', function() {
 
   it('should create FORWARDER_ADD_DATA_STORE action', function() {
-    expect(actions.addDataStore({}).toEqual({
-
-    }));
-  });
-
-  it('should create SUBSCRIBE_DEVICE action', function(){
-    expect(actions.subscribeDevice('data-store-uuid')).toEqual({
-      type: types.SUBSCRIBE_DEVICE,
-      dataStore: 'data-store-uuid'
+    expect(actions.addDataStore({ uuid : '1234', optionsSchema: {}})).toEqual({
+      type: types.FORWARDER_ADD_DATA_STORE,
+      dataStore : {uuid : '1234', optionsSchema: {}}
     });
   });
+
+
+  describe('FORWARDER_SET_OPTIONS', function() {
+    it('should create FORWARDER_SET_OPTIONS_VALUE action when provided with options on submit', function(){
+      expect(actions.setOptions({}, 'Submit', null)).toEqual({
+        type : types.FORWARDER_SET_OPTIONS_VALUE,
+        options: {}
+      });
+    });
+
+    it('should create FORWARDER_SET_OPTIONS_CANCELED action', function(){
+      expect(actions.setOptions(null, 'Cancel', null)).toEqual({
+        type : types.FORWARDER_SET_OPTIONS_CANCELED
+      });
+    });
+
+  });
+
 
   it('should create UNSUBSCRIBE_DEVICE action', function() {
     expect(actions.unsubscribeDevice({})).toEqual({

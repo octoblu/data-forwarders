@@ -7,6 +7,21 @@ export function addDataStore(dataStore) {
   }
 };
 
+export function setOptions(options, buttonValue, errors) {
+  if (buttonValue === 'Cancel') return {
+    type: types.FORWARDER_SET_OPTIONS_CANCELED
+  }
+
+  if(buttonValue === 'Submit'){
+    if (options) {
+      return {
+        type : types.FORWARDER_SET_OPTIONS_VALUE,
+        options
+      }
+    }
+  }
+};
+
 export function subscribeDevice(device) {
   return {
     type: types.SUBSCRIBE_DEVICE,
