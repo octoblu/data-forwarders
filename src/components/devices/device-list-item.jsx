@@ -4,17 +4,24 @@ import { Link } from 'react-router';
 
 const DeviceListItem = React.createClass({
   propTypes: {
-    device: PropTypes.object.isRequired
+    device: PropTypes.object.isRequired,
+    onSelection : PropTypes.func
+  },
+
+  handleClick: function() {
+    const { device, onSelection } = this.props;
+    onSelection(device);
   },
 
   render: function() {
-    const { device } = this.props;
+    const { device, onSelection } = this.props;
+    let item = <span>{device.name}</span>;
 
-    return (
-      <li>
-        <Link to="/devices" params={{uuid: device.uuid}}>{device.name}</Link>
-      </li>
-    );
+    if (onSelection) {
+      item = <button onClick={this.handleClick}>{device.name}</button>
+    }
+
+    return <li>{item}</li>;
   }
 });
 

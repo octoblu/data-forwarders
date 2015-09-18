@@ -30,7 +30,10 @@ var Devices = React.createClass({
 
     return (
       <div>
-        <SnapLoading collection={subDevices} isFetching={devices.isFetching} />
+        { devices.isFetching &&
+          <SnapLoading />
+        }
+
         <SnapEmptyState collection={subDevices} isFetching={devices.isFetching} />
 
         {subDevices.length > 0 &&

@@ -5,19 +5,13 @@ var actions = require('../../src/actions/forwarders-actions');
 describe('Forwarders.Actions', function() {
 
   it('should create FORWARDER_ADD_DATA_STORE action', function() {
-    expect(actions.addDataStore({ uuid : '1234', optionsSchema: {}})).toEqual({
-      type: types.FORWARDER_ADD_DATA_STORE,
-      dataStore : {uuid : '1234', optionsSchema: {}}
-    });
+    expect(actions.addDataStore({ uuid : '1234', optionsSchema: {}})).toBeA('function');
   });
 
 
   describe('FORWARDER_SET_OPTIONS', function() {
     it('should create FORWARDER_SET_OPTIONS_VALUE action when provided with options on submit', function(){
-      expect(actions.setOptions({}, 'Submit', null)).toEqual({
-        type : types.FORWARDER_SET_OPTIONS_VALUE,
-        options: {}
-      });
+      expect(actions.setOptions({}, 'Submit', null)).toBeA('function');
     });
 
     it('should create FORWARDER_SET_OPTIONS_CANCELED action', function(){
@@ -25,27 +19,29 @@ describe('Forwarders.Actions', function() {
         type : types.FORWARDER_SET_OPTIONS_CANCELED
       });
     });
-
   });
 
+  it('should create FORWARDER_ADD_GATEBLU action', function() {
+    expect(actions.addGateblu({uuid: 'gateblu-uuid'})).toBeA('function');
+  });
 
-  it('should create UNSUBSCRIBE_DEVICE action', function() {
-    expect(actions.unsubscribeDevice({})).toEqual({
-      type: types.UNSUBSCRIBE_DEVICE,
+  it('should create FORWARDER_UNSUBSCRIBE_FROM_DEVICE action', function() {
+    expect(actions.unsubscribeFromDevice({})).toEqual({
+      type: types.FORWARDER_UNSUBSCRIBE_FROM_DEVICE,
       device: {}
     });
   });
 
-  it('should create a SUBSCRIBE_ALL_DEVICES action', function() {
-    expect(actions.subscribeAllDevices(['one', 'two'])).toEqual({
-      type: types.SUBSCRIBE_ALL_DEVICES,
+  it('should create a FORWARDER_SUBSCRIBE_TO_ALL_DEVICES action', function() {
+    expect(actions.subscribeToAllDevices(['one', 'two'])).toEqual({
+      type: types.FORWARDER_SUBSCRIBE_TO_ALL_DEVICES,
       devices: ['one', 'two']
     });
   });
 
-  it('should create a UNSUBSCRIBE_ALL_DEVICES action', function() {
-    expect(actions.unsubscribeAllDevices()).toEqual({
-      type: types.UNSUBSCRIBE_ALL_DEVICES
+  it('should create a FORWARDER_UNSUBSCRIBE_FROM_ALL_DEVICES action', function() {
+    expect(actions.unsubscribeFromAllDevices()).toEqual({
+      type: types.FORWARDER_UNSUBSCRIBE_FROM_ALL_DEVICES
     });
   });
 });

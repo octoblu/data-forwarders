@@ -47,7 +47,7 @@ export function createConnection(device) {
       localStorage.setItem("meshblu-token", device.token);
 
       dispatch(createConnectionSuccess(meshbluConnection));
-      dispatch(pushState(null, ''));
+      // dispatch(pushState(null, ''));
     });
   };
 };

@@ -11,7 +11,7 @@ class FormField extends Component {
 
   render() {
     return (
-      <div className="form-field">
+      <div className="form-element">
         <label>{this.props.label}</label>
         {this.props.children}
       </div>

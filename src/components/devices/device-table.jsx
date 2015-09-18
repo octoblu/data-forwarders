@@ -1,43 +1,50 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
 import meshblu from 'meshblu';
+
+import SnapEmptyState from '../../components/snap/empty-state';
+import SnapLoading from '../../components/snap/loading';
 import DeviceRow from './device-row';
 
 var DeviceTable = React.createClass({
   propTypes: {
     devices: PropTypes.array.isRequired,
     subscriptions: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
-    onSubscribeDevice: PropTypes.func.isRequired,
-    onUnsubscribeDevice: PropTypes.func.isRequired,
-    onSubscribeAllDevices: PropTypes.func.isRequired,
-    onUnsubscribeAllDevices: PropTypes.func.isRequired
+    onSubscribeToAllDevices: PropTypes.func.isRequired,
+    onUnsubscribeFromAllDevices: PropTypes.func.isRequired,
+    onSubscribeToDevice: PropTypes.func.isRequired,
+    onUnsubscribeFromDevice: PropTypes.func.isRequired,
+    isFetching: PropTypes.bool
   },
 
   toggleSelectionForAllDevices: function(e) {
-    const { actions, devices } = this.props;
-
     if (e.target.checked) {
-      actions.onSubscribeAllDevices(devices);
+      const deviceUUIDs = _.pluck(this.props.devices, 'uuid');
+      this.props.onSubscribeToAllDevices(deviceUUIDs);
     } else {
-      actions.onUnsubscribeAllDevices();
+      this.props.onUnsubscribeFromAllDevices();
     }
   },
 
   renderDeviceRow: function(device) {
-    const isInSubscriptionList = !!_.findWhere(this.props.subscriptions, {"uuid": device.uuid})
+    const isInSubscriptionList = !!_.findWhere(this.props.subscriptions, device.uuid)
 
     return (
       <DeviceRow
         device={device}
         isInSubscriptionList={isInSubscriptionList}
-        subscribeToDevice={this.props.onSubscribeDevice}
-        unsubscribeFromDevice={this.props.onUnsubscribeDevice}
+        onSubscribeToDevice={this.props.onSubscribeToDevice}
+        onUnsubscribeFromDevice={this.props.onUnsubscribeFromDevice}
         key={device.uuid} />
     );
   },
 
   render: function() {
+    const { devices, isFetching } = this.props;
+
+    if (isFetching) return <SnapLoading />;
+    if (!isFetching && !devices.length ) return <SnapEmptyState />
+
     return (
       <table>
         <thead>
@@ -45,7 +52,7 @@ var DeviceTable = React.createClass({
             <th>
               <input
                 type="checkbox"
-                checked={this.props.subscriptions.length === this.props.devices.length}
+                checked={this.props.subscriptions.length === devices.length}
                 onChange={this.toggleSelectionForAllDevices}/>
             </th>
             <th>UUID</th>
@@ -55,7 +62,7 @@ var DeviceTable = React.createClass({
         </thead>
 
         <tbody>
-          {_.map(this.props.devices, this.renderDeviceRow)}
+          {_.map(devices, this.renderDeviceRow)}
         </tbody>
       </table>
     );

@@ -16,14 +16,14 @@ var ForwarderNew = React.createClass({
 
     return (
       <div>
-        <h1>Create Meshblu Forwarder</h1>
+        <h3>Create Meshblu Forwarder</h3>
         <Link to="/forwarders/new">New Forwarder</Link>
 
         <ul className="crumbs">
           { forwarder.dataStore && <li>1.</li> }
           { forwarder.options && <li>2.</li> }
           { forwarder.gateblu && <li>3.</li> }
-          { forwarder.subscriptions && <li>4.</li> }
+          { !!forwarder.subscriptions.length && <li>4.</li> }
         </ul>
 
         { this.props.children }

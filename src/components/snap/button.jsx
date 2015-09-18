@@ -43,7 +43,6 @@ var styles = {
     borderRadius: '2px',
     display: 'inline-block',
     padding: '10px 15px',
-    margin: '5px',
 
     background: 'transparent',
     color: '#14568f',

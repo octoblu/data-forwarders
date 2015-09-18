@@ -45,34 +45,40 @@ var MeshbluLoginForm = React.createClass({
 
     return (
       <form onSubmit={this.handleSubmit}>
+        <fieldset>
+          <legend>Meshblu Login</legend>
+          
+          {errorMessage && <p>{errorMessage}</p>}
 
-        {errorMessage && <p>{errorMessage}</p>}
+          <FormField label="UUID">
+            <input
+              className="form-input"
+              value={uuid}
+              onChange={this.handleChange}
+              name="uuid"
+              placeholder="Meshblu UUID"
+              type="text"/>
+          </FormField>
 
-        <FormField label="UUID">
-          <input
-            value={uuid}
-            onChange={this.handleChange}
-            name="uuid"
-            placeholder="Meshblu UUID"
-            type="text"/>
-        </FormField>
+          <FormField label="Token">
+            <input
+              className="form-input"
+              value={token}
+              onChange={this.handleChange}
+              name="token"
+              placeholder="Meshblu Token"
+              type="password"/>
+          </FormField>
 
-        <FormField label="Token">
-          <input
-            value={token}
-            onChange={this.handleChange}
-            name="token"
-            placeholder="Meshblu Token"
-            type="password"/>
-        </FormField>
-
-        <Button
-          onClick={this.handleSubmit}
-          disabled={isConnecting || !uuid || !token}
-          kind="primary"
-          block={true}>
-          Login
-        </Button>
+          <button
+            className="button button-approve"
+            onClick={this.handleSubmit}
+            disabled={isConnecting || !uuid || !token}
+            kind="primary"
+            block={true}>
+            Login
+          </button>
+        </fieldset>
       </form>
     )
   }

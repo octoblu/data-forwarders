@@ -4,17 +4,17 @@ var DeviceTableRow = React.createClass({
   propTypes: {
     device: PropTypes.object.isRequired,
     isInSubscriptionList: PropTypes.bool,
-    subscribeToDevice: PropTypes.func.isRequired,
-    unsubscribeFromDevice: PropTypes.func.isRequired
+    onSubscribeToDevice: PropTypes.func.isRequired,
+    onUnsubscribeFromDevice: PropTypes.func.isRequired
   },
 
   handleToggle: function(event){
-    var device = this.props.device;
+    var deviceUUID = this.props.device.uuid;
 
     if(event.target.checked){
-       this.props.subscribeToDevice(device);
+       this.props.onSubscribeToDevice(deviceUUID);
     } else {
-      this.props.unsubscribeFromDevice(device);
+      this.props.onUnsubscribeFromDevice(deviceUUID);
     }
   },
 
