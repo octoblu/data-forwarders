@@ -1,5 +1,4 @@
 import React from 'react';
-import { Navigation } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -10,14 +9,6 @@ import MeshbluLoginForm from '../components/authentication/meshblu-login-form';
 import * as MeshbluActions from '../actions/meshblu-actions';
 
 var Login = React.createClass({
-  mixins: [Navigation],
-
-  componentWillReceiveProps: function(nextProps) {
-    if (nextProps.meshblu.connection) {
-      this.transitionTo('forwarders.index');
-    }
-  },
-
   render: function() {
     const {meshblu, dispatch} = this.props;
     const meshbluActions = bindActionCreators(MeshbluActions, dispatch);

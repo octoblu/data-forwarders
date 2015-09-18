@@ -12,7 +12,7 @@ const DeviceListItem = React.createClass({
 
     return (
       <li>
-        <Link to="devices" params={{uuid: device.uuid}}>{device.name}</Link>
+        <Link to="/devices" params={{uuid: device.uuid}}>{device.name}</Link>
       </li>
     );
   }

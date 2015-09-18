@@ -1,10 +1,12 @@
-import * as types from '../constants/action-types'
+import * as types from '../constants/action-types';
+import history from 'history';
+import { pushState, replaceState } from 'redux-react-router';
 
 export function addDataStore(dataStore) {
-  return {
-    type: types.FORWARDER_ADD_DATA_STORE,
-    dataStore
-  }
+  return dispatch => {
+    dispatch({ dataStore, type: types.FORWARDER_ADD_DATA_STORE });
+    dispatch(pushState(null, '/forwarders/new/options'));
+  };
 };
 
 export function setOptions(options, buttonValue, errors) {
@@ -14,10 +16,11 @@ export function setOptions(options, buttonValue, errors) {
 
   if(buttonValue === 'Submit'){
     if (options) {
-      return {
-        type : types.FORWARDER_SET_OPTIONS_VALUE,
-        options
-      }
+      return dispatch => {
+        dispatch({ options, type: types.FORWARDER_SET_OPTIONS_VALUE });
+        console.log('Boom!');
+        dispatch(replaceState({}, '/forwarders/new/gateblu', {}));
+      };
     }
   }
 };

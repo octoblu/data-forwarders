@@ -1,5 +1,6 @@
-import * as types from '../constants/action-types';
 import meshblu from 'meshblu';
+import { pushState, replaceState } from 'redux-react-router';
+import * as types from '../constants/action-types';
 
 const storeMeshblu = function() {
 
@@ -50,6 +51,7 @@ export function createConnection(device) {
       localStorage.setItem("meshblu-token", device.token);
 
       dispatch(createConnectionSuccess(meshbluConnection));
+      dispatch(pushState(null, ''));
     });
   };
 };

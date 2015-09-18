@@ -11,6 +11,7 @@ import DeviceList from '../components/devices/device-list';
 var Forwarders = React.createClass({
   componentDidMount: function() {
     this.props.dispatch(DeviceActions.fetchDevices(this.props.meshblu));
+    console.log(this.props.routerState);
   },
 
   render: function() {
@@ -20,8 +21,8 @@ var Forwarders = React.createClass({
       <div>
         <h1 className="Page-title">Forwarders</h1>
         <DeviceList devices={devices.forwarders} isFetching={devices.isFetching} />
-        <Link to="forwarders.new" params={{userId: "123"}}>Create Forwarder</Link>
-        <Link to="devices" params={{uuid: "123"}}>Devices</Link>
+        <Link to="/forwarders/new" params={{userId: "123"}}>Create Forwarder</Link>
+        <Link to="/devices" params={{uuid: "123"}}>Devices</Link>
       </div>
     )
   }
