@@ -11,8 +11,7 @@ class EmptyState extends Component {
 
     return (
       <div>
-        <h1>Empty State</h1>
-        {this.props.children}
+        {this.props.children || <h1>Empty State</h1>}
       </div>
     )
   }

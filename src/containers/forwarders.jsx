@@ -22,6 +22,7 @@ var Forwarders = React.createClass({
         <h1 className="Page-title">Forwarders</h1>
         <DeviceList devices={devices.forwarders} isFetching={devices.isFetching} />
         <Link to="/forwarders/new" params={{userId: "123"}}>Create Forwarder</Link>
+        <Link to="/forwarders/new/gateblu">Gateblu</Link>
         <Link to="/devices" params={{uuid: "123"}}>Devices</Link>
       </div>
     )
