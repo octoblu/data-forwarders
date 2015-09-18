@@ -47,14 +47,11 @@ var MeshbluLoginForm = React.createClass({
       <form onSubmit={this.handleSubmit}>
         <fieldset>
           <legend>Meshblu Login</legend>
-
           {errorMessage &&
             <div class='message message-error'>
               <p>{errorMessage}</p>
             </div>
           }
-
-
           <FormField label="UUID">
             <input
               className="form-input"
