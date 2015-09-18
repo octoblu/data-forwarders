@@ -1,5 +1,6 @@
 import * as types from '../constants/action-types';
 import * as MeshbluActions from './meshblu-actions';
+import { pushState, replaceState } from 'redux-react-router';
 import meshblu from 'meshblu';
 
 export function fetchDevicesRequest() {
@@ -34,6 +35,7 @@ export function fetchDevices(meshblu) {
 
       if (!uuid || !token) {
         // Dispatch Action to redirect to login page
+        dispatch(pushState(null, '/login'));
         return;
       }
 

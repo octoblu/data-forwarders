@@ -4,9 +4,6 @@ import colors from "../../config/colors"
 
 class Loading extends Component {
   render() {
-    if (!this.props.isFetching) return null;
-    if (this.props.collection.length > 0 ) return null;
-
     return (
       <div>
         Loading...
@@ -16,14 +13,7 @@ class Loading extends Component {
   }
 }
 
-Loading.defaultProps = {
-  collection: [],
-  isFetching: true
-}
-
 Loading.propTypes = {
-  collection: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool,
   children: PropTypes.node
 }
 

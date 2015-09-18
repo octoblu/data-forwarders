@@ -8,7 +8,7 @@ import ForwarderNew from '../containers/forwarders/forwarders-new';
 import ForwarderNewDataStore from '../containers/forwarders/forwarders-new-data-store';
 import ForwarderNewOptions from '../containers/forwarders/forwarders-new-options';
 import ForwarderNewGateblu from '../containers/forwarders/forwarders-new-gateblu';
-import ForwarderNewDevices from '../containers/forwarders/forwarders-new-devices';
+import ForwarderNewSubscriptions from '../containers/forwarders/forwarders-new-subscriptions';
 import ForwarderOptions from '../containers/forwarder-options';
 import Login from '../containers/login';
 import NotFound from '../containers/not-found';
@@ -29,7 +29,7 @@ class AppRoutes extends Component {
           <IndexRoute component={ForwarderNewDataStore}/>
           <Route path="options" component={ForwarderNewOptions}/>
           <Route path="gateblu" component={ForwarderNewGateblu}/>
-          <Route path="devices" component={ForwarderNewDevices}/>
+          <Route path="subscriptions" component={ForwarderNewSubscriptions}/>
         </Route>
         <Route path="forwarder/options" component={ForwarderOptions}/>
         <Route path="forwarders/:uuid/devices" component={Devices}/>

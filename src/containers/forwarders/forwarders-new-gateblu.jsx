@@ -4,15 +4,25 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as ForwarderActions from '../../actions/forwarders-actions';
+import * as DeviceActions from '../../actions/devices-actions';
+
+import DeviceList from '../../components/devices/device-list';
 
 var ForwarderNewGateblu = React.createClass({
+  componentDidMount: function() {
+    const { dispatch, meshblu } = this.props;
+    const deviceActions = bindActionCreators(DeviceActions, dispatch);
+
+    deviceActions.fetchDevices(meshblu);
+  },
+
   render: function() {
-    const { dispatch } = this.props;
+    const { dispatch, devices } = this.props;
     const forwarderActions = bindActionCreators(ForwarderActions, dispatch);
 
     return (
       <div>
-        <h2>Add To Gateblu</h2>
+        <DeviceList devices={devices.gateblus} onSelection={forwarderActions.addGateblu} isFetching={devices.isFetching} />
       </div>
     );
   }
@@ -20,7 +30,8 @@ var ForwarderNewGateblu = React.createClass({
 
 function mapStateToProps(state) {
   return {
-    meshblu: state.meshblu
+    meshblu: state.meshblu,
+    devices : state.devices
   };
 };
 

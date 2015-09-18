@@ -2,10 +2,6 @@ import meshblu from 'meshblu';
 import { pushState, replaceState } from 'redux-react-router';
 import * as types from '../constants/action-types';
 
-const storeMeshblu = function() {
-
-};
-
 export function createConnectionRequest() {
   return {
     type: types.MESHBLU_CREATE_CONNECTION_REQUEST

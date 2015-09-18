@@ -1,7 +1,3 @@
-export const SUBSCRIBE_DEVICE                       = 'SUBSCRIBE_DEVICE';
-export const UNSUBSCRIBE_DEVICE                     = 'UNSUBSCRIBE_DEVICE';
-export const SUBSCRIBE_ALL_DEVICES                  = 'SUBSCRIBE_ALL_DEVICES';
-export const UNSUBSCRIBE_ALL_DEVICES                = 'UNSUBSCRIBE_ALL_DEVICES';
 export const FETCH_DEVICES_REQUEST                  = 'FETCH_DEVICES_REQUEST';
 export const FETCH_DEVICES_SUCCESS                  = 'FETCH_DEVICES_SUCCESS';
 export const FETCH_DEVICES_ERROR                    = 'FETCH_DEVICES_ERROR';
