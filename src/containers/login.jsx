@@ -14,12 +14,12 @@ var Login = React.createClass({
     const meshbluActions = bindActionCreators(MeshbluActions, dispatch);
 
     return (
-      <main>
+      <div className='grid-flex-cell grid-flex-cell-1of3'>
         <MeshbluLoginForm
           onLogin={meshbluActions.createConnection}
           isConnecting={meshblu.isConnecting}
           errorMessage={meshblu.error.message}/>
-      </main>
+      </div>
     );
   }
 });

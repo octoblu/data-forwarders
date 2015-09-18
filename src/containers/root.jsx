@@ -12,8 +12,7 @@ let store = createStore();
 class Root extends Component {
   render() {
     return (
-      <div className="container">
-        <h1>Meshblu Forwarder UI</h1>
+      <div className="grid-flex-container">
         <Provider store={store}>
           {function() {
             return <AppRoutes />

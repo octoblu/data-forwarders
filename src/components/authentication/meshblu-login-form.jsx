@@ -29,7 +29,7 @@ var MeshbluLoginForm = React.createClass({
     const device = { uuid, token };
     const { onLogin } = this.props;
 
-    onLogin(device);
+    onLogin(device, true);
     this.setState(initialState);
   },
 
@@ -48,7 +48,7 @@ var MeshbluLoginForm = React.createClass({
         <fieldset>
           <legend>Meshblu Login</legend>
           {errorMessage &&
-            <div class='message message-error'>
+            <div className='message message-error'>
               <p>{errorMessage}</p>
             </div>
           }

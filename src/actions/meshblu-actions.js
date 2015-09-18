@@ -22,7 +22,7 @@ export function createConnectionError(error) {
   }
 }
 
-export function createConnection(device) {
+export function createConnection(device, redirect=false) {
   return function(dispatch) {
     dispatch(createConnectionRequest());
 
@@ -47,7 +47,7 @@ export function createConnection(device) {
       localStorage.setItem("meshblu-token", device.token);
 
       dispatch(createConnectionSuccess(meshbluConnection));
-      // dispatch(pushState(null, ''));
+      if (redirect) dispatch(pushState(null, ''));
     });
   };
 };
