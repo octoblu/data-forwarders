@@ -7,6 +7,7 @@ import Forwarder from '../containers/forwarders';
 import ForwarderNew from '../containers/forwarders/forwarders-new';
 import ForwarderNewDataStore from '../containers/forwarders/forwarders-new-data-store';
 import ForwarderNewOptions from '../containers/forwarders/forwarders-new-options';
+import ForwarderNewIndex from '../containers/forwarders/forwarders-new-index';
 import ForwarderNewGateblu from '../containers/forwarders/forwarders-new-gateblu';
 import ForwarderNewSubscriptions from '../containers/forwarders/forwarders-new-subscriptions';
 import ForwarderNewRegister from '../containers/forwarders/forwarders-new-register';
@@ -23,7 +24,8 @@ class AppRoutes extends Component {
           <IndexRoute component={Forwarder}/>
           <Route path="/forwarders" component={Forwarder}/>
           <Route path="/forwarders/new" component={ForwarderNew}>
-            <IndexRoute component={ForwarderNewDataStore}/>
+            <IndexRoute component={ForwarderNewIndex}/>
+            <Route path="store" component={ForwarderNewDataStore}/>
             <Route path="options" component={ForwarderNewOptions}/>
             <Route path="gateblu" component={ForwarderNewGateblu}/>
             <Route path="subscriptions" component={ForwarderNewSubscriptions}/>

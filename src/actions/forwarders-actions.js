@@ -2,6 +2,20 @@ import * as types from '../constants/action-types';
 import history from 'history';
 import { pushState, replaceState } from 'redux-react-router';
 
+export function setName(name) {
+  return {
+    type: types.FORWARDER_SET_NAME,
+    name
+  };
+};
+
+export function setOwner(ownerUUID) {
+  return (dispatch) => {
+    dispatch({ type: types.FORWARDER_SET_OWNER, owner : ownerUUID });
+  dispatch(pushState(null, '/forwarders/new/store'));
+  };
+};
+
 export function addDataStore(dataStore) {
   return (dispatch) => {
     dispatch({ dataStore, type: types.FORWARDER_ADD_DATA_STORE });
