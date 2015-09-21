@@ -9,19 +9,12 @@ export function addDataStore(dataStore) {
   };
 };
 
-export function setOptions(options, buttonValue, errors) {
-  if (buttonValue === 'Cancel') return {
-    type: types.FORWARDER_SET_OPTIONS_CANCELED
-  }
-
-  if(buttonValue === 'Submit'){
-    if (options) {
-      return dispatch => {
-        dispatch({ options, type: types.FORWARDER_SET_OPTIONS_VALUE });
-        console.log('Boom!');
-        dispatch(replaceState({}, '/forwarders/new/gateblu', {}));
-      };
-    }
+export function setOptions(options) {
+  if (options) {
+    return dispatch => {
+      dispatch({ options, type: types.FORWARDER_SET_OPTIONS_VALUE });
+      dispatch(replaceState({}, '/forwarders/new/gateblu', {}));
+    };
   }
 };
 
@@ -29,7 +22,7 @@ export function addGateblu(gateblu){
   return dispatch => {
     dispatch({
       type : types.FORWARDER_ADD_GATEBLU,
-      gateblu
+      gateblu: gateblu.uuid
     });
     dispatch(pushState(null, '/forwarders/new/subscriptions'));
   }

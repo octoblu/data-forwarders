@@ -25,4 +25,25 @@ describe('Meshblu.Actions', function() {
     });
   });
 
+  it('should create a MESHBLU_REGISTER_DEVICE_REQUEST action', function() {
+    expect(actions.createConnectionRequest()).toEqual({
+      type: types.MESHBLU_REGISTER_DEVICE_REQUEST
+    });
+  });
+
+  it('should create a MESHBLU_REGISTER_DEVICE_SUCCESS action', function() {
+    expect(actions.createConnectionSuccess({})).toEqual({
+      type: types.MESHBLU_REGISTER_DEVICE_SUCCESS,
+      payload: {}
+    });
+  });
+
+  it('should create a MESHBLU_REGISTER_DEVICE_ERROR action', function() {
+    expect(actions.createConnectionError({})).toEqual({
+      type: types.MESHBLU_REGISTER_DEVICE_ERROR,
+      error: {}
+    });
+  });
+
+
 });

@@ -33,6 +33,8 @@ var ForwarderNewSubscriptions = React.createClass({
           onUnsubscribeFromAllDevices={forwarderActions.unsubscribeFromAllDevices}
           subscriptions={forwarder.subscriptions}
           />
+
+        <Link to="/forwarders/new/register">Register Your Forwarder</Link>
       </div>
     );
   }

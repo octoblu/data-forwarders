@@ -2,11 +2,13 @@ import _ from 'lodash';
 import * as types from '../constants/action-types';
 
 var initialState = {
-  dataStore: '',
-  connector: '',
-  options : null,
+  name: "",
+  type: "device:forwarder",
+  dataStore: "",
+  connector: "",
+  options: null,
   optionsSchema : null,
-  gateblu: '',
+  gateblu: "",
   subscriptions: []
 };
 
@@ -15,17 +17,21 @@ module.exports = function(state = initialState, action) {
     case types.FORWARDER_ADD_DATA_STORE:
       return _.assign({}, state, {
         dataStore: action.dataStore.uuid,
+        connector: action.dataStore.connector,
         optionsSchema: action.dataStore.optionsSchema
       });
 
     case types.FORWARDER_SET_OPTIONS_VALUE:
       return _.assign({}, state, {
-        options:action.options
+        options: action.options
       });
 
       case types.FORWARDER_ADD_GATEBLU:
         return _.assign({}, state, {
-          gateblu : action.gateblu
+          gateblu: action.gateblu,
+          sendAsWhitelist: [action.gateblu],
+          configureWhitelist: [action.gateblu],
+          discoverWhitelist: [action.gateblu]
         });
 
       case types.FORWARDER_SUBSCRIBE_TO_ALL_DEVICES:

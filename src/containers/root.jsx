@@ -9,13 +9,20 @@ import createStore from '../lib/create-store';
 
 let store = createStore();
 
+function requireAuth(nextState, replaceState)  {
+  const state = store.getState();
+  if (!state.meshblu.connection) {
+    replaceState({ nextPathname: nextState.location.pathname }, '/login');
+  }
+}
+
 class Root extends Component {
   render() {
     return (
       <div className="grid-flex-container">
         <Provider store={store}>
           {function() {
-            return <AppRoutes />
+            return <AppRoutes requireAuth= {requireAuth} />
           }}
         </Provider>
         <DebugPanel top right bottom>

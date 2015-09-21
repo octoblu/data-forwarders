@@ -11,6 +11,11 @@ import DeviceList from '../components/devices/device-list';
 var Forwarders = React.createClass({
   componentDidMount: function() {
     this.props.dispatch(DeviceActions.fetchDevices(this.props.meshblu));
+    // if (meshblu.connection) {
+    //   this.props.dispatch(DeviceActions.fetchDevices(this.props.meshblu));
+    // } else {
+    //   this.props.dispatch(MeshbluActions.createConnection(redirectbackhere))
+    // }
   },
 
   render: function() {
