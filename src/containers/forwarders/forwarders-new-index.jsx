@@ -52,7 +52,8 @@ var ForwarderNewIndex = React.createClass({
               placeholder="Forwarder Name"
               onChange={this.handleChange}
               type="text"
-              className="form-input Input-jumbo"/>
+              className="form-input Input-jumbo"
+              required/>
           </div>
           <button type="submit" className="button button-primary Button-jumbo">Select Datastore</button>
         </form>

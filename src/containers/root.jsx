@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { ReduxRouter } from 'redux-react-router';
 import { Route } from 'react-router';
+import History from 'history';
 import AppRoutes from '../config/routes';
 
 import { Provider } from 'react-redux'
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 import createStore from '../lib/create-store';
+
+import * as MeshbluActions from '../actions/meshblu-actions';
 
 let store = createStore();
 
@@ -16,7 +19,10 @@ function requireAuth(nextState, replaceState)  {
   }
 }
 
+
+
 class Root extends Component {
+
   renderDebug() {
     return (
       <DebugPanel top right bottom>
@@ -30,7 +36,9 @@ class Root extends Component {
       <div>
         <Provider store={store}>
           {function() {
-            return <AppRoutes requireAuth= {requireAuth} />
+            return <AppRoutes
+                      requireAuth={requireAuth}
+                      store={store} />
           }}
         </Provider>
         {this.renderDebug()}

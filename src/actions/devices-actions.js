@@ -29,19 +29,19 @@ export function fetchDevices(meshblu) {
 
     const { connection } = meshblu;
 
-    if (!connection) {
-      const uuid = localStorage.getItem('meshblu-uuid');
-      const token = localStorage.getItem('meshblu-token');
-
-      if (!uuid || !token) {
-        // Dispatch Action to redirect to login page
-        dispatch(pushState(null, '/login'));
-        return;
-      }
-
-      dispatch(MeshbluActions.createConnection({ uuid, token }));
-      return;
-    }
+    // if (!connection) {
+    //   const uuid = localStorage.getItem('meshblu-uuid');
+    //   const token = localStorage.getItem('meshblu-token');
+    //
+    //   if (!uuid || !token) {
+    //     // Dispatch Action to redirect to login page
+    //     dispatch(pushState(null, '/login'));
+    //     return;
+    //   }
+    //
+    //   dispatch(MeshbluActions.createConnection({ uuid, token }));
+    //   return;
+    // }
 
     connection.mydevices({}, function(result, error){
       if (result.error) {

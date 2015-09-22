@@ -9,6 +9,14 @@ import MeshbluLoginForm from '../components/authentication/meshblu-login-form';
 import * as MeshbluActions from '../actions/meshblu-actions';
 
 var Login = React.createClass({
+  componentWillMount: function() {
+    let uuid = localStorage.getItem('meshblu-uuid')
+    let token = localStorage.getItem('meshblu-token')
+    if (uuid && token) {
+      this.props.dispatch(MeshbluActions.createConnection({uuid, token}))
+    }
+  },
+
   render: function() {
     const {meshblu, dispatch} = this.props;
     const meshbluActions = bindActionCreators(MeshbluActions, dispatch);

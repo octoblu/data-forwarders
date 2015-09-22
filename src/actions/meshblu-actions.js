@@ -22,22 +22,30 @@ export function createConnectionError(error) {
   }
 }
 
-export function createConnection(device, redirect=false) {
+export function createConnectionSilently(redirectPath) {
+  return function(dispatch) {
+    console.log('attempting to create connection silently');
+    let uuid = localStorage.getItem('meshblu-uuid');
+    let token = localStorage.getItem('meshblu-token');
+
+    if (uuid && token) {
+      console.log('attempting to create connection');
+      dispatch(createConnection({uuid, token}, redirectPath));
+    }
+  }
+}
+
+export function createConnection(device, redirectPath='') {
   return function(dispatch) {
     dispatch(createConnectionRequest());
 
     var {uuid, token} = device;
 
     if (!uuid || !token) {
-      uuid = localStorage.getItem('meshblu-uuid');
-      token = localStorage.getItem('meshblu-token');
-
-      if (!uuid || !token) {
-        dispatch(createConnectionError({
-          message: "UUID & Token Required"
-        }));
-        return;
-      }
+      dispatch(createConnectionError({
+        message: "UUID & Token Required"
+      }));
+      return;
     }
 
     const meshbluConnection = meshblu.createConnection({
@@ -55,7 +63,7 @@ export function createConnection(device, redirect=false) {
       localStorage.setItem("meshblu-token", token);
 
       dispatch(createConnectionSuccess(meshbluConnection));
-      if (redirect) dispatch(pushState(null, ''));
+      dispatch(pushState(null, redirectPath));
     });
   };
 };

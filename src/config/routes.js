@@ -16,11 +16,13 @@ import Login from '../containers/login';
 import NotFound from '../containers/not-found';
 import StyleGuide from '../containers/style-guide';
 
+
 class AppRoutes extends Component {
   render() {
+    const {requireAuth} = this.props
     return (
       <ReduxRouter>
-        <Route path="/" onEnter={this.props.requireAuth}>
+        <Route path="/" onEnter={requireAuth}>
           <IndexRoute component={Forwarder}/>
           <Route path="/forwarders" component={Forwarder}/>
           <Route path="/forwarders/new" component={ForwarderNew}>
