@@ -85,7 +85,6 @@ module.exports = function(state = initialState, action) {
       });
 
     case types.MESHBLU_REGISTER_DEVICE_SUCCESS:
-      console.log('Register Device Success');
       return _.assign({}, state, initialState);
 
     default:

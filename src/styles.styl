@@ -1,21 +1,47 @@
 
 @import 'yeticss'
 
-body
-  border: 10px solid $gray-lighter
-  padding: 30px;
-
 header
   margin-top: 30px
 
 .Page
   width: 900px
+  margin: 0 30px
 
-// .Page-title
+.Page-nav
+  height: 55px
+  padding: 0 15px
+  margin-bottom: 35px
+  background: $blue-saturated
+  overflow: hidden
+
+  ul
+    float: left
+    margin-bottom: 0
+  li
+    display: inline-block
+    padding: 16px 10px
+
+  a
+    color: #438193
+    display: block
+
+  a:hover
+    color: #008dba
+
+.Page-nav-list
+  height: 55px
+
 .Logo
-  display: block;
-  width: 200px;
-  height: 42px;
+  float: left
+  width: 150px
+  height: 31px
+  margin-top 13px
+  margin-right: 25px
+
+.Logo-wrapper
+  padding: 0 10px !important
+  background: oldlace
 
 .Card
   width: 200px
@@ -26,11 +52,11 @@ header
   width: 200px
   height 200px
   background: transparent
-  border: 2px solid #e6eaed;
+  border: 2px solid #e6eaed
   border-radius: 2px
 
   &:hover
-    background: rgba(230, 234, 237, 0.21);
+    background: rgba(230, 234, 237, 0.21)
 
   img
     display: block

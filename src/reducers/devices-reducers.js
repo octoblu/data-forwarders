@@ -49,7 +49,6 @@ module.exports = function(state = initialState, action) {
 
       case types.FETCH_DEVICE_DETAIL:
         let device = _.findWhere(state.all, {uuid: action.deviceUUID});
-        console.log('DEVICE_REDUCER:FETCH_DEVICES_DETAIL', state)
         return _.assign({}, state, {
           isFetching: false,
           device,

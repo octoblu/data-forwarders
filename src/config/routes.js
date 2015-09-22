@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { IndexRoute, Route } from 'react-router';
 import { ReduxRouter } from 'redux-react-router';
 
+import AppLayout from '../containers/app-layout';
 import Forwarder from '../containers/forwarders';
 import ForwarderDetail from '../containers/forwarder-detail';
 import ForwarderNew from '../containers/forwarders/forwarders-new';
@@ -22,7 +23,7 @@ class AppRoutes extends Component {
     const {requireAuth} = this.props
     return (
       <ReduxRouter>
-        <Route path="/" onEnter={requireAuth}>
+        <Route path="/" onEnter={requireAuth} component={AppLayout}>
           <IndexRoute component={Forwarder}/>
           <Route path="/forwarders" component={Forwarder}/>
           <Route path="/forwarder/:forwarderUUID" component={ForwarderDetail}/>

@@ -3,7 +3,6 @@ import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, IsActive } from 'react-router';
-import History from 'history';
 import classNames from 'classnames';
 
 import * as ForwarderActions from '../../actions/forwarders-actions';
@@ -12,8 +11,6 @@ import * as MeshbluActions from '../../actions/meshblu-actions';
 import DataStoreList from '../../components/data-stores/data-store-list';
 
 var ForwarderNew = React.createClass({
-  mixins: [ History ],
-
   registerForwarder: function()   {
     const { dispatch, forwarder, meshblu } = this.props;
     dispatch(MeshbluActions.registerDevice(forwarder, meshblu.connection));
@@ -64,9 +61,7 @@ var ForwarderNew = React.createClass({
   validateProperty: function(property) {
     const {forwarder} = this.props;
 
-    if (!forwarder[property] || !forwarder[property].length) {
-      return false;
-    }
+    if (!forwarder[property] || !forwarder[property].length) return false;
 
     return true;
   },
@@ -76,32 +71,21 @@ var ForwarderNew = React.createClass({
     const { dataStores, dispatch, forwarder, router, history } = this.props;
     const forwarderActions = bindActionCreators(ForwarderActions, dispatch);
 
-
     return (
-      <div>
-        <nav className='top-nav top-nav-light cf' role='navigation'>
-          <ul className='list-unstyled list-inline cf'>
-            <li><Link to="/">Forwarders</Link></li>
-            <li><Link to="/forwarders/new">Create Forwarder</Link></li>
+      <div className="Page">
+        <nav role='navigation'>
+          <ul className='list-unstyled list-inline breadcrumbs'>
+            <li>{this.renderBreadcrumb("/forwarders/new/", "Name Forwarder")}›</li>
+            <li>{this.renderBreadcrumb("/forwarders/new/store", "Pick Data Store")}›</li>
+            <li>{this.renderBreadcrumb("/forwarders/new/options", "Set Options")}›</li>
+            <li>{this.renderBreadcrumb("/forwarders/new/gateblu", "Select Gateblu")}›</li>
+            <li>{this.renderBreadcrumb("/forwarders/new/subscriptions", "Subscibe Devices")}›</li>
+            <li>{this.renderBreadcrumb("/forwarders/new/register", "Done!")}</li>
           </ul>
         </nav>
 
-        <div className="Page">
-          <nav role='navigation'>
-            <ul className='list-unstyled list-inline breadcrumbs'>
-              <li>{this.renderBreadcrumb("/forwarders/new/", "Name Forwarder")}›</li>
-              <li>{this.renderBreadcrumb("/forwarders/new/store", "Pick Data Store")}›</li>
-              <li>{this.renderBreadcrumb("/forwarders/new/options", "Set Options")}›</li>
-              <li>{this.renderBreadcrumb("/forwarders/new/gateblu", "Select Gateblu")}›</li>
-              <li>{this.renderBreadcrumb("/forwarders/new/subscriptions", "Subscibe Devices")}›</li>
-              <li>{this.renderBreadcrumb("/forwarders/new/register", "Done!")}</li>
-            </ul>
-          </nav>
-
-          { this.props.children }
-        </div>
+        { this.props.children }
       </div>
-
     );
   }
 });

@@ -6,7 +6,6 @@ import colors from "../../config/colors"
 class Filter extends Component {
   handleChange(e) {
     var value = e.target.value
-    console.log('Filter: ', value);
     this.props.onFilter(value)
   }
 

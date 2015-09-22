@@ -1,8 +1,6 @@
 import React from "react"
 import _ from "lodash"
 
-
-
 var GatebluList = React.createClass({
   propTypes: {
     meshbluConnection: React.PropTypes.object.isRequired,
@@ -20,10 +18,7 @@ var GatebluList = React.createClass({
       meshbluConnection.myDevices({
         type : 'device:gateblu'
       }, function(results, error){
-        if(error){
-          console.log('Error', error);
-          return;
-        }
+        if (error) return;
         this.setState({
           gateblus : results.devices
         });
@@ -32,7 +27,6 @@ var GatebluList = React.createClass({
   },
 
   renderListItem: function(gateblu) {
-    console.log(gateblu);
     return (
       <a href={"/devices/" + gateblu.name} key={gateblu.uuid}>{gateblu.name}</a>
     )
