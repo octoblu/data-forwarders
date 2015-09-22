@@ -22,17 +22,6 @@ export function createConnectionError(error) {
   }
 }
 
-export function createConnectionSilently(redirectPath) {
-  return function(dispatch) {
-    let uuid = localStorage.getItem('meshblu-uuid');
-    let token = localStorage.getItem('meshblu-token');
-
-    if (uuid && token) {
-      dispatch(createConnection({uuid, token}, redirectPath));
-    }
-  }
-}
-
 export function createConnection(device, redirectPath='') {
   return function(dispatch) {
     dispatch(createConnectionRequest());
@@ -52,7 +41,6 @@ export function createConnection(device, redirectPath='') {
     });
 
     meshbluConnection.on('notReady', function(response){
-      // REdirect tpo /login
       dispatch(createConnectionError({message: 'Authentication Failed'}));
     });
 
@@ -63,6 +51,24 @@ export function createConnection(device, redirectPath='') {
       dispatch(createConnectionSuccess(meshbluConnection));
       dispatch(pushState(null, redirectPath));
     });
+
+    meshbluConnection.on('disconnect', function(data) {
+      dispatch(removeConnection());
+      dispatch(pushState(null, '/login'));
+    });
+  };
+};
+
+export function removeConnection() {
+  return {
+    type: types.MESHBLU_REMOVE_CONNECTION
+  }
+}
+
+export function closeConnection(meshbluConnection) {
+  return function(dispatch) {
+    dispatch({ type: types.MESHBLU_CLOSE_CONNECTION });
+    meshbluConnection.close();
   };
 };
 
@@ -104,6 +110,7 @@ export function registerDevice(deviceData, meshbluConnection, callback) {
   };
 };
 
+
 export function updateDeviceRequest() {
   return {
     type: types.MESHBLU_UPDATE_DEVICE_REQUEST
@@ -121,19 +128,6 @@ export function updateDeviceError(error) {
   return {
     type: types.MESHBLU_UPDATE_DEVICE_ERROR,
     error
-  }
-}
-
-export function subscribeToDevice(deviceUUID, subscriberUUID, meshbluConnection){
-  var deviceData = {
-    uuid : deviceUUID,
-    meshblu : {
-      messageForward : [subscriberUUID]
-    }
-  };
-
-  return function(dispatch) {
-    dispatch(updateDevice(deviceData, meshbluConnection));
   }
 }
 
@@ -163,23 +157,26 @@ export function updateDevice(deviceData, meshbluConnection) {
   }
 }
 
+
+export function subscribeToDevice(deviceUUID, subscriberUUID, meshbluConnection){
+  var deviceData = {
+    uuid : deviceUUID,
+    meshblu : {
+      messageForward : [subscriberUUID]
+    }
+  };
+
+  return function(dispatch) {
+    dispatch(updateDevice(deviceData, meshbluConnection));
+  }
+}
+
+
 export function addDeviceToGateblu(gateblu, deviceRecord, meshbluConnection){
   return function(dispatch){
     var gatebluDevices = _.union(gateblu.devices, [deviceRecord]);
     var gatebluRecord = _.assign({}, gateblu, { devices : gatebluDevices});
 
     dispatch(updateDevice(gatebluRecord, meshbluConnection));
-  }
-}
-
-export function removeConnection() {
-  return {
-    type: types.MESHBLU_REMOVE_CONNECTION
-  }
-}
-
-export function logout() {
-  return function(dispatch) {
-    dispatch(removeConnection());
   }
 }

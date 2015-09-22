@@ -7,9 +7,10 @@ import * as MeshbluActions from '../actions/meshblu-actions';
 
 var Logout = React.createClass({
   componentWillMount: function() {
-    this.props.dispatch(MeshbluActions.logout());
+    const { dispatch, meshblu } = this.props;
+    dispatch(MeshbluActions.closeConnection(meshblu.connection));
   },
-  
+
   render: function(){
     return(<div></div>);
   }
