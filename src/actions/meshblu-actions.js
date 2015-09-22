@@ -61,7 +61,6 @@ export function createConnection(device, redirectPath='') {
       localStorage.setItem("meshblu-token", token);
 
       dispatch(createConnectionSuccess(meshbluConnection));
-      console.log('redirectPath', redirectPath);
       dispatch(pushState(null, redirectPath));
     });
   };

@@ -11,7 +11,6 @@ import FormField from "../components/snap/form-field";
 var ForwarderDetail = React.createClass({
   componentWillMount: function() {
     const { dispatch, router } = this.props;
-    console.log('Mounted');
     // dispatch(DeviceActions.fetchDevice(router.params.forwarderUUID));
   },
 
