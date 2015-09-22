@@ -4,6 +4,7 @@ import { ReduxRouter } from 'redux-react-router';
 
 import Devices from '../containers/devices';
 import Forwarder from '../containers/forwarders';
+import ForwarderDetail from '../containers/forwarder-detail';
 import ForwarderNew from '../containers/forwarders/forwarders-new';
 import ForwarderNewDataStore from '../containers/forwarders/forwarders-new-data-store';
 import ForwarderNewOptions from '../containers/forwarders/forwarders-new-options';
@@ -26,6 +27,7 @@ class AppRoutes extends Component {
         <Route path="/" onEnter={requireAuth}>
           <IndexRoute component={Forwarder}/>
           <Route path="/forwarders" component={Forwarder}/>
+          <Route path="/forwarder/:forwarderUUID" component={ForwarderDetail}/>
           <Route path="/forwarders/new" component={ForwarderNew}>
             <IndexRoute component={ForwarderNewIndex}/>
             <Route path="store" component={ForwarderNewDataStore}/>

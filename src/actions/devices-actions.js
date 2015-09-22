@@ -21,7 +21,8 @@ export function fetchDevicesError(error) {
     type: types.FETCH_DEVICES_ERROR,
     error
   }
-}
+};
+
 
 export function fetchDevices(meshblu) {
   return function(dispatch) {
@@ -51,5 +52,12 @@ export function fetchDevices(meshblu) {
 
       dispatch(fetchDevicesSuccess(result.devices));
     });
+  }
+};
+
+export function fetchDevice(uuid){
+  console.log('Fetch Device Action:', uuid);
+  return {
+    uuid, type : types.FETCH_DEVICE_DETAIL
   }
 };

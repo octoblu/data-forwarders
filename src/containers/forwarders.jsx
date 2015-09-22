@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Link, Navigation } from 'react-router';
 
 import * as DeviceActions from '../actions/devices-actions';
-
+import * as ForwarderActions from '../actions/forwarders-actions';
 import DeviceList from '../components/devices/device-list';
 
 var Forwarders = React.createClass({
@@ -15,6 +15,18 @@ var Forwarders = React.createClass({
 
   render: function() {
     const { devices } = this.props;
+
+    let forwarders = _.map(devices.forwarders, function(forwarder){
+      return (
+        <div className="Card" key={forwarder.uuid}>
+          <Link to={`/forwarder/${forwarder.uuid}`} className="Card-thumbnail">
+            <img src={forwarder.logoUrl} alt={forwarder.name}/>
+          </Link>
+
+          <p className="Card-label">{forwarder.name}</p>
+        </div>
+      );
+    });
 
     return (
       <div>
@@ -27,11 +39,15 @@ var Forwarders = React.createClass({
         </nav>
 
         <div className="Page">
-          <DeviceList devices={devices.forwarders} isFetching={devices.isFetching} />
+
+          <div className="grid-flex-container">
+            {forwarders}
+          </div>
 
           <Link to="/forwarders/new" className="Card">
             + Create Forwarder
           </Link>
+          {this.props.children}
         </div>
       </div>
     )

@@ -66,3 +66,7 @@ export function subscribeToAllDevices(deviceUUIDs) {
 export function unsubscribeFromAllDevices() {
   return { type: types.FORWARDER_UNSUBSCRIBE_FROM_ALL_DEVICES};
 };
+
+export function showForwarderDetailError(error) {
+  return {error,  type: types.FORWARDER_SHOW_DETAIL_ERROR};
+};

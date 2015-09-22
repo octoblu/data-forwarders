@@ -26,7 +26,7 @@ module.exports = function(state = initialState, action) {
       const forwarders = _.filter(devices, device => { return device.type === 'device:forwarder'; });
       const gateblus = _.filter(devices, device => { return device.type == 'device:gateblu'; });
       const subDevices = _.filter(devices, device => {
-        return !_.contains(['device:dataSource', 'device:forwarder','device:gateblu', 'octoblu:user'], device.type); 
+        return !_.contains(['device:dataSource', 'device:forwarder','device:gateblu', 'octoblu:user'], device.type);
       });
 
       return _.assign({}, state, {
@@ -45,6 +45,17 @@ module.exports = function(state = initialState, action) {
         all: [],
         error: action.error
       });
+
+
+      case types.FETCH_DEVICE_DETAIL:
+        let device = _.findWhere(state.all, {uuid: action.deviceUUID});
+        console.log('DEVICE_REDUCER:FETCH_DEVICES_DETAIL', state)
+        return _.assign({}, state, {
+          isFetching: false,
+          device,
+          error : false
+        });
+
 
     default:
       return state;
