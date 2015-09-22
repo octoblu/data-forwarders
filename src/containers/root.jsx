@@ -24,11 +24,15 @@ function requireAuth(nextState, replaceState)  {
 class Root extends Component {
 
   renderDebug() {
-    return (
-      <DebugPanel top right bottom>
-        <DevTools store={store} monitor={LogMonitor} />
-      </DebugPanel>
-    )
+    var debug = JSON.parse(localStorage.getItem('debug'));
+    if (debug){
+      return (
+        <DebugPanel top right bottom>
+          <DevTools store={store} monitor={LogMonitor} />
+        </DebugPanel>
+      );
+    }
+    return null;
   }
 
   render() {
