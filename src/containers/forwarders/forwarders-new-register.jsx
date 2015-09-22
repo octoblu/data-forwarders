@@ -16,11 +16,14 @@ var ForwarderNewRegister = React.createClass({
 
   subscriptionUpdate: function() {
     const{forwarder, dispatch, meshblu, devices} = this.props;
+    console.log('Forwarder', forwarder);
     _.each(forwarder.subscriptions, function(subscriptionUUID) {
       dispatch(MeshbluActions.subscribeToDevice(subscriptionUUID, forwarder.uuid, meshblu.connection));
     })
-    let deviceRecord = _.pluck(forwarder, ['uuid', 'type', 'connector']);
+    let deviceRecord = _.pick(forwarder, ['uuid', 'type', 'connector']);
     var gatebluDevice = _.findWhere(devices.gateblus, {uuid : forwarder.gateblu});
+    console.log('Gateblu Device', gatebluDevice);
+    console.log('Adding new device record', deviceRecord);
     dispatch(MeshbluActions.addDeviceToGateblu(gatebluDevice, deviceRecord, meshblu.connection));
     dispatch(pushState(null, '/forwarders'));
   },
