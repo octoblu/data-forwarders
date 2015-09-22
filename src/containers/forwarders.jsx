@@ -10,6 +10,7 @@ import DeviceList from '../components/devices/device-list';
 
 var Forwarders = React.createClass({
   componentDidMount: function() {
+    console.log('Fetching data in Forwarders component');
     this.props.dispatch(DeviceActions.fetchDevices(this.props.meshblu));
   },
 

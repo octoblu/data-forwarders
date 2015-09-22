@@ -3,7 +3,9 @@ import React from "react"
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, Navigation } from 'react-router';
+import { pushState } from 'redux-react-router';
 
+import * as MeshbluActions from '../actions/meshblu-actions';
 import * as DeviceActions from '../actions/devices-actions';
 import * as ForwarderActions from '../actions/forwarders-actions';
 import FormField from "../components/snap/form-field";
@@ -13,18 +15,30 @@ var ForwarderDetail = React.createClass({
     const { dispatch, router } = this.props;
     // dispatch(DeviceActions.fetchDevice(router.params.forwarderUUID));
   },
-
+  handleSubmit: function(e){
+     const {forwarder, meshblu, dispatch} = this.props;
+     e.preventDefault();
+     let deleteDevice = window.confirm("Are you sure you want to delete this device?");
+     if(deleteDevice){
+       dispatch(MeshbluActions.deleteDevice(forwarder, meshblu.connection, () => {
+          console.log('successfully deleted');
+          dispatch(pushState(null, '/forwarders'));
+       }));
+     }
+  },
   render: function() {
     const { devices, router } = this.props;
-    let forwarder = _.findWhere(devices.forwarders, {uuid : router.params.forwarderUUID })
+    this.props.forwarder = _.findWhere(devices.forwarders, {uuid : router.params.forwarderUUID });
+    const {forwarder} = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
+        <img src={forwarder.logoUrl} className="forwarder-detail thumbnail" alt="Forwarder Logo" />
         <fieldset>
           <legend>Forwarder Detail</legend>
             <FormField label="Name">
               <input
                 className="form-input"
-                value={forwarder.uuid}
+                value={forwarder.name}
                 readOnly
                 name="name"
                 placeholder="Forwarder Name"
@@ -50,10 +64,20 @@ var ForwarderDetail = React.createClass({
               placeholder="Gateblu UUID"
               type="text"/>
           </FormField>
+          <FormField label="Data store">
+            <input
+              className="form-input"
+              value={forwarder.dataStore}
+              readOnly
+              name="dataStore"
+              placeholder="Forwarder Datastore"
+              type="text"/>
+          </FormField>
 
           <button
-            className="button button-approve"
+            className="button button-warn"
             kind="primary"
+            onClick={this.handleSubmit}
             block={true}>
             Delete
           </button>
