@@ -21,7 +21,6 @@ var ForwarderDetail = React.createClass({
      let deleteDevice = window.confirm("Are you sure you want to delete this device?");
      if(deleteDevice){
        dispatch(MeshbluActions.deleteDevice(forwarder, meshblu.connection, () => {
-          console.log('successfully deleted');
           dispatch(pushState(null, '/forwarders'));
        }));
      }

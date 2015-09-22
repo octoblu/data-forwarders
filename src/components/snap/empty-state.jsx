@@ -1,31 +1,29 @@
 import React, {Component, PropTypes} from "react"
-import Radium from "radium"
 import Color from "color"
 import Link from "./link"
+import BluBot from "./blu-bot"
 import colors from "../../config/colors"
 
 class EmptyState extends Component {
   render() {
-    if (this.props.collection.length !== 0) return null
-    if (this.props.isFetching) return null
+    const { children, showBot } = this.props
 
     return (
-      <div>
-        {this.props.children || <h1>Empty State</h1>}
+      <div className="EmptyState">
+        { showBot && <BluBot /> }
+        { children || <h1>Empty State</h1> }
       </div>
     )
   }
 }
 
 EmptyState.defaultProps = {
-  collection: [],
-  isFetching: false
+  showBot: true
 }
 
 EmptyState.propTypes = {
-  collection: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool,
-  children: PropTypes.node
+  children: PropTypes.node,
+  showBot: PropTypes.bool
 }
 
-export default Radium(EmptyState)
+export default EmptyState
