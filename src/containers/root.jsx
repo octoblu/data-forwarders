@@ -19,8 +19,6 @@ function requireAuth(nextState, replaceState)  {
   }
 }
 
-
-
 class Root extends Component {
 
   renderDebug() {
