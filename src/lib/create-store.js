@@ -14,7 +14,7 @@ export default function(data) {
   if (process.env.NODE_ENV === 'production') {
     finalCreateStore = compose(
       applyMiddleware(...middleware),
-      reduxReactRouter({ createHistory }),
+      reduxReactRouter({ createHistory })
     )(createStore);
   } else {
     finalCreateStore = compose(
