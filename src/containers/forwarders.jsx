@@ -19,6 +19,7 @@ var Forwarders = React.createClass({
     return (
       <div>
         <nav className='top-nav top-nav-light cf' role='navigation'>
+          <img className="Logo" src="//d2zw6j512x6z0x.cloudfront.net/master/fabb7e2ca58bc41ac9dfed72af272ce559894545/assets/images/octoblu-color.png"/>
           <ul className='list-unstyled list-inline cf'>
             <li><Link to="/">Forwarders</Link></li>
             <li><Link to="/forwarders/new">Create Forwarder</Link></li>
