@@ -15,13 +15,16 @@ const DeviceListItem = React.createClass({
 
   render: function() {
     const { device, onSelection } = this.props;
-    let item = <span>{device.name}</span>;
 
-    if (onSelection) {
-      item = <button onClick={this.handleClick}>{device.name}</button>
-    }
+    return (
+      <div className="Card">
+        <button className="Card-thumbnail" onClick={this.handleClick}>
+          <img src="https://s3-us-west-2.amazonaws.com/octoblu-icons/device/gateblu.svg" alt={device.name}/>
+        </button>
 
-    return <li>{item}</li>;
+        <p className="Card-label">{device.name}</p>
+      </div>
+    );
   }
 });
 

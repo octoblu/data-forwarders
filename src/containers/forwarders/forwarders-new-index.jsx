@@ -42,13 +42,19 @@ var ForwarderNewIndex = React.createClass({
 
     return (
       <div>
-        <h2>Name Your Forwarder</h2>
+        <h3>Name Your Forwarder</h3>
 
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-          <FormField label="Forwarder Name">
-            <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
-          </FormField>
-          <button type="submit" className="button button-primary">Select Datastore</button>
+          <div>
+            <input
+              name="name"
+              value={this.state.name}
+              placeholder="Forwarder Name"
+              onChange={this.handleChange}
+              type="text"
+              className="form-input Input-jumbo"/>
+          </div>
+          <button type="submit" className="button button-primary Button-jumbo">Select Datastore</button>
         </form>
 
 

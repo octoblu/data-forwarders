@@ -16,7 +16,13 @@ const DeviceList = React.createClass({
     const { devices, isFetching, onSelection } = this.props;
 
     if (isFetching) return <SnapLoading />;
-    if (!devices.length && !isFetching) return <SnapEmptyState />
+    if (!devices.length && !isFetching) {
+      return (
+        <div className="EmptyState">
+          <h3>You have no Forwarder Devices.</h3>
+        </div>
+      );
+    }
 
     const listItems = _.map(devices, device => {
       return (<DeviceListItem device={device} onSelection={onSelection} key={device.uuid} />);
@@ -24,9 +30,9 @@ const DeviceList = React.createClass({
 
 
     return (
-      <ul>
+      <div className="grid-flex-container">
         {listItems}
-      </ul>
+      </div>
     );
   }
 });

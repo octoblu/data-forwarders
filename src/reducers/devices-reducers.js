@@ -25,7 +25,9 @@ module.exports = function(state = initialState, action) {
       const dataSources = _.filter(devices, device => { return device.type === 'device:dataSource'; });
       const forwarders = _.filter(devices, device => { return device.type === 'device:forwarder'; });
       const gateblus = _.filter(devices, device => { return device.type == 'device:gateblu'; });
-      const subDevices = _.filter(devices, device => { return device.type == undefined; });
+      const subDevices = _.filter(devices, device => {
+        return !_.contains(['device:dataSource', 'device:forwarder','device:gateblu', 'octoblu:user'], device.type); 
+      });
 
       return _.assign({}, state, {
         dataSources,

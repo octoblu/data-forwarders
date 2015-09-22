@@ -26,25 +26,33 @@ export function createConnection(device, redirect=false) {
   return function(dispatch) {
     dispatch(createConnectionRequest());
 
-    if (!device.uuid || !device.token) {
-      dispatch(createConnectionError({
-        message: "UUID & Token Required"
-      }));
-      return;
+    var {uuid, token} = device;
+
+    if (!uuid || !token) {
+      uuid = localStorage.getItem('meshblu-uuid');
+      token = localStorage.getItem('meshblu-token');
+
+      if (!uuid || !token) {
+        dispatch(createConnectionError({
+          message: "UUID & Token Required"
+        }));
+        return;
+      }
     }
 
     const meshbluConnection = meshblu.createConnection({
-      uuid: device.uuid,
-      token: device.token
+      uuid,
+      token
     });
 
     meshbluConnection.on('notReady', function(response){
+      // REdirect tpo /login
       dispatch(createConnectionError({message: 'Authentication Failed'}));
     });
 
     meshbluConnection.on('ready', function(response){
-      localStorage.setItem("meshblu-uuid", device.uuid);
-      localStorage.setItem("meshblu-token", device.token);
+      localStorage.setItem("meshblu-uuid", uuid);
+      localStorage.setItem("meshblu-token", token);
 
       dispatch(createConnectionSuccess(meshbluConnection));
       if (redirect) dispatch(pushState(null, ''));

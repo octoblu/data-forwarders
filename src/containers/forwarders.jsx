@@ -11,11 +11,6 @@ import DeviceList from '../components/devices/device-list';
 var Forwarders = React.createClass({
   componentDidMount: function() {
     this.props.dispatch(DeviceActions.fetchDevices(this.props.meshblu));
-    // if (meshblu.connection) {
-    //   this.props.dispatch(DeviceActions.fetchDevices(this.props.meshblu));
-    // } else {
-    //   this.props.dispatch(MeshbluActions.createConnection(redirectbackhere))
-    // }
   },
 
   render: function() {
@@ -23,11 +18,20 @@ var Forwarders = React.createClass({
 
     return (
       <div>
-        <h3 className="Page-title">Forwarders</h3>
-        <DeviceList devices={devices.forwarders} isFetching={devices.isFetching} />
-        <Link to="/forwarders/new" params={{userId: "123"}}>Create Forwarder</Link>
-        <Link to="/forwarders/new/gateblu">Gateblu</Link>
-        <Link to="/forwarders/new/subscriptions">Devices</Link>
+        <nav className='top-nav top-nav-light cf' role='navigation'>
+          <ul className='list-unstyled list-inline cf'>
+            <li><Link to="/">Forwarders</Link></li>
+            <li><Link to="/forwarders/new">Create Forwarder</Link></li>
+          </ul>
+        </nav>
+
+        <div className="Page">
+          <DeviceList devices={devices.forwarders} isFetching={devices.isFetching} />
+
+          <Link to="/forwarders/new" className="Card">
+            + Create Forwarder
+          </Link>
+        </div>
       </div>
     )
   }

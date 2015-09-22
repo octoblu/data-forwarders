@@ -6,6 +6,7 @@ var initialState = {
   type: "device:forwarder",
   owner: "",
   dataStore: "",
+  logoUrl: "",
   connector: "",
   options: null,
   optionsSchema : null,
@@ -35,9 +36,10 @@ module.exports = function(state = initialState, action) {
 
     case types.FORWARDER_ADD_DATA_STORE:
       return _.assign({}, state, {
-        dataStore: action.dataStore.uuid,
+        dataStore: action.dataStore.name,
         connector: action.dataStore.connector,
-        optionsSchema: action.dataStore.optionsSchema
+        optionsSchema: action.dataStore.optionsSchema,
+        logoUrl: action.dataStore.logoUrl
       });
 
     case types.FORWARDER_SET_OPTIONS_VALUE:

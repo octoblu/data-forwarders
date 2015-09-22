@@ -36,9 +36,14 @@ var SchemaForm = React.createClass({
 
     fields = _.map(_.keys(schema.properties), (key, index) => {
       return (
-        <FormField label={schema.properties[key].title}>
-          <input type="text" required={schema.properties[key].required} name={key}/>
-        </FormField>
+        <div>
+          <input
+            name={key}
+            type="text"
+            placeholder={schema.properties[key].title}
+            required={schema.properties[key].required}
+            className="Input-jumbo"/>
+        </div>
       );
     });
 
@@ -49,7 +54,7 @@ var SchemaForm = React.createClass({
     return (
       <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
         {this.renderFields()}
-        <button className="button button-primary" type="submit">Submit</button>
+        <button className="button button-primary Button-jumbo" type="submit">Submit</button>
       </form>
     );
   }

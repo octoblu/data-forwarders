@@ -22,8 +22,11 @@ var ForwarderNewSubscriptions = React.createClass({
 
     return (
       <div>
-        <h2>Subscribe Devices</h2>
-
+        <h3>Subscribe Devices</h3>
+        <p>Pick the devices you would like to spy on, messages sent from and to your devices will
+          be forwarded to the datastore.
+        </p>
+        
         <DeviceTable
           devices={devices.subDevices}
           isFetching={devices.isFetching}

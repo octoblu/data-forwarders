@@ -16,7 +16,9 @@ var ForwarderNewOptions = React.createClass({
 
     return (
       <div>
-        <h2>Set Options</h2>
+        <h3>Set Options</h3>
+        <p>This data store requires you to configure the following options.</p>
+
         {
           forwarder.optionsSchema &&
           <SchemaForm schema={forwarder.optionsSchema} validate={validate} onSubmit={forwarderActions.setOptions} />

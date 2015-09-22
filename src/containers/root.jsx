@@ -17,17 +17,23 @@ function requireAuth(nextState, replaceState)  {
 }
 
 class Root extends Component {
+  renderDebug() {
+    return (
+      <DebugPanel top right bottom>
+        <DevTools store={store} monitor={LogMonitor} />
+      </DebugPanel>
+    )
+  }
+
   render() {
     return (
-      <div className="grid-flex-container">
+      <div>
         <Provider store={store}>
           {function() {
             return <AppRoutes requireAuth= {requireAuth} />
           }}
         </Provider>
-        <DebugPanel top right bottom>
-          <DevTools store={store} monitor={LogMonitor} />
-        </DebugPanel>
+        {this.renderDebug()}
       </div>
     );
   }

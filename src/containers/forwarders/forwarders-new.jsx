@@ -3,6 +3,7 @@ import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import classNames from 'classnames';
 
 import * as ForwarderActions from '../../actions/forwarders-actions';
 import * as MeshbluActions from '../../actions/meshblu-actions';
@@ -24,26 +25,36 @@ var ForwarderNew = React.createClass({
   },
 
   render: function() {
-    const { dataStores, dispatch, forwarder } = this.props;
+    const { dataStores, dispatch, forwarder, router } = this.props;
     const forwarderActions = bindActionCreators(ForwarderActions, dispatch);
+
+    console.log(router.location.pathname);
 
     return (
       <div>
-        <h3>Create Meshblu Forwarder</h3>
-        <Link to="/forwarders/new">New Forwarder</Link>
+        <nav className='top-nav top-nav-light cf' role='navigation'>
+          <ul className='list-unstyled list-inline cf'>
+            <li><Link to="/">Forwarders</Link></li>
+            <li><Link to="/forwarders/new">Create Forwarder</Link></li>
+          </ul>
+        </nav>
 
-        <button onClick={this.registerForwarder}>Register Forwarder</button>
-        <button onClick={this.updateDevice}>Update Device</button>
+        <div className="Page">
+          <nav role='navigation'>
+            <ul className='list-unstyled list-inline breadcrumbs'>
+              <li><Link to="/forwarders/new" className='current-item'>Name Forwarder</Link>›</li>
+              <li><Link to="/forwarders/new/store" className='unavailable-item'>Pick Data Store</Link>›</li>
+              <li><Link to="/forwarders/new/options" className='unavailable-item'>Set Options</Link>›</li>
+              <li><Link to="/forwarders/new/gateblu" className='unavailable-item'>Select Gateblu</Link>›</li>
+              <li><Link to="/forwarders/new/subscriptions" className='unavailable-item'>Subscibe Devices</Link>›</li>
+              <li><Link to="/forwarders/new/register" className='unavailable-item'>Done!</Link></li>
+            </ul>
+          </nav>
 
-        <ul className="crumbs">
-          { forwarder.dataStore && <li>1. {}</li> }
-          { forwarder.options && <li>2.</li> }
-          { forwarder.gateblu && <li>3.</li> }
-          { !!forwarder.subscriptions.length && <li>4.</li> }
-        </ul>
-
-        { this.props.children }
+          { this.props.children }
+        </div>
       </div>
+
     );
   }
 });
@@ -53,7 +64,8 @@ function mapStateToProps(state) {
     dataStores: state.dataStores,
     devices: state.devices,
     forwarder: state.forwarder,
-    meshblu: state.meshblu
+    meshblu: state.meshblu,
+    router: state.router
   };
 };
 

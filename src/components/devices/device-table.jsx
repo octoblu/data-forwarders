@@ -2,7 +2,6 @@ import _ from 'lodash';
 import React, { PropTypes } from 'react';
 import meshblu from 'meshblu';
 
-import SnapEmptyState from '../../components/snap/empty-state';
 import SnapLoading from '../../components/snap/loading';
 import DeviceRow from './device-row';
 
@@ -43,10 +42,17 @@ var DeviceTable = React.createClass({
     const { devices, isFetching } = this.props;
 
     if (isFetching) return <SnapLoading />;
-    if (!isFetching && !devices.length ) return <SnapEmptyState />
+    if (!isFetching && !devices.length ) {
+      return (
+        <div className="message EmptyState">
+          <h4>You have no devices to subscribe to.</h4>
+          <p>You can add some devices in <a href="//app.octoblu.com" target="_blank">Octoblu</a></p>
+        </div>
+      );
+    }
 
     return (
-      <table>
+      <table className="table-striped">
         <thead>
           <tr>
             <th>

@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import { Link } from "react-router";
 import _ from "lodash";
 
 var DataStoreListItem = React.createClass({
@@ -16,9 +17,12 @@ var DataStoreListItem = React.createClass({
     const { store } = this.props
 
     return (
-      <button onClick={this.handleSelection} key={store.uuid} store={store}>
-        {store.name}
-      </button>
+      <div className="Card">
+        <button onClick={this.handleSelection} key={store.uuid} store={store} className="Card-thumbnail">
+          <img src={store.logoUrl} alt={store.name}/>
+        </button>
+        <p className="Card-label">{store.name}</p>
+      </div>
     );
   }
 });
