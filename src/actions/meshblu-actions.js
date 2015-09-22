@@ -92,6 +92,8 @@ export function registerDeviceError(error) {
   }
 }
 
+
+
 export function registerDevice(deviceData, meshbluConnection, callback) {
   return function(dispatch) {
     dispatch(registerDeviceRequest());
@@ -110,6 +112,43 @@ export function registerDevice(deviceData, meshbluConnection, callback) {
   };
 };
 
+export function deleteDeviceRequest() {
+  return {
+    type: types.MESHBLU_DELETE_DEVICE_REQUEST
+  }
+};
+
+export function deleteDeviceSuccess(payload) {
+  return {
+    type: types.MESHBLU_DELETE_DEVICE_SUCCESS,
+    payload
+  }
+};
+
+export function deleteDeviceError(error) {
+  return {
+    type: types.MESHBLU_DELETE_DEVICE_ERROR,
+    error
+  }
+};
+
+export function deleteDevice(device, meshbluConnection, callback) {
+  return function(dispatch) {
+    dispatch(deleteDeviceRequest());
+
+    if (!device) {
+      dispatch(deleteDeviceError({ message: "Device Data Required" }));
+      return;
+    }
+
+    meshbluConnection.unregister(device, function(deletedDevice) {
+      if (deletedDevice) {
+        dispatch(deleteDeviceSuccess(deletedDevice));
+        callback();
+      }
+    });
+  };
+};
 
 export function updateDeviceRequest() {
   return {
