@@ -11,7 +11,18 @@ import * as MeshbluActions from '../../actions/meshblu-actions';
 var ForwarderNewRegister = React.createClass({
   componentDidMount: function() {
     const { dispatch, forwarder, meshblu } = this.props;
-    dispatch(MeshbluActions.registerDevice(forwarder, meshblu.connection))
+    dispatch(MeshbluActions.registerDevice(forwarder, meshblu.connection, this.subscriptionUpdate));
+  },
+
+  subscriptionUpdate: function() {
+    const{forwarder, dispatch, meshblu, devices} = this.props;
+    _.each(forwarder.subscriptions, function(subscriptionUUID) {
+      console.log('Zing!', subscriptionUUID, forwarder.uuid);
+      dispatch(MeshbluActions.subscribeToDevice(subscriptionUUID, forwarder.uuid, meshblu.connection));
+    })
+    let deviceRecord = _.pluck(forwarder, ['uuid', 'type', 'connector']);
+    var gatebluDevice = _.findWhere(devices.gateblus, {uuid : forwarder.gateblu});
+    dispatch(MeshbluActions.addDeviceToGateblu(gatebluDevice, deviceRecord, meshblu.connection));
   },
 
   getState: function() {

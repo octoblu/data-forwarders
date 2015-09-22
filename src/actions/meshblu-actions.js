@@ -72,7 +72,7 @@ export function registerDeviceError(error) {
   }
 }
 
-export function registerDevice(deviceData, meshbluConnection) {
+export function registerDevice(deviceData, meshbluConnection, callback) {
   return function(dispatch) {
     dispatch(registerDeviceRequest());
 
@@ -85,6 +85,7 @@ export function registerDevice(deviceData, meshbluConnection) {
       console.log('Device',  device);
       if (device) {
         dispatch(registerDeviceSuccess(device));
+        callback();
       }
     });
   };
@@ -110,12 +111,27 @@ export function updateDeviceError(error) {
   }
 }
 
+export function subscribeToDevice(deviceUUID, subscriberUUID, meshbluConnection){
+  var deviceData = {
+    uuid : deviceUUID,
+    meshblu : {
+      messageForward : [subscriberUUID]
+    }
+  };
+
+  return function(dispatch) {
+    dispatch(updateDevice(deviceData, meshbluConnection));
+  }
+}
+
 export function updateDevice(deviceData, meshbluConnection) {
   return function(dispatch) {
     dispatch(updateDeviceRequest());
+    console.log('updateDeviceRequest');
 
     if (!meshbluConnection) {
       dispatch(updateDeviceError({ message: "No Meshblu Connection." }));
+      console.log("No Meshblu Connection.");
       return;
     }
 
@@ -134,5 +150,16 @@ export function updateDevice(deviceData, meshbluConnection) {
       console.log('Update Device', device);
       dispatch(updateDeviceSuccess(device));
     });
+  }
+}
+
+export function addDeviceToGateblu(gateblu, deviceRecord, meshbluConnection){
+  console.log('addDeviceToGateblu');
+  return function(dispatch){
+    var gatebluDevices = _.union(gateblu.devices, [deviceRecord]);
+    var gatebluRecord = _.assign({}, gateblu, { devices : gatebluDevices});
+
+    console.log('addDeviceToGateblu', gatebluRecord);
+    dispatch(updateDevice(gatebluRecord, meshbluConnection));
   }
 }
