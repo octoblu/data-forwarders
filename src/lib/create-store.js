@@ -10,15 +10,11 @@ export default function(data) {
   let store;
   let middleware = [ThunkMiddleware];
 
-  if (process.env.NODE_ENV === 'production') {
-    finalCreateStore = applyMiddleware(...middleware)(createStore);
-  } else {
-    finalCreateStore = compose(
-      applyMiddleware(...middleware),
-      reduxReactRouter({ createHistory }),
-      devTools()
-    )(createStore);
-  }
+  finalCreateStore = compose(
+    applyMiddleware(...middleware),
+    reduxReactRouter({ createHistory }),
+    devTools()
+  )(createStore);
 
   store = finalCreateStore(reducers);
   return store;

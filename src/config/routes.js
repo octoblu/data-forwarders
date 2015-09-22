@@ -13,6 +13,7 @@ import ForwarderNewSubscriptions from '../containers/forwarders/forwarders-new-s
 import ForwarderNewRegister from '../containers/forwarders/forwarders-new-register';
 import ForwarderOptions from '../containers/forwarder-options';
 import Login from '../containers/login';
+import Logout from '../containers/logout';
 import NotFound from '../containers/not-found';
 import StyleGuide from '../containers/style-guide';
 
@@ -39,6 +40,7 @@ class AppRoutes extends Component {
 
         <Route path="style-guide" component={StyleGuide}/>
         <Route path="login" component={Login}/>
+        <Route path="logout" component={Logout}/>
       </ReduxRouter>
     );
   }

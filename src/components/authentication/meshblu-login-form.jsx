@@ -29,7 +29,7 @@ var MeshbluLoginForm = React.createClass({
     const device = { uuid, token };
     const { onLogin } = this.props;
 
-    onLogin(device, true);
+    onLogin(device);
     this.setState(initialState);
   },
 

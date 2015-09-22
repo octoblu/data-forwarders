@@ -31,6 +31,15 @@ module.exports = function(state = initialState, action) {
         error: action.error
       });
 
+      case types.MESHBLU_REMOVE_CONNECTION:
+        localStorage.removeItem('meshblu-uuid');
+        localStorage.removeItem('meshblu-token');
+        return _.assign({}, state, {
+          connection: null,
+          isConnecting: false,
+          error: false
+        });
+
     default:
       return state;
   }

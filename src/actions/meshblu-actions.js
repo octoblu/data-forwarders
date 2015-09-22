@@ -24,12 +24,10 @@ export function createConnectionError(error) {
 
 export function createConnectionSilently(redirectPath) {
   return function(dispatch) {
-    console.log('attempting to create connection silently');
     let uuid = localStorage.getItem('meshblu-uuid');
     let token = localStorage.getItem('meshblu-token');
 
     if (uuid && token) {
-      console.log('attempting to create connection');
       dispatch(createConnection({uuid, token}, redirectPath));
     }
   }
@@ -63,6 +61,7 @@ export function createConnection(device, redirectPath='') {
       localStorage.setItem("meshblu-token", token);
 
       dispatch(createConnectionSuccess(meshbluConnection));
+      console.log('redirectPath', redirectPath);
       dispatch(pushState(null, redirectPath));
     });
   };
@@ -98,7 +97,6 @@ export function registerDevice(deviceData, meshbluConnection, callback) {
     }
 
     meshbluConnection.register(deviceData, function(device) {
-      console.log('Device',  device);
       if (device) {
         dispatch(registerDeviceSuccess(device));
         callback();
@@ -143,11 +141,9 @@ export function subscribeToDevice(deviceUUID, subscriberUUID, meshbluConnection)
 export function updateDevice(deviceData, meshbluConnection) {
   return function(dispatch) {
     dispatch(updateDeviceRequest());
-    console.log('updateDeviceRequest');
 
     if (!meshbluConnection) {
       dispatch(updateDeviceError({ message: "No Meshblu Connection." }));
-      console.log("No Meshblu Connection.");
       return;
     }
 
@@ -163,19 +159,28 @@ export function updateDevice(deviceData, meshbluConnection) {
 
 
     meshbluConnection.update(deviceData, (device) => {
-      console.log('Update Device', device);
       dispatch(updateDeviceSuccess(device));
     });
   }
 }
 
 export function addDeviceToGateblu(gateblu, deviceRecord, meshbluConnection){
-  console.log('addDeviceToGateblu');
   return function(dispatch){
     var gatebluDevices = _.union(gateblu.devices, [deviceRecord]);
     var gatebluRecord = _.assign({}, gateblu, { devices : gatebluDevices});
 
-    console.log('addDeviceToGateblu', gatebluRecord);
     dispatch(updateDevice(gatebluRecord, meshbluConnection));
+  }
+}
+
+export function removeConnection() {
+  return {
+    type: types.MESHBLU_REMOVE_CONNECTION
+  }
+}
+
+export function logout() {
+  return function(dispatch) {
+    dispatch(removeConnection());
   }
 }

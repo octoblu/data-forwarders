@@ -22,6 +22,7 @@ var Forwarders = React.createClass({
           <ul className='list-unstyled list-inline cf'>
             <li><Link to="/">Forwarders</Link></li>
             <li><Link to="/forwarders/new">Create Forwarder</Link></li>
+            <li><Link to="/logout">Logout</Link></li>
           </ul>
         </nav>
 
