@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- '0.10'
+before_deploy:
+- node_modules/.bin/webpack
+deploy:
+- provider: s3
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key:
+    secure: "BReH6FzwdjDrd5B14QShmCNs4Bwbyr/fhFIoUHre9BNuy9YsB3VdkRUdKL8UZRSr3tglS+iYLSF3UhGg7fyiIrrH3tzhEdWjqlKJ2DGmkgMIohi41REpYJkW3WCg0IlgHJt/6fVBMzTl1fEyj7wQJ7GmJadhmxT23+aVdymIqQy0hVCPjcqemMo1nlKZ25MUKhKhs1oqlHr82Xu27OlJLIvw3gwQLSt1g4VHpmo7i3oNK/bXMUnaaAFd9cmtX5zFXbSLLkAn7ncE5Xl7WZUjgNvkm4/tp+g7CZsfMF7qs9UPs4K3POe9KKhk2Ue7jfJeo9V8PGWtH9dqkwZo9434gwvBvegIC/o38rkI5lUW2FK33Ibq5w2ns22Ju/zpLW2vVre6SoerwVCGggvv2MIVddPm+Y7ZXbJlFWVW/FEWbgdSkoUpgV9GAUzlfkFli0BCLXGxS1a12xb9q0e5MpGvyP4iXYTcXwut8ydnsvtT2aDU0LIjnOEbzU7H3sF8hkoWI22+ur2ThZRB6v8AsAih3KYA20p+EsC+LaOtLVNBJYkfmSYRo7qpOg8jtVXxxFP8Jn2Al00UQ/klTyB7MPf2OHmYJL3OHKmwguXaSusCWm6SpeXSK/2YAKvxAyQBefLnZGDbEgI6OD0jDOUGl6om46sbkPBLdftG4V9dOBoBCBo="
+  bucket: forwarder.octoblu.com
+  region: us-west-2
+  skip_cleanup: true
+  detect_encoding: true
+  local-dir: public
+  on:
+    tags: true
+    all_branches: true

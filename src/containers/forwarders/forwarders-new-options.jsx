@@ -3,9 +3,7 @@ import React from "react"
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, Navigation } from 'react-router';
-import Form from 'plexus-form';
 import SchemaForm from '../../components/snap/schema-form';
-import validate from 'plexus-validate';
 
 import * as ForwarderActions from '../../actions/forwarders-actions';
 
@@ -21,7 +19,7 @@ var ForwarderNewOptions = React.createClass({
 
         {
           forwarder.optionsSchema &&
-          <SchemaForm schema={forwarder.optionsSchema} validate={validate} onSubmit={forwarderActions.setOptions} />
+          <SchemaForm schema={forwarder.optionsSchema} onSubmit={forwarderActions.setOptions} />
         }
       </div>
     );
