@@ -41,7 +41,8 @@ export function createConnection(device, redirectPath='') {
     });
 
     meshbluConnection.on('notReady', function(response){
-      dispatch(createConnectionError({message: 'Authentication Failed'}));
+      dispatch(removeConnection());
+      dispatch(pushState({message: 'Authentication Failed'}, '/login'));
     });
 
     meshbluConnection.on('ready', function(response){

@@ -46,7 +46,7 @@ var MeshbluLoginForm = React.createClass({
     return (
       <form onSubmit={this.handleSubmit}>
         <fieldset>
-          <legend>Meshblu Login</legend>
+          <legend>Forwarder Login</legend>
           {errorMessage &&
             <div className='message message-error'>
               <p>{errorMessage}</p>

@@ -22,11 +22,13 @@ var Login = React.createClass({
     const meshbluActions = bindActionCreators(MeshbluActions, dispatch);
 
     return (
-      <div className='grid-flex-cell grid-flex-cell-1of3'>
+      <div className='Login'>
+        <img className='Login-logo' src="//d2zw6j512x6z0x.cloudfront.net/master/7db91ba1e10aac3ad04b13d8abb9d83dba9ac23f/assets/images/octoblu-color.png" alt="Octoblu" />
         <MeshbluLoginForm
           onLogin={meshbluActions.createConnection}
           isConnecting={meshblu.isConnecting}
-          errorMessage={meshblu.error.message}/>
+          errorMessage={meshblu.error.message}
+          className='Login-form'/>
       </div>
     );
   }
