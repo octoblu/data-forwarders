@@ -24,6 +24,10 @@ module.exports = function(state = initialState, action) {
         name: action.name
       });
 
+    case types.FORWARDER_INITIALIZE:
+      console.log('Forwarder Reducer: InitialState', initialState);
+      return initialState;
+
     case types.FORWARDER_SET_OWNER:
       var configureWhitelist = _.union(state.configureWhitelist, [action.owner]);
       var discoverWhitelist = _.union(state.discoverWhitelist, [action.owner]);

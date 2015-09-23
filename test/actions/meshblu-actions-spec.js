@@ -26,20 +26,20 @@ describe('Meshblu.Actions', function() {
   });
 
   it('should create a MESHBLU_REGISTER_DEVICE_REQUEST action', function() {
-    expect(actions.createConnectionRequest()).toEqual({
+    expect(actions.registerDeviceRequest()).toEqual({
       type: types.MESHBLU_REGISTER_DEVICE_REQUEST
     });
   });
 
   it('should create a MESHBLU_REGISTER_DEVICE_SUCCESS action', function() {
-    expect(actions.createConnectionSuccess({})).toEqual({
+    expect(actions.registerDeviceSuccess({})).toEqual({
       type: types.MESHBLU_REGISTER_DEVICE_SUCCESS,
       payload: {}
     });
   });
 
   it('should create a MESHBLU_REGISTER_DEVICE_ERROR action', function() {
-    expect(actions.createConnectionError({})).toEqual({
+    expect(actions.registerDeviceError({})).toEqual({
       type: types.MESHBLU_REGISTER_DEVICE_ERROR,
       error: {}
     });
