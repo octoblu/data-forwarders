@@ -10,3 +10,4 @@
 2. Support Octoblu OAuth
 3. Allow editing of Forwarders
 4. Documentation and Examples
+5. Encrypt Local Storage Credentials(UUID and Token)
