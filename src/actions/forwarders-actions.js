@@ -25,7 +25,7 @@ export function addDataStore(dataStore) {
 
 export function setOptions(options) {
   if (options) {
-    return dispatch => {
+    return (dispatch) => {
       dispatch({ options, type: types.FORWARDER_SET_OPTIONS_VALUE });
       dispatch(replaceState({}, '/forwarders/new/gateblu', {}));
     };
@@ -69,4 +69,8 @@ export function unsubscribeFromAllDevices() {
 
 export function showForwarderDetailError(error) {
   return {error,  type: types.FORWARDER_SHOW_DETAIL_ERROR};
+};
+
+export function initializeForwarder(){
+  return {type : types.FORWARDER_INITIALIZE }
 };

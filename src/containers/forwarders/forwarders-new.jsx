@@ -11,6 +11,11 @@ import * as MeshbluActions from '../../actions/meshblu-actions';
 import DataStoreList from '../../components/data-stores/data-store-list';
 
 var ForwarderNew = React.createClass({
+
+  componentWillMount: function(){
+      const {dispatch} = this.props;
+      dispatch(ForwarderActions.initializeForwarder());
+  },
   registerForwarder: function()   {
     const { dispatch, forwarder, meshblu } = this.props;
     dispatch(MeshbluActions.registerDevice(forwarder, meshblu.connection));

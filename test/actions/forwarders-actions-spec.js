@@ -3,7 +3,11 @@ var types   = require('../../src/constants/action-types');
 var actions = require('../../src/actions/forwarders-actions');
 
 describe('Forwarders.Actions', function() {
-
+  it('should create FORWARDER_INITIALIZE', function(){
+    expect(actions.initializeForwarder()).toEqual({
+      type : types.FORWARDER_INITIALIZE
+    })
+  });
   it('should create FORWARDER_ADD_DATA_STORE action', function() {
     expect(actions.addDataStore({ uuid : '1234', optionsSchema: {}})).toBeA('function');
   });
@@ -11,13 +15,7 @@ describe('Forwarders.Actions', function() {
 
   describe('FORWARDER_SET_OPTIONS', function() {
     it('should create FORWARDER_SET_OPTIONS_VALUE action when provided with options on submit', function(){
-      expect(actions.setOptions({}, 'Submit', null)).toBeA('function');
-    });
-
-    it('should create FORWARDER_SET_OPTIONS_CANCELED action', function(){
-      expect(actions.setOptions(null, 'Cancel', null)).toEqual({
-        type : types.FORWARDER_SET_OPTIONS_CANCELED
-      });
+      expect(actions.setOptions({})).toBeA('function');
     });
   });
 

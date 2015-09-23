@@ -7,7 +7,7 @@
     "start": "webpack-dev-server",
     "build": "webpack",
     "deploy": "npm run build",
-    "test": "exit 0",
+    "test": "mocha --compilers js:babel/register",
     "test:watch": "npm test -- --watch"
   },
   "repository": {

@@ -3,26 +3,49 @@ var types      = require('../../src/constants/action-types');
 var forwarders = require('../../src/reducers/forwarder-reducers');
 
 describe('Forwarder.Reducers', function() {
-  it('should handle initial state', function() {
-    expect(forwarders(undefined, {})).toEqual({
-      dataStore: '',
-      connector: '',
-      options : null,
+  var initialState;
+  beforeEach('initializeState', function(){
+    initialState = {
+      name: "",
+      type: "device:forwarder",
+      owner: "",
+      dataStore: "",
+      logoUrl: "",
+      connector: "",
+      options: null,
       optionsSchema : null,
-      gateblu: '',
-      subscriptions: []
-    });
+      gateblu: "",
+      subscriptions: [],
+      configureWhitelist: [],
+      discoverWhitelist: [],
+      sendAsWhitelist: []
+    };
+  });
+
+
+  it('should handle initial state', function() {
+    expect(forwarders(undefined, {})).toEqual(initialState);
+  });
+
+  it('should return the initialize state on FORWARDER_INITIALIZE', function() {
+    console.log("Initial State is", initialState);
+    expect(forwarders({}, { type: types.FORWARDER_INITIALIZE})).toEqual(initialState);
   });
 
   it('should add a datastore', function() {
     var dataStore = {
+      logoUrl : 'Some URL',
+      connector : 'My Connector',
       uuid : '7890',
+      name : 'My Datastore',
       optionsSchema :{}
     };
     expect(forwarders({}, {type: types.FORWARDER_ADD_DATA_STORE, dataStore }))
     .toEqual({
-      dataStore: '7890',
-      optionsSchema: {}
+      logoUrl : 'Some URL',
+      connector : 'My Connector',
+      dataStore : 'My Datastore',
+      optionsSchema :{}
     });
   });
 
@@ -35,11 +58,14 @@ describe('Forwarder.Reducers', function() {
   });
 
   it('should add a gateblu', function() {
-    var gateblu = { uuid: 'gateblu-uuid', name: 'my-gateblu'};
+    var gateblu = 'spiderman';
     expect(forwarders({}, { type: types.FORWARDER_ADD_GATEBLU, gateblu }))
       .toEqual({
-        gateblu
-      })
+        gateblu : 'spiderman',
+        configureWhitelist :['spiderman'],
+        discoverWhitelist: ['spiderman'],
+        sendAsWhitelist: ['spiderman']
+      });
   });
 
   describe('Device Subscriptions', function() {
