@@ -32,6 +32,13 @@ describe('Forwarder.Reducers', function() {
     expect(forwarders({}, { type: types.FORWARDER_INITIALIZE})).toEqual(initialState);
   });
 
+  it('should clear subscriptions on FORWARDER_INITIALIZE', function() {
+    let state = {
+      subscriptions : ['device1', 'device2']
+    }
+    expect(forwarders(state, { type: types.FORWARDER_INITIALIZE})).toEqual(initialState);
+  });
+
   it('should add a datastore', function() {
     var dataStore = {
       logoUrl : 'Some URL',
