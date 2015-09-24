@@ -10,6 +10,22 @@ var initialState = {
 
 module.exports = function(state = initialState, action) {
   switch(action.type) {
+    case 'LOGIN_PENDING':
+      console.log('LOGIN_PENDING', action);
+      return _.assign({}, state, {
+        connection: null,
+        isConnecting: true,
+        error: false
+      });
+
+    case 'LOGIN_REJECTED':
+      console.log('LOGIN_ERROR', action);
+      return _.assign({}, state, {
+        connection: null,
+        isConnecting: false,
+        error: action.error
+      });
+
     case types.MESHBLU_CREATE_CONNECTION_REQUEST:
       return _.assign({}, state, {
         connection: null,

@@ -2,6 +2,30 @@ import meshblu from 'meshblu';
 import { pushState, replaceState } from 'redux-react-router';
 import * as types from '../constants/action-types';
 
+function meshbluLogin({uuid, token}) {
+  return new Promise((resolve, reject) => {
+    const skynet = meshblu.createConnection({ uuid,token });
+
+    skynet.on('notReady', function(response){
+      reject(new Error('Meshblu Authentication Failed!'));
+    });
+
+    skynet.on('ready', function(response){
+      resolve();
+    });
+  })
+}
+
+export function login(device) {
+  return {
+    types: [ 'LOGIN_PENDING', 'LOGIN_FULFILLED', 'LOGIN_REJECTED' ],
+    payload: {
+      promise: meshbluLogin(device),
+      data: device
+    }
+  }
+}
+
 export function createConnectionRequest() {
   return {
     type: types.MESHBLU_CREATE_CONNECTION_REQUEST

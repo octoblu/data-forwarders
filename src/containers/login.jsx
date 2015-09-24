@@ -13,7 +13,8 @@ var Login = React.createClass({
     let uuid = localStorage.getItem('meshblu-uuid')
     let token = localStorage.getItem('meshblu-token')
     if (uuid && token) {
-      this.props.dispatch(MeshbluActions.createConnection({uuid, token}))
+      // this.props.dispatch(MeshbluActions.createConnection({uuid, token}))
+      this.props.dispatch(MeshbluActions.login({uuid, token}))
     }
   },
 
@@ -25,7 +26,7 @@ var Login = React.createClass({
       <div className='Login'>
         <img className='Login-logo' src="//d2zw6j512x6z0x.cloudfront.net/master/7db91ba1e10aac3ad04b13d8abb9d83dba9ac23f/assets/images/octoblu-color.png" alt="Octoblu" />
         <MeshbluLoginForm
-          onLogin={meshbluActions.createConnection}
+          onLogin={meshbluActions.login}
           isConnecting={meshblu.isConnecting}
           errorMessage={meshblu.error.message}
           className='Login-form'/>
