@@ -82,19 +82,6 @@ var ForwarderDetail = React.createClass({
           </button>
         </fieldset>
       </form>
-      // <div className="Page">
-      //   <div>
-      //     <img src={forwarder.logoUrl} className="" alt="Forwarder Logo"/>
-      //     <form>
-      //       <fieldset></fieldset>
-      //     </form>
-      //     <div>{forwarder.name}</div>
-      //     <div>{forwarder.uuid}</div>
-      //     <div>{forwarder.gateblu}</div>
-      //   </div>
-      //
-      //   <button className="button Button-jumbo">Delete</button>
-      // </div>
     )
   }
 });

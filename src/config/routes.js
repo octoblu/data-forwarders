@@ -13,6 +13,7 @@ import ForwarderNewGateblu from '../containers/forwarders/forwarders-new-gateblu
 import ForwarderNewSubscriptions from '../containers/forwarders/forwarders-new-subscriptions';
 import ForwarderNewRegister from '../containers/forwarders/forwarders-new-register';
 import Login from '../containers/login';
+import About from '../containers/about';
 import Logout from '../containers/logout';
 import NotFound from '../containers/not-found';
 import StyleGuide from '../containers/style-guide';
@@ -35,6 +36,7 @@ class AppRoutes extends Component {
             <Route path="subscriptions" component={ForwarderNewSubscriptions}/>
             <Route path="register" component={ForwarderNewRegister}/>
           </Route>
+          <Route path="about" component={About}/>
         </Route>
 
         <Route path="style-guide" component={StyleGuide}/>

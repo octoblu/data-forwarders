@@ -13,6 +13,7 @@ var AppLayout = React.createClass({
             <li><Link to="/">Forwarders</Link></li>
             <li><Link to="/forwarders/new">Create Forwarder</Link></li>
             <li><Link to="https://octoblu-splunk.readme.io/v1.0/docs/splunk-forwarder-tutorial">Documentation</Link></li>
+            <li><Link to="/about">About</Link></li>
             <li><Link to="/logout">Logout</Link></li>
           </ul>
         </nav>
