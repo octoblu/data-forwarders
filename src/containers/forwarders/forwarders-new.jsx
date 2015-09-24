@@ -84,7 +84,7 @@ var ForwarderNew = React.createClass({
             <li>{this.renderBreadcrumb("/forwarders/new/store", "Pick Data Store")}›</li>
             <li>{this.renderBreadcrumb("/forwarders/new/options", "Set Options")}›</li>
             <li>{this.renderBreadcrumb("/forwarders/new/gateblu", "Select Gateblu")}›</li>
-            <li>{this.renderBreadcrumb("/forwarders/new/subscriptions", "Subscibe Devices")}›</li>
+            <li>{this.renderBreadcrumb("/forwarders/new/subscriptions", "Subscribe Devices")}›</li>
             <li>{this.renderBreadcrumb("/forwarders/new/register", "Done!")}</li>
           </ul>
         </nav>

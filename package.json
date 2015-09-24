@@ -1,13 +1,13 @@
 {
   "name": "forwarder-ui",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
     "deploy": "npm run build",
-    "test": "mocha --compilers js:babel/register",
+    "test": "mocha --compilers js:babel/register --recursive",
     "test:watch": "npm test -- --watch"
   },
   "repository": {
