@@ -18,7 +18,14 @@ describe('Forwarder.Reducers', function() {
       subscriptions: [],
       configureWhitelist: [],
       discoverWhitelist: [],
-      sendAsWhitelist: []
+      sendAsWhitelist: [],
+      geo: {},
+      ipAddress: "",
+      meshblu: {},
+      online: false,
+      socketid: "",
+      uuid: null,
+      token: null
     };
   });
 
