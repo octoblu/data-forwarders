@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, Navigation } from 'react-router';
 
+import PageHeader from '../components/page-header';
 import ForwarderList from '../components/forwarders/forwarder-list';
 
 import * as DeviceActions from '../actions/devices-actions';
@@ -18,7 +19,11 @@ var Forwarders = React.createClass({
     const { devices } = this.props;
 
     return (
-      <div className="grid-flex-container">
+      <div>
+        <PageHeader title="Forwarders">
+          <Link to="/forwarders/new" className="button Forwarder-creat-btn">Create Forwarder</Link>
+        </PageHeader>
+
         <ForwarderList
           forwarders={devices.forwarders}
           isFetching={devices.isFetching}

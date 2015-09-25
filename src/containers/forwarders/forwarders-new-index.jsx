@@ -35,7 +35,7 @@ var ForwarderNewIndex = React.createClass({
 
     return (
       <div>
-        <h3>Name Your Forwarder</h3>
+        <h4>Name Your Forwarder</h4>
 
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
           <div>

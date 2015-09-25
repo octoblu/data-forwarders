@@ -22,7 +22,7 @@ var ForwarderNewGateblu = React.createClass({
 
     return (
       <div>
-        <h3>Select Gateblu</h3>
+        <h4>Select Gateblu</h4>
         <p>Pick a Gateblu device that will manage and run your forwarder</p>
         <DeviceList devices={devices.gateblus} onSelection={forwarderActions.addGateblu} isFetching={devices.isFetching} />
       </div>

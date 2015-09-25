@@ -30,7 +30,7 @@ const DeviceList = React.createClass({
 
 
     return (
-      <div className="grid-flex-container">
+      <div className="Cards">
         {listItems}
       </div>
     );

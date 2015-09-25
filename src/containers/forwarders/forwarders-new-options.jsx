@@ -14,7 +14,7 @@ var ForwarderNewOptions = React.createClass({
 
     return (
       <div>
-        <h3>Set Options</h3>
+        <h4>Set Options</h4>
         <p>This data store requires you to configure the following options.</p>
 
         {

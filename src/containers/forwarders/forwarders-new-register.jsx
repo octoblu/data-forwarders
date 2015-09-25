@@ -29,7 +29,7 @@ var ForwarderNewRegister = React.createClass({
   render: function() {
     return (
       <div>
-        <h2>Register Device</h2>
+        <h4>Register Device</h4>
         <p>Registering...</p>
       </div>
     );

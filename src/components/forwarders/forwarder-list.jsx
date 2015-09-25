@@ -36,7 +36,7 @@ var ForwarderList = React.createClass({
     });
 
     return (
-      <div className="grid-flex-container">{forwarderListItems}</div>
+      <div className="Cards">{forwarderListItems}</div>
     )
   }
 });

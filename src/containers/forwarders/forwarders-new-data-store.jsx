@@ -15,7 +15,7 @@ var ForwarderNewDataStore = React.createClass({
 
     return (
       <div>
-        <h3>Data Stores</h3>
+        <h4>Data Stores</h4>
         <p>Select the data store you'd like your messages to be forwarded to.</p>
 
         { dataStores.length > 0 &&

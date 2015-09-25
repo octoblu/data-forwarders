@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import * as ForwarderActions from '../../actions/forwarders-actions';
 import * as MeshbluActions from '../../actions/meshblu-actions';
 
+import PageHeader from '../../components/page-header';
 import DataStoreList from '../../components/data-stores/data-store-list';
 
 var ForwarderNew = React.createClass({
@@ -77,7 +78,11 @@ var ForwarderNew = React.createClass({
     const forwarderActions = bindActionCreators(ForwarderActions, dispatch);
 
     return (
-      <div className="Page">
+      <div>
+        <PageHeader title="New Forwarder">
+          <Link to="/" className="button Forwarder-creat-btn">Forwarders</Link>
+        </PageHeader>
+
         <nav role='navigation'>
           <ul className='list-unstyled list-inline breadcrumbs'>
             <li>{this.renderBreadcrumb("/forwarders/new/", "Name Forwarder")}›</li>

@@ -1,19 +1,38 @@
 
 @import 'yeticss'
 
+body
+  background: $gray-lighter
+
 header
   margin-top: 30px
 
 .Page
-  width: 900px
-  margin: 0 30px
+  height: 100%;
+  padding: 30px
+  width: 952px
+  border-right: 2px solid #D6DEE4
+  background: #FFF
+
+.Page-header
+  border-bottom: 1px solid #e6eaed
+  padding-bottom: 30px
+  margin-bottom: 30px
+  overflow: hidden
+
+.Page-title
+  float: left
+  margin-bottom: 0
 
 .Page-nav
   height: 55px
   padding: 0 15px
-  margin-bottom: 35px
   background: $blue-saturated
   overflow: hidden
+
+
+.Forwarder-creat-btn
+  float: right
 
   ul
     float: left
@@ -41,12 +60,11 @@ header
 
 .Logo-wrapper
   padding: 0 10px !important
-  background: oldlace
 
 .Login
   width: 480px
   padding: 20px
-  margin: 40px auto 0 
+  margin: 40px auto 0
 
 .Login-logo
   display: block
@@ -54,9 +72,14 @@ header
   height: 52px
   margin: 0 auto 40px
 
+.Cards
+  overflow:hidden
+  margin-left: -30px
+
 .Card
   width: 200px
-  margin: 0 25px 25px 0
+  margin: 0 0 15px 30px
+  float: left
 
 .Card-thumbnail
   display: block

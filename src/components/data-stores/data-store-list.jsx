@@ -24,7 +24,7 @@ var DataStoreList = React.createClass({
   render: function() {
     var stores = _.map(this.props.stores, this.renderListItem)
     return (
-      <div>
+      <div className="Cards">
         {stores}
       </div>
     );
