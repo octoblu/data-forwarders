@@ -5,40 +5,33 @@ import { connect } from 'react-redux';
 import { Link, Navigation } from 'react-router';
 
 import * as ForwarderActions from '../../actions/forwarders-actions';
-import * as DeviceActions from '../../actions/devices-actions';
-import DeviceTable from '../../components/devices/device-table';
-
-import FormField from '../../components/snap/form-field';
 
 var ForwarderNewIndex = React.createClass({
-  componentDidMount: function() {
-    const { dispatch, meshblu } = this.props;
-    const deviceActions = bindActionCreators(DeviceActions, dispatch);
-
-    deviceActions.fetchDevices(meshblu);
+  componentWillMount: function() {
+    this.props.dispatch(ForwarderActions.initializeForwarder());
   },
 
   getInitialState: function() {
-    return {
-      name: ''
-    }
+    return { name: '' };
   },
 
   handleSubmit: function(e) {
     e.preventDefault();
+
+    const { dispatch } = this.props;
     const ownerUUID = localStorage.getItem('meshblu-uuid');
-    this.props.dispatch(ForwarderActions.setOwner(ownerUUID));
-    this.props.dispatch(ForwarderActions.setName(this.state.name));
+
+    dispatch(ForwarderActions.setOwner(ownerUUID));
+    dispatch(ForwarderActions.setName(this.state.name));
   },
 
   handleChange: function(e) {
-    let { value} = e.target;
+    let { value } = e.target;
     this.setState({ name: value });
   },
 
   render: function() {
-    const { devices, dispatch, forwarder } = this.props;
-    const forwarderActions = bindActionCreators(ForwarderActions, dispatch);
+    const { dispatch, forwarder } = this.props;
 
     return (
       <div>
@@ -57,8 +50,6 @@ var ForwarderNewIndex = React.createClass({
           </div>
           <button type="submit" className="button button-primary Button-jumbo">Select Datastore</button>
         </form>
-
-
       </div>
     );
   }
@@ -67,7 +58,6 @@ var ForwarderNewIndex = React.createClass({
 function mapStateToProps(state) {
   return {
     meshblu: state.meshblu,
-    devices: state.devices,
     forwarder: state.forwarder
   };
 };

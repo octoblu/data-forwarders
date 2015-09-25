@@ -14,7 +14,14 @@ var initialState = {
   subscriptions: [],
   configureWhitelist: [],
   discoverWhitelist: [],
-  sendAsWhitelist: []
+  sendAsWhitelist: [],
+  geo: {},
+  ipAddress: "",
+  meshblu: {},
+  online: false,
+  socketid: "",
+  uuid: null,
+  token: null
 };
 
 module.exports = function(state = initialState, action) {
@@ -25,7 +32,6 @@ module.exports = function(state = initialState, action) {
       });
 
     case types.FORWARDER_INITIALIZE:
-      console.log('Forwarder Reducer: InitialState', initialState);
       return _.assign({}, state, initialState);
 
     case types.FORWARDER_SET_OWNER:

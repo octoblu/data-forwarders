@@ -14,8 +14,8 @@ var ForwarderNew = React.createClass({
 
   componentWillMount: function(){
       const {dispatch} = this.props;
-      dispatch(ForwarderActions.initializeForwarder());
   },
+
   registerForwarder: function()   {
     const { dispatch, forwarder, meshblu } = this.props;
     dispatch(MeshbluActions.registerDevice(forwarder, meshblu.connection));
