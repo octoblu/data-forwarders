@@ -1,72 +1,87 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="description" content="Octoblu Data Forwarders : ">
+  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <title>Octoblu Data Forwarders</title>
+</head>
+<body>
+  <!-- HEADER -->
+  <div id="header_wrap" class="outer">
+    <header class="inner">
+      <a id="forkme_banner" href="https://github.com/octoblu/data-forwarders">View on GitHub</a>
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Octoblu Data Forwarders : ">
+      <h1 id="project_title">Octoblu Data Forwarders</h1>
+      <h2 id="project_tagline"></h2>
+      <nav class="header-navigation">
+        <ul class="navigation-list">
+          <li class="navigation-list-item"><a class="navigation-link" href="/index.html">Purpose</a></li>
+          <li class="navigation-list-item"><a class="navigation-link" href="/how-to-use.html">How To Guide</a></li>
+          <li class="navigation-list-item"><a class="navigation-link" href="/custom-forwarder.html">Creating a Custom Forwarder</a></li>
+          <li class="navigation-list-item"><a class="navigation-link" href="/examples.html">Examples</a></li>
+        </ul>
+      </nav>
+    </header>
+  </div>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <!-- MAIN CONTENT -->
+  <div id="main_content_wrap" class="outer">
+    <section id="purpose_section" class="inner">
+      <h2>
+        <a id="usage" class="anchor" href="#usage" aria-hidden="true">
+          <span class="octicon octicon-link"></span>
+        </a> How to Forward Your Data</h2>
+      You can set up data-forwarding from your Octoblu connected devices by
+      <strong>setting up device subscriptions</strong> or by
+      <strong>sending messages to a forwarder device</strong>
+      <section id="device-subscription" class="inner">
+        <h3>1 Setting Up Device Subscriptions</h3>
+        You can use <a href="http://forwarder.octoblu.com">forwarder.octoblu.com</a> to set up message subscriptions to your IoT connected things. The forwarder application will walk you through the process of
+        <ol>
+          <li>selecting a datastore</li>
+          <li>Setting the configuration options for connecting to your datastore</li>
+          <li>Selecting one or more devices</li>
+          <li>Selecting a Gateblu instance to run your forwarder
+            <p>We run the forwarder as a managed process inside <a href="https://gateblu.octoblu.com">Gateblu</a>. Gateblu is Octoblu's Internet of Things gateway that allows you to connect your smart-devices, motors, sensors and more to Octoblu.</p>
+          </li>
+        </ol>
+        <p>
+          Once the wizard is complete a new forwarder device is created and is granted permissions to receive messages that are sent to or received by your selected devices.
+        </p>
+        <p>
+        It also notifies your Gateblu instance that it needs to run an instance of your forwarder device. Direct messages or broadcasts that are sent to/from your devices
+        </p>
 
-    <title>Octoblu Data Forwarders</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/octoblu/data-forwarders">View on GitHub</a>
-
-          <h1 id="project_title">Octoblu Data Forwarders</h1>
-          <h2 id="project_tagline"></h2>
-          <nav class="header-navigation">
-            <ul class="navigation-list">
-              <li class="navigation-list-item"><a class="navigation-link" href="#purpose">Purpose</a></li>
-              <li class="navigation-list-item"><a class="navigation-link" href="/how-to-use.html">How To Guide</a></li>
-              <li class="navigation-list-item"><a class="navigation-link" href="/custom-forwarder.html">Creating a Custom Forwarder</a></li>
-              <li class="navigation-list-item"><a class="navigation-link" href="/examples.html">Examples</a></li>
-            </ul>
-          </nav>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-<section id="purpose_section" class="inner">
-        <h2>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a> How to Forward Your Data</h2>
- You can set up data-forwarding from your Octoblu connected devices by <strong>setting up device subscriptions</strong> or by <strong>sending messages
-   to a forwarder device</strong>
-<section id="device-subscription" class="inner">
-  <h3>Setting Up Device Subscriptions</h3>
-You can use <a href="http://forwarder.octoblu.com">forwarder.octoblu.com</a>
-to set up message subscriptions to your IoT connected things.
-The forwarder application will walk you through the process of
-<ol>
-  <li>selecting a datastore</li>
-  <li>Setting the configuration options for connecting to your datastore</li>
-  <li>Selecting one or more devices</li>
-  <li>Selecting a Gateblu instance to run your forwarder
-    <p>We run the forwarder as a managed process inside <a href="https://gateblu.octoblu.com">Gateblu</a>.
-    Gateblu is Octoblu's Internet of Things gateway that allows you to connect your smart-devices, motors, sensors and more to Octoblu.</p>
-  </li>
-</ol>
-<p>
-Once the wizard is complete a new forwarder device is created and is granted permissions to receive messages that are sent to or received by your
-selected devices.
-</p>
-It also notifies your Gateblu instance that it needs to run an instance of your forwarder device.
-Direct messages or broadcasts that are sent to/from your devices
-
-</section>
-<section id="forwarder-messaging" class="inner">
-  <h3>Sending messages to a forwarder device</h3>
-</section>
-
-</section>
+        <article id="logging-into-forwarder">
+          <h4>Logging in to the <a href="http://forwarder.octoblu.com">forwarder app</a></h4>
+        </article>
+        <article id="selecting-data-store">
+          <h4>Selecting a supported data-store</h4>
+        </article>
+        <article id="selecting-devices">
+          <h4>Selecting devices for message subscriptions</h4>
+        </article>
+        <article id="selecting-gateblu">
+          <h4>Selecting a Gateblu Instance</h4>
+        </article>
 
 
+      </section>
+      <section id="octoblu-add-forwarder-device" class="inner">
+        <h3>2 Sending messages to a forwarder device</h3>
+        <article id="octoblu-create-flow">
+          <h4>Create a new Flow</h4>
+        </article>
+        <article id="octoblu-message-device">
+          <h4>Add forwarder to flow</h4>
+        </article>
+        <article id="octoblu-bluprint-example">
+          <h4>Bluprint Examples</h4>
+        </article>
+      </section>
+    </section>
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
@@ -74,8 +89,5 @@ Direct messages or broadcasts that are sent to/from your devices
         <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-
-
-
-  </body>
+</body>
 </html>
