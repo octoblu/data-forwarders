@@ -35,7 +35,35 @@
     <div id="main_content_wrap" class="outer">
 <section id="purpose_section" class="inner">
         <h2>
-<a id="purpose" class="anchor" href="#purpose" aria-hidden="true"><span class="octicon octicon-link"></span></a>Purpose</h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a> How to Forward Your Data</h2>
+ You can set up data-forwarding from your Octoblu connected devices by <strong>setting up device subscriptions</strong> or by <strong>sending messages
+   to a forwarder device</strong>
+<section id="device-subscription" class="inner">
+  <h3>Setting Up Device Subscriptions</h3>
+You can use <a href="http://forwarder.octoblu.com">forwarder.octoblu.com</a>
+to set up message subscriptions to your IoT connected things.
+The forwarder application will walk you through the process of
+<ol>
+  <li>selecting a datastore</li>
+  <li>Setting the configuration options for connecting to your datastore</li>
+  <li>Selecting one or more devices</li>
+  <li>Selecting a Gateblu instance to run your forwarder
+    <p>We run the forwarder as a managed process inside <a href="https://gateblu.octoblu.com">Gateblu</a>.
+    Gateblu is Octoblu's Internet of Things gateway that allows you to connect your smart-devices, motors, sensors and more to Octoblu.</p>
+  </li>
+</ol>
+<p>
+Once the wizard is complete a new forwarder device is created and is granted permissions to receive messages that are sent to or received by your
+selected devices.
+</p>
+It also notifies your Gateblu instance that it needs to run an instance of your forwarder device.
+Direct messages or broadcasts that are sent to/from your devices
+
+</section>
+<section id="forwarder-messaging" class="inner">
+  <h3>Sending messages to a forwarder device</h3>
+</section>
+
 </section>
 
 
