@@ -3,7 +3,7 @@ import React from "react"
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, Navigation } from 'react-router';
-import { pushState } from 'redux-react-router';
+import { pushState } from 'redux-router';
 
 import * as MeshbluActions from '../actions/meshblu-actions';
 import * as DeviceActions from '../actions/devices-actions';

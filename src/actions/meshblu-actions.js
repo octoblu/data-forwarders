@@ -1,5 +1,5 @@
 import meshblu from 'meshblu';
-import { pushState, replaceState } from 'redux-react-router';
+import { pushState, replaceState } from 'redux-router';
 import * as types from '../constants/action-types';
 
 export function createConnectionRequest() {

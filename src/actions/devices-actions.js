@@ -1,6 +1,6 @@
 import * as types from '../constants/action-types';
 import * as MeshbluActions from './meshblu-actions';
-import { pushState, replaceState } from 'redux-react-router';
+import { pushState, replaceState } from 'redux-router';
 import meshblu from 'meshblu';
 
 export function fetchDevicesRequest() {

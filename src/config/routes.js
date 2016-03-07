@@ -1,49 +1,60 @@
-import React, { Component } from 'react';
-import { IndexRoute, Route } from 'react-router';
-import { ReduxRouter } from 'redux-react-router';
+import React, { Component } from 'react'
+import { IndexRoute, Route, Router } from 'react-router'
+import { createHistory } from 'history'
 
-import AppLayout from '../containers/app-layout';
-import AppBar from '../components/app-bar/';
-import Forwarder from '../containers/forwarders';
-import ForwarderDetail from '../containers/forwarder-detail';
-import ForwarderNew from '../containers/forwarders/forwarders-new';
-import ForwarderNewDataStore from '../containers/forwarders/forwarders-new-data-store';
-import ForwarderNewOptions from '../containers/forwarders/forwarders-new-options';
-import ForwarderNewIndex from '../containers/forwarders/forwarders-new-index';
-import ForwarderNewGateblu from '../containers/forwarders/forwarders-new-gateblu';
-import ForwarderNewSubscriptions from '../containers/forwarders/forwarders-new-subscriptions';
-import ForwarderNewRegister from '../containers/forwarders/forwarders-new-register';
-import Login from '../containers/login';
-import Logout from '../containers/logout';
-import NotFound from '../containers/not-found';
-import StyleGuide from '../containers/style-guide';
+import AppLayout from '../containers/app-layout'
+import Forwarder from '../containers/forwarders'
+import ForwarderDetail from '../containers/forwarder-detail'
+import ForwarderNew from '../containers/forwarders/forwarders-new'
+import ForwarderNewDataStore from '../containers/forwarders/forwarders-new-data-store'
+import ForwarderNewOptions from '../containers/forwarders/forwarders-new-options'
+import ForwarderNewIndex from '../containers/forwarders/forwarders-new-index'
+import ForwarderNewGateblu from '../containers/forwarders/forwarders-new-gateblu'
+import ForwarderNewSubscriptions from '../containers/forwarders/forwarders-new-subscriptions'
+import ForwarderNewRegister from '../containers/forwarders/forwarders-new-register'
+import Login from '../containers/login'
+import Logout from '../containers/logout'
+import NotFound from '../containers/not-found'
+import StyleGuide from '../containers/style-guide'
+import Hello from '../containers/hello'
 
 
-class AppRoutes extends Component {
-  render() {
-    const {requireAuth} = this.props
-    return (
-      <ReduxRouter>
-        <Route path="/" onEnter={requireAuth} component={AppBar}>
-          <IndexRoute component={Forwarder}/>
-          <Route path="/forwarders" component={Forwarder}/>
-          <Route path="/forwarder/:forwarderUUID" component={ForwarderDetail}/>
-          <Route path="/forwarders/new" component={ForwarderNew}>
-            <IndexRoute component={ForwarderNewIndex}/>
-            <Route path="store" component={ForwarderNewDataStore}/>
-            <Route path="options" component={ForwarderNewOptions}/>
-            <Route path="gateblu" component={ForwarderNewGateblu}/>
-            <Route path="subscriptions" component={ForwarderNewSubscriptions}/>
-            <Route path="register" component={ForwarderNewRegister}/>
-          </Route>
-        </Route>
-
-        <Route path="style-guide" component={StyleGuide}/>
-        <Route path="login" component={Login}/>
-        <Route path="logout" component={Logout}/>
-      </ReduxRouter>
-    );
+function requireAuth(nextState, replaceState)  {
+  const state = store.getState();
+  if (!state.meshblu.connection) {
+    replaceState({ nextPathname: nextState.location.pathname }, '/login');
   }
 }
+// onEnter={requireAuth}
 
-module.exports = AppRoutes;
+const AppRoutes = (
+  <Router history={createHistory()}>
+    <Route path="/" component={AppLayout}>
+      <IndexRoute component={Forwarder}/>
+      <Route path="/forwarders" component={Forwarder}/>
+      <Route path="/forwarder/:forwarderUUID" component={ForwarderDetail}/>
+      <Route path="/forwarders/new" component={ForwarderNew}>
+        <IndexRoute component={ForwarderNewIndex}/>
+        <Route path="store" component={ForwarderNewDataStore}/>
+        <Route path="options" component={ForwarderNewOptions}/>
+        <Route path="gateblu" component={ForwarderNewGateblu}/>
+        <Route path="subscriptions" component={ForwarderNewSubscriptions}/>
+        <Route path="register" component={ForwarderNewRegister}/>
+      </Route>
+    </Route>
+
+    <Route path="style-guide" component={StyleGuide}/>
+    <Route path="login" component={Login}/>
+    <Route path="logout" component={Logout}/>
+  </Router>
+)
+
+// const AppRoutes = (
+//   <Router history={createHistory()}>
+//     <Route path="/" component={AppLayout}>
+//       <IndexRoute component={Hello}/>
+//     </Route>
+//   </Router>
+// )
+
+export default AppRoutes

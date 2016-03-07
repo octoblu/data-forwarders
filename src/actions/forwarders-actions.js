@@ -1,6 +1,6 @@
 import * as types from '../constants/action-types';
 import history from 'history';
-import { pushState, replaceState } from 'redux-react-router';
+import { pushState, replaceState } from 'redux-router';
 
 export function setName(name) {
   return {

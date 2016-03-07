@@ -1,18 +1,9 @@
 import React, {Component, PropTypes} from "react"
-import Radium from "radium"
-import Color from "color"
-import colors from "../../config/colors"
 
 class Link extends Component {
   render() {
     return (
-      <button
-        onClick={this.props.onClick}
-        style={[
-          styles.base,
-          styles[this.props.kind],
-          this.props.block && styles.block
-        ]}>
+      <button onClick={this.props.onClick}>
         {this.props.children}
       </button>
     )
@@ -30,22 +21,4 @@ Link.propTypes = {
   block: PropTypes.bool
 }
 
-var styles = {
-  base: {
-    border: 'none',
-    background: 'transparent',
-    color: colors.bluBlue,
-    cursor: 'pointer',
-    padding: '6px 12px',
-
-    ':hover': {
-      textDecoration: 'underline'
-    },
-
-    ':focus': {
-      outline: 'none'
-    }
-  }
-}
-
-export default Radium(Link)
+export default Link

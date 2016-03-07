@@ -1,7 +1,7 @@
 import _ from "lodash"
 import React from "react"
 import { connect } from 'react-redux';
-import { pushState} from 'redux-react-router';
+import { pushState} from 'redux-router';
 
 import * as MeshbluActions from '../../actions/meshblu-actions';
 

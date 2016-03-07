@@ -1,7 +1,4 @@
 import React, {Component, PropTypes} from "react"
-import Radium from "radium"
-import Color from "color"
-import colors from "../../config/colors"
 
 class Filter extends Component {
   handleChange(e) {
@@ -30,4 +27,4 @@ Filter.propTypes = {
   placeholder: PropTypes.string
 }
 
-export default Radium(Filter)
+export default Filter

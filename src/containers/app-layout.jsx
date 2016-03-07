@@ -1,7 +1,5 @@
-import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import React from 'react'
+import { Link } from 'react-router'
 
 var AppLayout = React.createClass({
   render: function() {
@@ -18,8 +16,8 @@ var AppLayout = React.createClass({
           {this.props.children}
         </div>
       </div>
-    );
+    )
   }
-});
+})
 
-export default (AppLayout);
+export default (AppLayout)

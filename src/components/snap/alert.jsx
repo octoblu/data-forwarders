@@ -1,8 +1,5 @@
 import React, {Component, PropTypes} from "react"
-import Radium from "radium"
-import Color from "color"
 import Link from "../snap/link"
-import colors from "../../config/colors"
 
 class Alert extends Component {
   constructor(props) {
@@ -33,10 +30,7 @@ class Alert extends Component {
     if (!this.state.visible) return null
 
     return (
-      <div style={[
-        styles.base,
-        styles[this.props.kind]
-      ]}>
+      <div>
         {this.props.children}
         {this.renderDismissBtn()}
       </div>
@@ -55,21 +49,4 @@ Alert.propTypes = {
   dismissible: PropTypes.bool
 }
 
-var styles = {
-  base: {
-    border: 'none',
-    background: 'transparent',
-    color: colors.bluBlue,
-    cursor: 'pointer',
-    padding: '6px 12px',
-
-    ':hover': {
-    },
-
-    ':focus': {
-      outline: 'none'
-    }
-  }
-}
-
-export default Radium(Alert)
+export default Alert

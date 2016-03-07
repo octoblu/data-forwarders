@@ -1,7 +1,7 @@
 import ThunkMiddleware from 'redux-thunk'
 import reducers from '../reducers/';
 import { createHistory } from 'history';
-import { reduxReactRouter } from 'redux-react-router';
+import { reduxReactRouter } from 'redux-router';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import { devTools } from 'redux-devtools';
 
