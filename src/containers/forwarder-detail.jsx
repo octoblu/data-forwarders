@@ -3,7 +3,7 @@ import React from "react"
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, Navigation } from 'react-router';
-import { pushState } from 'redux-router';
+import { push } from 'react-router-redux'
 
 import * as MeshbluActions from '../actions/meshblu-actions';
 import * as DeviceActions from '../actions/devices-actions';
@@ -15,16 +15,18 @@ var ForwarderDetail = React.createClass({
     const { dispatch, router } = this.props;
     // dispatch(DeviceActions.fetchDevice(router.params.forwarderUUID));
   },
+
   handleSubmit: function(e){
      const {forwarder, meshblu, dispatch} = this.props;
      e.preventDefault();
      let deleteDevice = window.confirm("Are you sure you want to delete this device?");
      if(deleteDevice){
        dispatch(MeshbluActions.deleteDevice(forwarder, meshblu.connection, () => {
-          dispatch(pushState(null, '/forwarders'));
+          dispatch(push(null, '/forwarders'));
        }));
      }
   },
+
   render: function() {
     const { devices, router } = this.props;
     this.props.forwarder = _.findWhere(devices.forwarders, {uuid : router.params.forwarderUUID });
@@ -82,19 +84,6 @@ var ForwarderDetail = React.createClass({
           </button>
         </fieldset>
       </form>
-      // <div className="Page">
-      //   <div>
-      //     <img src={forwarder.logoUrl} className="" alt="Forwarder Logo"/>
-      //     <form>
-      //       <fieldset></fieldset>
-      //     </form>
-      //     <div>{forwarder.name}</div>
-      //     <div>{forwarder.uuid}</div>
-      //     <div>{forwarder.gateblu}</div>
-      //   </div>
-      //
-      //   <button className="button Button-jumbo">Delete</button>
-      // </div>
     )
   }
 });

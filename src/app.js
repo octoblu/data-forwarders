@@ -4,30 +4,31 @@ import { Provider } from 'react-redux'
 import { applyMiddleware, createStore, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
-import { reduxReactRouter, ReduxRouter } from 'redux-router'
-import { createHistory } from 'history'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { Router, Route, browserHistory } from 'react-router'
 
 import reducers from './reducers/'
-import routes from './config/routes'
+import AppRoutes from './config/routes'
 
-const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware,
-  createLogger()
-)
+const createStoreWithMiddleware = applyMiddleware(thunkMiddleware, createLogger())
 
-const reduxRouterMiddleware = reduxReactRouter({
-  routes,
-  createHistory
-})
+// Add the reducer to your store on the `routing` key
+const store = createStore(reducers, createStoreWithMiddleware)
 
-const store = compose(
-  createStoreWithMiddleware,
-  reduxRouterMiddleware
-)(createStore)(reducers)
+// Create an enhanced history that syncs navigation events with the store
+const history = syncHistoryWithStore(browserHistory, store)
+
+
+function requireAuth(nextState, replaceState)  {
+  const state = store.getState();
+  if (!state.meshblu.connection) {
+    replaceState({ nextPathname: nextState.location.pathname }, '/login');
+  }
+}
 
 render(
   <Provider store={store}>
-    <ReduxRouter />
+    <AppRoutes history={history} requireAuth={requireAuth}/>
   </Provider>,
   document.getElementById('app')
 )

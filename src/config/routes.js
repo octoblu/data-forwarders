@@ -16,20 +16,10 @@ import Login from '../containers/login'
 import Logout from '../containers/logout'
 import NotFound from '../containers/not-found'
 import StyleGuide from '../containers/style-guide'
-import Hello from '../containers/hello'
 
-
-function requireAuth(nextState, replaceState)  {
-  const state = store.getState();
-  if (!state.meshblu.connection) {
-    replaceState({ nextPathname: nextState.location.pathname }, '/login');
-  }
-}
-// onEnter={requireAuth}
-
-const AppRoutes = (
-  <Router history={createHistory()}>
-    <Route path="/" component={AppLayout}>
+const AppRoutes = ({history, requireAuth}) => {
+  return <Router history={history}>
+    <Route path="/" onEnter={requireAuth} component={AppLayout}>
       <IndexRoute component={Forwarder}/>
       <Route path="/forwarders" component={Forwarder}/>
       <Route path="/forwarder/:forwarderUUID" component={ForwarderDetail}/>
@@ -47,14 +37,6 @@ const AppRoutes = (
     <Route path="login" component={Login}/>
     <Route path="logout" component={Logout}/>
   </Router>
-)
-
-// const AppRoutes = (
-//   <Router history={createHistory()}>
-//     <Route path="/" component={AppLayout}>
-//       <IndexRoute component={Hello}/>
-//     </Route>
-//   </Router>
-// )
+}
 
 export default AppRoutes

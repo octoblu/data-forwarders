@@ -1,6 +1,6 @@
 import * as types from '../constants/action-types';
 import history from 'history';
-import { pushState, replaceState } from 'redux-router';
+import { push, replace } from 'react-router-redux';
 
 export function setName(name) {
   return {
@@ -12,14 +12,14 @@ export function setName(name) {
 export function setOwner(ownerUUID) {
   return (dispatch) => {
     dispatch({ type: types.FORWARDER_SET_OWNER, owner : ownerUUID });
-  dispatch(pushState(null, '/forwarders/new/store'));
+  dispatch(push(null, '/forwarders/new/store'));
   };
 };
 
 export function addDataStore(dataStore) {
   return (dispatch) => {
     dispatch({ dataStore, type: types.FORWARDER_ADD_DATA_STORE });
-    dispatch(pushState(null, '/forwarders/new/options'));
+    dispatch(push(null, '/forwarders/new/options'));
   };
 };
 
@@ -27,7 +27,7 @@ export function setOptions(options) {
   if (options) {
     return (dispatch) => {
       dispatch({ options, type: types.FORWARDER_SET_OPTIONS_VALUE });
-      dispatch(replaceState({}, '/forwarders/new/gateblu', {}));
+      dispatch(replace({}, '/forwarders/new/gateblu', {}));
     };
   }
 };
@@ -38,7 +38,7 @@ export function addGateblu(gateblu){
       type : types.FORWARDER_ADD_GATEBLU,
       gateblu: gateblu.uuid
     });
-    dispatch(pushState(null, '/forwarders/new/subscriptions'));
+    dispatch(push(null, '/forwarders/new/subscriptions'));
   }
 };
 

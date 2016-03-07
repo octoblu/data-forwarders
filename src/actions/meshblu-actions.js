@@ -1,5 +1,5 @@
 import meshblu from 'meshblu';
-import { pushState, replaceState } from 'redux-router';
+import { push } from 'react-router-redux'
 import * as types from '../constants/action-types';
 
 export function createConnectionRequest() {
@@ -42,7 +42,7 @@ export function createConnection(device, redirectPath='') {
 
     meshbluConnection.on('notReady', function(response){
       dispatch(removeConnection());
-      dispatch(pushState({message: 'Authentication Failed'}, '/login'));
+      dispatch(push({message: 'Authentication Failed'}, '/login'));
     });
 
     meshbluConnection.on('ready', function(response){
@@ -50,12 +50,12 @@ export function createConnection(device, redirectPath='') {
       localStorage.setItem("meshblu-token", token);
 
       dispatch(createConnectionSuccess(meshbluConnection));
-      dispatch(pushState(null, redirectPath));
+      dispatch(push(null, redirectPath));
     });
 
     meshbluConnection.on('disconnect', function(data) {
       dispatch(removeConnection());
-      dispatch(pushState(null, '/login'));
+      dispatch(push(null, '/login'));
     });
   };
 };
