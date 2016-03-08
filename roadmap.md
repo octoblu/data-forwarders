@@ -1,32 +1,28 @@
 # Forwarders Roadmap
-1. Integration with Octoblu
- - Using octoblu login mechanism (oauth)
-
-2. Stream line the Forwarder wizard
-   - Simplify the process
-
-3. Add additional data stores
-- Microsoft Azure
-- AWS IOT?
-- IBM Bluemix
-- Citrix Insight
-- SQL Server
-- DynamoDB
-
-==== Nice to Have =====
-- Cassandra
-- RethinkDB
-- REDIS
-- PostgreSQL
-- MySQL
-- ElasticSearch
-- MongoDB
-- Hadoop
-- TempoIQ
+1. Integration w/ Octoblu
+ - Add Octoblu OAuth
+2. Simplify the wizard
+3. Add datastores
+  - Microsoft Azure
+  - AWS IoT?
+  - IBM Bluemix
+  - Citrix Insight
+  - SQL Server
+  - DynamoDB  
+  ==== Nice to Have =====
+  - Cassandra
+  - RethinkDB
+  - REDIS
+  - PostgreSQL
+  - MySQL
+  - ElasticSearch
+  - MongoDB
+  - Hadoop
+  - TempoIQ
 
 4. Documentation and examples
- - Add github pages or other site with full docs and examples
+ - Add Github pages or other site with full docs and examples
 
-5. Allow submission of Forwarder connectors by 3rd parties.
+5. Allow submission of Forwarder connectors by 3rd parties
    - Generators
    - Area to submit forwarder with details for curation
