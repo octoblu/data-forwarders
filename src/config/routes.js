@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { IndexRoute, Route, Router } from 'react-router'
-import { createHistory } from 'history'
 
 import AppLayout from '../containers/app-layout'
 import Forwarder from '../containers/forwarders'
@@ -17,9 +16,24 @@ import Logout from '../containers/logout'
 import NotFound from '../containers/not-found'
 import StyleGuide from '../containers/style-guide'
 
-const AppRoutes = ({history, requireAuth}) => {
+
+import { fetchOctobluUser, storeAuthentication } from '../services/auth-service'
+
+// const requireAuth = (nextState, replaceState) => {
+//   fetchOctobluUser((error, octobluUser) => {
+//     if(error || !octobluUser) {
+//       console.log('NO USER');
+//       replaceState({ nextPathname: nextState.location.pathname }, '/login');
+//     }
+//     console.log('AUTHENTICATED, Set state with the octoblu user');
+//     // this.setState({octobluUser})
+//   })
+// }
+
+
+const AppRoutes = ({ history }) => {
   return <Router history={history}>
-    <Route path="/" onEnter={requireAuth} component={AppLayout}>
+    <Route path="/" component={AppLayout}>
       <IndexRoute component={Forwarder}/>
       <Route path="/forwarders" component={Forwarder}/>
       <Route path="/forwarder/:forwarderUUID" component={ForwarderDetail}/>
@@ -33,6 +47,7 @@ const AppRoutes = ({history, requireAuth}) => {
       </Route>
     </Route>
 
+    <Route path="authenticated" onEnter={storeAuthentication}/>
     <Route path="style-guide" component={StyleGuide}/>
     <Route path="login" component={Login}/>
     <Route path="logout" component={Logout}/>

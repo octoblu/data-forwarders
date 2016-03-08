@@ -18,17 +18,9 @@ const store = createStore(reducers, createStoreWithMiddleware)
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store)
 
-
-function requireAuth(nextState, replaceState)  {
-  const state = store.getState();
-  if (!state.meshblu.connection) {
-    replaceState({ nextPathname: nextState.location.pathname }, '/login');
-  }
-}
-
 render(
   <Provider store={store}>
-    <AppRoutes history={history} requireAuth={requireAuth}/>
+    <AppRoutes history={history} />
   </Provider>,
   document.getElementById('app')
 )

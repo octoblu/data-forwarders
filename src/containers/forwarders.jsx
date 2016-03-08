@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, Navigation } from 'react-router';
 
-import PageHeader from '../components/page-header';
+import { Page, PageActions, PageHeader, PageTitle } from 'zooid-ui';
 import ForwarderList from '../components/forwarders/forwarder-list';
 
 import * as DeviceActions from '../actions/devices-actions';
@@ -18,18 +18,19 @@ var Forwarders = React.createClass({
   render: function() {
     const { devices } = this.props;
 
-    return (
-      <div>
-        <PageHeader title="Forwarders">
+    return <Page>
+      <PageHeader>
+        <PageTitle>Forwarders</PageTitle>
+        <PageActions>
           <Link to="/forwarders/new" className="button Forwarder-creat-btn">Create Forwarder</Link>
-        </PageHeader>
+        </PageActions>
+      </PageHeader>
 
-        <ForwarderList
-          forwarders={devices.forwarders}
-          isFetching={devices.isFetching}
-          className="Page"/>
-      </div>
-    )
+      <ForwarderList
+        forwarders={devices.forwarders}
+        isFetching={devices.isFetching}
+        className="Page"/>
+    </Page>
   }
 });
 

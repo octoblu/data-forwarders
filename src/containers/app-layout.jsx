@@ -1,22 +1,25 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { AppBar, AppBarPrimary, AppBarSecondary, TopBarTitle, Nav, Page } from 'zooid-ui'
+
+import Authenticated from './authenticated'
+import 'zooid-ui/dist/style.css'
 
 var AppLayout = React.createClass({
   render: function() {
-    return (
-      <div>
-        <nav className="Page-nav">
-          <img src="//s3.amazonaws.com/octoblu-www/assets/images/octoblu-inverse.png" alt="Octoblu" className="Logo"/>
-          <ul className='list-unstyled Page-nav-list'>
-            <li><Link to="/logout">Logout</Link></li>
-          </ul>
-        </nav>
+    return <Authenticated>
+      <AppBar>
+        <AppBarPrimary>
+          Octoblu Forwarders
+        </AppBarPrimary>
 
-        <div className="Page">
-          {this.props.children}
-        </div>
-      </div>
-    )
+        <AppBarSecondary>
+          <Link to="/logout" className="AppBar-Link">Logout</Link>
+        </AppBarSecondary>
+      </AppBar>
+
+      {this.props.children}
+    </Authenticated>
   }
 })
 

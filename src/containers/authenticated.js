@@ -1,20 +1,22 @@
 import url from 'url'
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
 import { Button, Spinner } from 'zooid-ui'
-import * as MeshbluActions from '../actions/meshblu-actions';
+
 import { CLIENT_ID, PROVIDER_URI } from '../constants/oauth'
 import { fetchOctobluUser } from '../services/auth-service'
 
-export default class Login extends Component {
+export default class Authenticated extends Component {
   state = {
     octobluUser: null
   }
 
   componentDidMount() {
-    this.redirectToLogin()
+    fetchOctobluUser((error, octobluUser) => {
+      if(error || !octobluUser) {
+        return this.redirectToLogin()
+      }
+      this.setState({octobluUser})
+    })
   }
 
   buildAuthenticateRedirectUri() {
