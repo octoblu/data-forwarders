@@ -25,6 +25,7 @@
 - TempoIQ
 
 4. Documentation and examples
+ - Add github pages or other site with full docs and examples
 
 5. Allow submission of Forwarder connectors by 3rd parties.
    - Generators
