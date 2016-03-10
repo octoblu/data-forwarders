@@ -19,17 +19,6 @@ import StyleGuide from '../containers/style-guide'
 
 import { fetchOctobluUser, storeAuthentication } from '../services/auth-service'
 
-// const requireAuth = (nextState, replaceState) => {
-//   fetchOctobluUser((error, octobluUser) => {
-//     if(error || !octobluUser) {
-//       console.log('NO USER');
-//       replaceState({ nextPathname: nextState.location.pathname }, '/login');
-//     }
-//     console.log('AUTHENTICATED, Set state with the octoblu user');
-//     // this.setState({octobluUser})
-//   })
-// }
-
 
 const AppRoutes = ({ history }) => {
   return <Router history={history}>

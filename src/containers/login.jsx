@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { Button, Spinner } from 'zooid-ui'
 import * as MeshbluActions from '../actions/meshblu-actions';
 import { CLIENT_ID, PROVIDER_URI } from '../constants/oauth'
-import { fetchOctobluUser } from '../services/auth-service'
 
 export default class Login extends Component {
   state = {
