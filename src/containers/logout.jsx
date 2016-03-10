@@ -10,7 +10,7 @@ var Logout = React.createClass({
   componentWillMount: function() {
     const { dispatch, meshblu } = this.props;
     destroyAuthentication();
-    windows.location = '/';
+    window.location = '/';
   },
 
   render: function(){
