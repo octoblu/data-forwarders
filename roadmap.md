@@ -1,6 +1,7 @@
 # Forwarders Roadmap
 1. Integration w/ Octoblu
- - Add Octoblu OAuth
+ - ~~Add Octoblu OAuth~~
+ - ~~Logout~~
 2. Simplify the wizard
 3. Add datastores
   - Microsoft Azure
