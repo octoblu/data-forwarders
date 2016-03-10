@@ -12,12 +12,12 @@
   - Initial State
   - MongoDB
   - Hadoop 
-  - 
+  
   ==== Nice to Have =====
   - AWS IoT?
   - IBM Bluemix
-  - AT&T M2X
-  - 
+  - ATT M2X
+  
   ==== TBD ====
   - Cassandra
   - RethinkDB
