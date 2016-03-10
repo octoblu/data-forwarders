@@ -33,3 +33,8 @@ export function storeAuthentication(nextState, replace) {
   cookie.save('meshbluBearerToken', bearerToken, {path: '/'})
   replace(redirectUri)
 }
+
+export function destroyAuthentication() {
+  console.log('logging out');
+  cookie.remove('meshbluBearerToken', { path: '/' })
+}

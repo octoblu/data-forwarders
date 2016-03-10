@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { destroyAuthentication } from '../services/auth-service'
 
 // Actions
 import * as MeshbluActions from '../actions/meshblu-actions';
@@ -8,7 +9,8 @@ import * as MeshbluActions from '../actions/meshblu-actions';
 var Logout = React.createClass({
   componentWillMount: function() {
     const { dispatch, meshblu } = this.props;
-    dispatch(MeshbluActions.closeConnection(meshblu.connection));
+    destroyAuthentication();
+    windows.location = '/';
   },
 
   render: function(){
