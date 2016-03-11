@@ -2,9 +2,10 @@ import _ from "lodash"
 import React, { PropTypes } from "react"
 import { Link } from "react-router"
 
-import Spinner from '../../components/snap/spinner';
-import SnapEmptyState from '../../components/snap/empty-state';
-import ForwarderListItem from './forwarder-list-item';
+import { Button, Icon } from 'zooid-ui'
+import Spinner from '../../components/snap/spinner'
+import SnapEmptyState from '../../components/snap/empty-state'
+import ForwarderListItem from './forwarder-list-item'
 
 var ForwarderList = React.createClass({
   propTypes: {
@@ -13,13 +14,13 @@ var ForwarderList = React.createClass({
   },
 
   renderEmptyState: function() {
-    console.log('Render');
+    console.log('Render')
     return (
       <SnapEmptyState className="EmptyState">
         <h3>You have no Forwarder Devices.</h3>
-        <Link to="/forwarders/new" className="button button-large">
-          + Create Forwarder
-        </Link>
+        <Button kind="primary">
+          <Link to="/forwarders/new">+ Create Forwarder</Link>
+          </Button>
       </SnapEmptyState>
     );
   },
