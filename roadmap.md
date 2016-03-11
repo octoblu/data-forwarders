@@ -1,9 +1,9 @@
-# Forwarders Roadmap
-1. [ ] Integration w/ Octoblu
+# Roadmap
+1. [x] Integration w/ Octoblu
  - [x] Add Octoblu OAuth
  - [x] Logout
 2. [ ] Simplify the wizard
-3. [ ] Add services as devices
+3. [ ] Add services/devices
   - [ ] Microsoft Azure ML
   - [ ] Citrix Insight
   - [ ] ElasticSearch
