@@ -9,9 +9,11 @@
   - [ ] ElasticSearch
   - [ ] Mnubo
   - [ ] TempoIQ
-  - [ ] Initial State
-  - [ ] MongoDB
+  - [x] Initial State
+  - [x] MongoDB
   - [ ] Hadoop
+  
+(Initial State and MongoDB plugins built - need to be added to the forwarder site)
 
   ##### Nice to Have
   - [ ] AWS IoT
