@@ -36,3 +36,4 @@
 5. [ ] Allow submission of Forwarder connectors by 3rd parties
    - [ ] Generators
    - [ ] Area to submit forwarder with details for curation
+6. [ ] Add Forwarding permissions to device detail page in Octoblu
