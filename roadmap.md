@@ -12,6 +12,7 @@
   - [x] Initial State
   - [x] MongoDB
   - [ ] Hadoop
+4. [ ] Dev setup
   
 (Initial State and MongoDB plugins built - need to be added to the forwarder site)
 
