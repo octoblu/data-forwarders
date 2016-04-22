@@ -36,7 +36,7 @@ const AppRoutes = ({ history }) => {
       </Route>
     </Route>
 
-    <Route path="authenticated" onEnter={storeAuthentication}/>
+    {/*<Route path="authenticated" onEnter={storeAuthentication}/>*/}
     <Route path="style-guide" component={StyleGuide}/>
     <Route path="login" component={Login}/>
     <Route path="logout" component={Logout}/>

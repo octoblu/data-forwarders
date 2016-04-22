@@ -1,5 +1,5 @@
 {
-  "name": "forwarder-ui",
+  "name": "data-forwarders",
   "version": "1.0.21",
   "description": "",
   "main": "index.js",
@@ -7,19 +7,22 @@
     "clean": "rimraf dist",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
+    "lint": "eslint src",
+    "mocha": "NODE_ENV=test mocha test/.setup.js src/**/*.spec.js",
     "start": "node dev-server.js",
-    "lint": "eslint src"
+    "test": "npm run mocha",
+    "test:watch": "npm run mocha -- -w -R mocha-multi --reporter-options spec=-,mocha-osx-reporter=-"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/octoblu/forwarder-ui.git"
+    "url": "https://github.com/octoblu/data-forwarders.git"
   },
-  "author": "",
+  "author": "Octoblu, Inc",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/octoblu/forwarder-ui/issues"
+    "url": "https://github.com/octoblu/data-forwarders/issues"
   },
-  "homepage": "https://github.com/octoblu/forwarder-ui",
+  "homepage": "https://github.com/octoblu/data-forwarders",
   "dependencies": {
     "meshblu": "^1.32.0",
     "react": "^0.14.7",
@@ -41,6 +44,8 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.7.2",
+    "chai": "^3.5.0",
     "cross-env": "^1.0.7",
     "css-loader": "^0.23.1",
     "eslint": "^2.3.0",
@@ -49,11 +54,15 @@
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.13.4",
     "json-loader": "^0.5.4",
+    "mocha": "^2.4.5",
+    "mocha-multi": "^0.9.0",
     "postcss-loader": "^0.8.1",
     "postcss-scss": "^0.1.7",
     "precss": "^1.4.0",
     "redux-logger": "^2.6.1",
     "rimraf": "^2.5.2",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.5.1",
