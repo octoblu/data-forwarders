@@ -1,5 +1,5 @@
 {
-  "name": "forwarder-ui",
+  "name": "data-forwarders",
   "version": "1.0.21",
   "description": "",
   "main": "index.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/octoblu/forwarder-ui.git"
+    "url": "https://github.com/octoblu/data-forwarders.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/octoblu/forwarder-ui/issues"
+    "url": "https://github.com/octoblu/data-forwarders/issues"
   },
-  "homepage": "https://github.com/octoblu/forwarder-ui",
+  "homepage": "https://github.com/octoblu/data-forwarders",
   "devDependencies": {
     "autoprefixer-core": "^6.0.1",
     "babel": "^5.8.23",
