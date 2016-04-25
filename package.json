@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/octoblu/data-forwarders",
   "dependencies": {
+    "atob": "^2.0.3",
     "meshblu": "^1.32.0",
     "react": "^0.14.7",
     "react-cookie": "^0.4.5",

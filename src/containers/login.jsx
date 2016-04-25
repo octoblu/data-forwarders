@@ -42,12 +42,13 @@ export default class Login extends Component {
       query: {
         client_id: CLIENT_ID,
         redirect_uri: this.buildAuthenticateRedirectUri(),
-        response_type: 'code'
+        response_type: 'token'
       }
     })
 
     window.location = uri
   }
+
 
   render() {
     const {octobluUser} = this.state
