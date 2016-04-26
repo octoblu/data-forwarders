@@ -1,13 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { AppBar, AppBarPrimary, AppBarSecondary, TopBarTitle, Nav, Page } from 'zooid-ui'
+import { AppBar, AppBarPrimary, AppBarSecondary } from 'zooid-ui'
 
 import Authenticated from './authenticated'
+
 import 'zooid-ui/dist/style.css'
 
-var AppLayout = React.createClass({
-  render: function() {
-    return <Authenticated>
+const AppLayout = ({children}) => {
+  return (
+    <Authenticated>
       <AppBar>
         <AppBarPrimary>
           Octoblu Forwarders
@@ -18,9 +19,10 @@ var AppLayout = React.createClass({
         </AppBarSecondary>
       </AppBar>
 
-      {this.props.children}
+      {children}
     </Authenticated>
-  }
-})
+  );
+}
 
-export default (AppLayout)
+
+export default AppLayout

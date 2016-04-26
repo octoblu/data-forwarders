@@ -1,13 +1,10 @@
 import url from 'url'
-import React, { Component } from 'react'
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React from 'react'
+import { Spinner } from 'zooid-ui'
 
-import { Button, Spinner } from 'zooid-ui'
-import * as MeshbluActions from '../actions/meshblu-actions';
 import { CLIENT_ID, PROVIDER_URI } from '../constants/oauth'
 
-export default class Login extends Component {
+export default class Login extends React.Component {
   state = {
     octobluUser: null
   }

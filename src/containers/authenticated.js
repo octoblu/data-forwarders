@@ -1,6 +1,6 @@
 import url from 'url'
 import React, { Component } from 'react'
-import { Button, Spinner } from 'zooid-ui'
+import { Spinner } from 'zooid-ui'
 
 import { CLIENT_ID, PROVIDER_URI } from '../constants/oauth'
 import { fetchOctobluUser } from '../services/auth-service'

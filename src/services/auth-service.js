@@ -2,7 +2,6 @@ import _ from 'lodash'
 import atob from 'atob'
 import cookie from 'react-cookie'
 
-
 import { CLIENT_ID, MESHBLU_HOST, PROVIDER_URI } from '../constants/oauth';
 
 export function getMeshbluConfig(){
