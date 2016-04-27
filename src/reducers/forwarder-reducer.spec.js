@@ -1,8 +1,8 @@
 import chai, { expect } from 'chai';
 import * as types from '../constants/action-types'
-import * as actions from '../actions/forwarders.actions'
+import * as actions from '../actions/forwarders-actions'
 
-import reducer from './forwarder.reducer'
+import reducer from './forwarder-reducer'
 
 describe('Forwarder Reducer', () => {
   it('should return the initial state', () => {

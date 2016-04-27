@@ -10,6 +10,10 @@ export default class ForwardersIndex extends React.Component {
   }
 }
 
+// connect this component to redux
+// cherry pick the state we care about from reducers
+// dispatch relevant actions
+
 //
 // - dispatch FETCH_FORWARDERS_REQUEST action
 // - action makes the AJAX request
