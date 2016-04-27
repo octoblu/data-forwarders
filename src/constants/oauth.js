@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'production') {
   providerUri = 'https://oauth.octoblu.com'
   meshbluHost = 'meshblu.octoblu.com'
 } else {
-  clientId    = 'f3fc0aa3-6442-4c98-ac35-b38db4c37510'
+  clientId    = 'forwarder-oauth-provider-uuid'
   providerUri = 'https://oauth.octoblu.dev'
   meshbluHost = 'meshblu.octoblu.dev'
 }
