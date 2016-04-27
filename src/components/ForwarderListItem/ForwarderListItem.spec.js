@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
 
-import ForwarderListItem from './ForwarderListItem';
+import ForwarderListItem from './';
 
 import fakeForwarder from '../../../test/fake-forwarder.json';
 

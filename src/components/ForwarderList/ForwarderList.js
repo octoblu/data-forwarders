@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { PropTypes } from 'react';
 
-import ForwarderListItem from '../ForwarderListItem/ForwarderListItem';
+import ForwarderListItem from '../ForwarderListItem';
 
 const propTypes = {
   forwarders: PropTypes.array.isRequired,

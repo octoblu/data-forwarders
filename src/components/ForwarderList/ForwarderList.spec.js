@@ -5,8 +5,8 @@ import React from 'react';
 import sinon from 'sinon';
 import { mount, shallow } from 'enzyme';
 
-import ForwarderList from './ForwarderList';
-import ForwarderListItem from '../ForwarderListItem/ForwarderListItem';
+import ForwarderList from './';
+import ForwarderListItem from '../ForwarderListItem';
 
 import fakeForwarders from '../../../test/fake-forwarders.json';
 
