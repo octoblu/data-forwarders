@@ -3,9 +3,12 @@ import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import React from 'react';
 import sinon from 'sinon';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 import ForwarderList from './ForwarderList';
+import ForwarderListItem from '../ForwarderListItem/ForwarderListItem';
+
+import fakeForwarders from '../../../test/fake-forwarders.json';
 
 chai.use(chaiEnzyme());
 
@@ -33,16 +36,20 @@ describe('<ForwarderList />', () => {
     let forwarders;
 
     beforeEach(() => {
-      forwarders = ['Olu', 'Koshin', 'MiQL'];
-      sut = shallow(<ForwarderList forwarders={forwarders} />);
+      sut = shallow(<ForwarderList forwarders={fakeForwarders} />);
     });
 
-    it('should render item(s)', () => {
+    it('should render given item(s)', () => {
       expect(sut).to.not.be.blank();
-      expect(sut.children().length).to.equal(forwarders.length);
+      expect(sut.children().length).to.equal(fakeForwarders.length);
+    });
 
-      const forwarderNames = sut.find('li').map(node => node.text());
-      expect(forwarderNames).to.eql(forwarders);
+    it('should render a <ForwarderListItem /> for each forwarder', () => {
+      expect(sut.contains([
+        <ForwarderListItem forwarder={fakeForwarders[0]} />,
+        <ForwarderListItem forwarder={fakeForwarders[1]} />,
+        <ForwarderListItem forwarder={fakeForwarders[2]} />
+      ])).to.be.true;
     });
   });
 });
