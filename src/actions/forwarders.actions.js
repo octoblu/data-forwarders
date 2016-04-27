@@ -14,10 +14,10 @@ function fetchForwardersSuccess(body) {
   }
 }
 
-function fetchForwardersFailure(ex) {
+function fetchForwardersFailure(error) {
   return {
     type: types.FETCH_FORWARDERS_FAILURE,
-    ex
+    error
   }
 }
 
@@ -27,6 +27,6 @@ export function fetchForwarders() {
     return fetch('http://example.com/forwarders')
       .then(res => res.json())
       .then(json => dispatch(fetchForwardersSuccess(json.body)))
-      .catch(ex => dispatch(fetchForwardersFailure(errors)))
+      .catch(error => dispatch(fetchForwardersFailure(error)))
   }
 }

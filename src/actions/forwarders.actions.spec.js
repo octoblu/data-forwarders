@@ -9,12 +9,12 @@ import * as actions from './forwarders.actions'
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
 
-describe('async actions', () => {
+describe('Forwarder Actions', () => {
   afterEach(() => {
     nock.cleanAll()
   })
 
-  it('creates FETCH_FORWARDERS_SUCCESS when fetching forwarders has been done', () => {
+  it('should create FETCH_FORWARDERS_SUCCESS when request is successful', () => {
     nock('http://example.com/')
       .get('/forwarders')
       .reply(200, { body: { forwarders: ['do something'] }})
@@ -22,6 +22,24 @@ describe('async actions', () => {
     const expectedActions = [
       { type: types.FETCH_FORWARDERS_REQUEST },
       { type: types.FETCH_FORWARDERS_SUCCESS, body: { forwarders: ['do something']  } }
+    ]
+
+    const store = mockStore({ forwarders: [] })
+
+    return store.dispatch(actions.fetchForwarders())
+      .then(() => {
+        expect(store.getActions()).to.deep.equal(expectedActions)
+      })
+  });
+
+  it('should create FETCH_FORWARDERS_FAILURE when request fails', () => {
+    nock('http://example.com/')
+      .get('/forwarders')
+      .reply(400)
+
+    const expectedActions = [
+      { type: types.FETCH_FORWARDERS_REQUEST },
+      { type: types.FETCH_FORWARDERS_FAILURE, error: new Error('Bad Request') }
     ]
 
     const store = mockStore({ forwarders: [] })
