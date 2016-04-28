@@ -1,7 +1,7 @@
 import chai, { expect } from 'chai';
 
 import * as types from '../../constants/action-types'
-import * as actions from '../../actions/types-actions'
+import * as actions from '../../actions/types/types-actions'
 
 import reducer from './types-reducer'
 

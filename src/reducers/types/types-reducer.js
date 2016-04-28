@@ -1,4 +1,4 @@
-import * as types from '../../constants/action-types';
+import * as actionTypes from '../../constants/action-types';
 
 const initialState = {
   items: [],
@@ -8,13 +8,13 @@ const initialState = {
 
 export default function types(state = initialState, action) {
   switch (action.type) {
-    case types.FETCH_TYPES_REQUEST:
+    case actionTypes.FETCH_TYPES_REQUEST:
       return { ...initialState, fetching: true }
 
-    case types.FETCH_TYPES_SUCCESS:
+    case actionTypes.FETCH_TYPES_SUCCESS:
       return { ...initialState, items: action.body, fetching: false }
 
-    case types.FETCH_TYPES_FAILURE:
+    case actionTypes.FETCH_TYPES_FAILURE:
       return { ...initialState, error: action.error, fetching: false }
 
     default:

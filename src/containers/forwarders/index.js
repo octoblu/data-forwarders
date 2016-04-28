@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import ForwarderList from '../../components/ForwarderList';
-import { fetchForwarders } from '../../actions/forwarders-actions'
+import { fetchForwarders } from '../../actions/forwarders/forwarders-actions'
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,

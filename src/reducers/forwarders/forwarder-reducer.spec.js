@@ -1,6 +1,6 @@
 import chai, { expect } from 'chai';
-import * as types from '../constants/action-types'
-import * as actions from '../actions/forwarders-actions'
+import * as types from '../../constants/action-types'
+import * as actions from '../../actions/forwarders/forwarders-actions'
 
 import reducer from './forwarder-reducer'
 

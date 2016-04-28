@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import * as types from '../constants/action-types';
+import * as types from '../../constants/action-types';
 
 function fetchForwardersRequest() {
   return {

@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import forwarderReducer from './forwarder-reducer';
+import forwardersReducer from './forwarders/forwarder-reducer';
+import typesReducer from './types/types-reducer';
 
 const rootReducer = combineReducers({
-  forwarders: forwarderReducer,
+  types: typesReducer,
+  forwarders: forwardersReducer,
   routing: routerReducer
 })
 
