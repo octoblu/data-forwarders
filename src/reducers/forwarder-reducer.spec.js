@@ -4,7 +4,7 @@ import * as actions from '../actions/forwarders-actions'
 
 import reducer from './forwarder-reducer'
 
-describe('Forwarder Reducer', () => {
+describe('Reducer: Forwarder', () => {
   it('should return the initial state', () => {
     const initialState = {
       items: [],

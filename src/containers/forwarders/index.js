@@ -1,28 +1,44 @@
-import React from 'react';
+import _ from 'lodash'
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-export default class ForwardersIndex extends React.Component {
+import ForwarderList from '../../components/ForwarderList';
+
+import { fetchForwarders } from '../../actions/forwarders-actions'
+
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  error: PropTypes.object.isRequired,
+  fetching: PropTypes.bool.isRequired,
+  items: PropTypes.array.isRequired,
+}
+
+export class ForwardersIndex extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.dispatch(fetchForwarders());
+  }
+
   render() {
-    return <h1>Forwarders Index</h1>;
+    const { items, error, fetching } = this.props;
+
+    if (this.props.fetching) return <div>Loading...</div>
+    if (error) return <div>{`Error: ${error.message}`}</div>
+    if (_.isEmpty(items)) return <div>Empty State</div>
+
+    return <ForwarderList forwarders={items} />
   }
 }
 
-// connect this component to redux
-// cherry pick the state we care about from reducers
-// dispatch relevant actions
+ForwardersIndex.propTypes = propTypes
 
-//
-// - dispatch FETCH_FORWARDERS_REQUEST action
-// - action makes the AJAX request
-//   - on success it fires FETCH_FORWARDERS_SUCCESS
-//     - Reducer catches FETCH_FORWARDERS_SUCCESS action
-//       - adds the forwarders to the state
-//       - container is updated with state
-//
-//   - on error it fires FETCH_FORWARDERS_ERROR
-//     - Reducer catches FETCH_FORWARDERS_ERROR action
-//       - adds the error to the state
-//       - container is updated with state
+function mapStateToProps({ dispatch, forwarders }) {
+  const { error, fetching, items } = forwarders;
+  
+  return { error, dispatch, fetching, items };
+}
+
+export default connect(mapStateToProps)(ForwardersIndex)

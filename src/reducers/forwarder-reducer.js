@@ -17,7 +17,6 @@ export default function forwarders(state = initialState, action) {
     case types.FETCH_FORWARDERS_FAILURE:
       return { ...initialState, error: action.error, fetching: false }
 
-
     default:
       return state
   }

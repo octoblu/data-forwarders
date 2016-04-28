@@ -9,7 +9,7 @@ import * as actions from './forwarders-actions'
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
 
-describe('Forwarder Actions', () => {
+describe('Action: Forwarders', () => {
   afterEach(() => {
     nock.cleanAll()
   })
