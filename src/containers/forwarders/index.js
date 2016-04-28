@@ -3,7 +3,6 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import ForwarderList from '../../components/ForwarderList';
-
 import { fetchForwarders } from '../../actions/forwarders-actions'
 
 const propTypes = {
@@ -25,7 +24,7 @@ export class ForwardersIndex extends React.Component {
   render() {
     const { items, error, fetching } = this.props;
 
-    if (this.props.fetching) return <div>Loading...</div>
+    if (this.props.fetching) return <Spinner />
     if (error) return <div>{`Error: ${error.message}`}</div>
     if (_.isEmpty(items)) return <div>Empty State</div>
 
@@ -37,7 +36,7 @@ ForwardersIndex.propTypes = propTypes
 
 function mapStateToProps({ dispatch, forwarders }) {
   const { error, fetching, items } = forwarders;
-  
+
   return { error, dispatch, fetching, items };
 }
 
