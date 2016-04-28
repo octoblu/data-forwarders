@@ -24,7 +24,7 @@ export class ForwardersIndex extends React.Component {
   render() {
     const { items, error, fetching } = this.props;
 
-    if (this.props.fetching) return <Spinner />
+    if (this.props.fetching) return <div>Loading...</div>
     if (error) return <div>{`Error: ${error.message}`}</div>
     if (_.isEmpty(items)) return <div>Empty State</div>
 

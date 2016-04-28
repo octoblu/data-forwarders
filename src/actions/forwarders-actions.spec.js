@@ -15,7 +15,7 @@ describe('Action: Forwarders', () => {
   })
 
   it('should create FETCH_FORWARDERS_SUCCESS when request is successful', () => {
-    nock('http://example.com/')
+    nock('https://forwarder.octoblu.dev/')
       .get('/forwarders')
       .reply(200, { body: { forwarders: ['do something'] }})
 
@@ -33,7 +33,7 @@ describe('Action: Forwarders', () => {
   });
 
   it('should create FETCH_FORWARDERS_FAILURE when request fails', () => {
-    nock('http://example.com/')
+    nock('https://forwarder.octoblu.dev/')
       .get('/forwarders')
       .reply(400)
 

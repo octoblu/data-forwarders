@@ -9,7 +9,7 @@ import * as actions from './types-actions'
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
 
-describe.only('Action: Types', () => {
+describe('Action: Types', () => {
   afterEach(() => {
     nock.cleanAll()
   })
