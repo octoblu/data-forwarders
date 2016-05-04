@@ -21,7 +21,6 @@ function fetchForwarderTypesFailure(error) {
   }
 }
 
-
 export function fetchForwarderTypes() {
   return dispatch => {
     dispatch(fetchForwarderTypeReqest())
