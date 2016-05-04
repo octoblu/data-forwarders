@@ -27,7 +27,6 @@ const AppRoutes = ({ history }) => {
         <Route path=":forwarderUuid" component={ForwardersShow}/>
         <Route path=":forwarderUuid/edit" component={ForwardersEdit}/>
       </Route>
-
     </Route>
 
     <Route path="authenticated" onEnter={storeAuthentication}/>
