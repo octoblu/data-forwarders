@@ -1,7 +1,7 @@
 import * as actionTypes from '../../constants/action-types';
 
 const initialState = {
-  items: [],
+  types: [],
   error: null,
   fetching: false
 }
@@ -12,7 +12,7 @@ export default function types(state = initialState, action) {
       return { ...initialState, fetching: true }
 
     case actionTypes.FETCH_TYPES_SUCCESS:
-      return { ...initialState, items: action.body, fetching: false }
+      return { ...initialState, types: action.body, fetching: false }
 
     case actionTypes.FETCH_TYPES_FAILURE:
       return { ...initialState, error: action.error, fetching: false }

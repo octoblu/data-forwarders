@@ -24,7 +24,12 @@ function fetchTypesFailure(error) {
 export function fetchTypes() {
   return dispatch => {
     dispatch(fetchTypesRequest())
-    return fetch('https://forwarder.octoblu.dev/types')
+    // const BearerToken = localStorage.get 'BearerToken'
+    return fetch('https://forwarder.octoblu.dev/types', {
+        headers: {
+          'Authorization': 'Bearer NzBmZDkwNDgtZDk1MC00NjRiLWI2ZTMtYjM2M2Q5ODQ3ZTdhOmYxODg2ZWZkYTA0NzUxMGIzYmFlZjU3MDQ3OWMxNDA0YTllZWQxZjE'
+        }
+      })
       .then(res => res.json())
       .then(json => dispatch(fetchTypesSuccess(json.body)))
       .catch(error => dispatch(fetchTypesFailure(error)))
