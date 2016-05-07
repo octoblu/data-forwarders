@@ -22,7 +22,7 @@ export class ForwardersIndex extends React.Component {
   }
 
   render() {
-    const { items, error, fetching } = this.props;
+    const { error, fetching, items } = this.props;
 
     if (this.props.fetching) return <div>Loading...</div>
     if (error) return <div>{`Error: ${error.message}`}</div>

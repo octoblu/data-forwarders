@@ -17,7 +17,8 @@ import { fetchOctobluUser, storeAuthentication } from '../services/auth-service'
 
 
 const AppRoutes = ({ history }) => {
-  return <Router history={history}>
+  return (
+  <Router history={history}>
     <Route path="/" component={AppLayout}>
       <IndexRoute component={ForwardersIndex}/>
 
@@ -34,6 +35,6 @@ const AppRoutes = ({ history }) => {
     <Route path="logout" component={Logout}/>
     <Route path="*" component={NotFound}/>
   </Router>
-}
+)}
 
 export default AppRoutes

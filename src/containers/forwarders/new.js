@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import * as TypesActions from '../../actions/types/types-actions'
 import { fetchTypes } from '../../actions/types/types-actions'
 import DataStoreList from '../../components/DataStoreList/index'
 
@@ -16,28 +15,28 @@ export default class ForwardersNew extends React.Component {
   }
 
   render() {
-    const { types, dispatch } = this.props;
-    const typesActions = bindActionCreators(TypesActions, dispatch);
-
+    const { forwarderTypes } = this.props;
+    console.log('forwarderTypes', forwarderTypes);
     return (
+
       <div>
         <h1>Data Store</h1>
         <p>Select the data store to forward messages to:</p>
 
-        { types.length > 0 &&
+        { forwarderTypes.length > 0 &&
           <DataStoreList
-            stores={types}
-            onSelection={forwarderActions.addDataStore} />
+            forwarderTypes={forwarderTypes}
+             />
         }
       </div>
-
     );
   }
 }
 
-function mapStateToProps({ dispatch, types }) {
+function mapStateToProps(state) {
+  console.log("Forwarder", state)
   return {
-    types: types
+    forwarderTypes: state.types.forwarderTypes
   };
 };
 

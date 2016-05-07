@@ -1,21 +1,25 @@
 import * as actionTypes from '../../constants/action-types';
+import _ from 'lodash'
 
 const initialState = {
-  types: [],
   error: null,
-  fetching: false
+  fetching: false,
+  forwarderTypes: []
 }
 
 export default function types(state = initialState, action) {
   switch (action.type) {
     case actionTypes.FETCH_TYPES_REQUEST:
-      return { ...initialState, fetching: true }
+      return _.assign({}, state, {fetching: true})
 
-    case actionTypes.FETCH_TYPES_SUCCESS:
-      return { ...initialState, types: action.body, fetching: false }
+    case actionTypes.FETCH_TYPES_SUCCESS: {
+      console.log('action', action);
+      console.log('State is ', state)
+      return _.assign({}, state, {forwarderTypes: action.forwarderTypes, fetching: false})
+    }
 
     case actionTypes.FETCH_TYPES_FAILURE:
-      return { ...initialState, error: action.error, fetching: false }
+      return _.assign({}, state, {error: action.error, forwarderTypes: [], fetching: false})
 
     default:
       return state

@@ -2,9 +2,13 @@ import _ from 'lodash'
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-const DataStoreItem = ({ forwarder }) => {
+const propTypes = {
+  forwarderType: PropTypes.object.isRequired,
+}
+
+const DataStoreItem = ({ forwarderType }) => {
   return (
-    <h1>Data store item</h1>
+    <div>{forwarderType.name}</div>
   )
 }
 
