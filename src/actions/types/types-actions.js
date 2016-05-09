@@ -1,8 +1,8 @@
 import superagent from 'superagent';
 import * as types from '../../constants/action-types';
 
-const DEV_UUID  = '1bd84a90-fe95-409b-b9e4-e0690e4495d1'
-const DEV_TOKEN = '1291f54dd329cae0e1eead92b4479012fa0b3f51'
+const DEV_UUID  = 'eec6df11-c180-4f8c-b5d2-5943a1a1a5ef'
+const DEV_TOKEN = '15b4344d2b0751ffae74c19373c5bdff12a3dd50'
 
 function fetchTypesRequest() {
   return {
@@ -13,7 +13,7 @@ function fetchTypesRequest() {
 function fetchTypesSuccess(forwarderTypes) {
   return {
     type: types.FETCH_TYPES_SUCCESS,
-    forwarderTypes 
+    forwarderTypes
   }
 }
 

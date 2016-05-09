@@ -16,17 +16,13 @@ export default class ForwardersNew extends React.Component {
 
   render() {
     const { forwarderTypes } = this.props;
-    console.log('forwarderTypes', forwarderTypes);
     return (
-
       <div>
         <h1>Data Store</h1>
         <p>Select the data store to forward messages to:</p>
 
         { forwarderTypes.length > 0 &&
-          <DataStoreList
-            forwarderTypes={forwarderTypes}
-             />
+          <DataStoreList forwarderTypes={forwarderTypes} />
         }
       </div>
     );

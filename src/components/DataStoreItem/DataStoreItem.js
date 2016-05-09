@@ -8,7 +8,10 @@ const propTypes = {
 
 const DataStoreItem = ({ forwarderType }) => {
   return (
-    <div>{forwarderType.name}</div>
+    <Link to="/">
+      <img src={forwarderType.logoUrl} alt={forwarderType.name}/>
+      {forwarderType.name}
+    </Link>
   )
 }
 

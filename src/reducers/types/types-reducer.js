@@ -13,9 +13,8 @@ export default function types(state = initialState, action) {
       return _.assign({}, state, {fetching: true})
 
     case actionTypes.FETCH_TYPES_SUCCESS: {
-      console.log('action', action);
-      console.log('State is ', state)
-      return _.assign({}, state, {forwarderTypes: action.forwarderTypes, fetching: false})
+      const enabledForwarderTypes = _.filter(action.forwarderTypes, { 'enabled': true })
+      return _.assign({}, state, {forwarderTypes: enabledForwarderTypes, fetching: false})
     }
 
     case actionTypes.FETCH_TYPES_FAILURE:

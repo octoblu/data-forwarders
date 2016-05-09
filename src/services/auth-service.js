@@ -5,9 +5,10 @@ import cookie from 'react-cookie'
 import { CLIENT_ID, MESHBLU_HOST, PROVIDER_URI } from '../constants/oauth';
 
 export function getMeshbluConfig(){
-  let bearerToken  = cookie.load('meshbluBearerToken')
+  const bearerToken         = cookie.load('meshbluBearerToken')
   const bearerTokenEnvelope = atob(bearerToken)
-  const bearerTokenPieces = bearerTokenEnvelope.split(':')
+  const bearerTokenPieces   = bearerTokenEnvelope.split(':')
+
   return {
     uuid: bearerTokenPieces[0],
     token: bearerTokenPieces[1],
@@ -31,6 +32,7 @@ export function fetchOctobluUser(callback) {
 export function storeAuthentication(nextState, replace) {
   const bearerToken = decodeURIComponent(nextState.location.query.access_token)
   const redirectUri = nextState.location.query.redirect_uri
+
   cookie.save('meshbluBearerToken', bearerToken, {path: '/'})
   replace(redirectUri)
 }
