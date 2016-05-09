@@ -18,7 +18,7 @@ export default class ForwardersNew extends React.Component {
     const { error, fetching, items } = this.props;
 
     if (fetching) return <div>Loading...</div>
-    if (error) return <div>Error: {error.message}/</div>
+    if (error) return <div>Error: {error.message}</div>
 
     return (
       <div>

@@ -26,9 +26,13 @@ export function fetchTypes() {
   return dispatch => {
     dispatch(fetchTypesRequest())
 
-    return fetch('https://forwarder-service.octoblu.dev/types')
+     const requestConfig = {
+       headers: { 'Authorization': `Bearer ${getBearerToken()}` }
+     };
+
+    return fetch('https://forwarder-service.octoblu.dev/types', requestConfig)
       .then(res => res.json())
-      .then(json => dispatch(fetchTypesSuccess(json.body)))
-      .catch(error => dispatch(fetchTypesFailure(error)))
+      .then(res => dispatch(fetchTypesSuccess(res)))
+      .catch(ex => dispatch(fetchTypesFailure(ex)))
   }
 }

@@ -17,7 +17,7 @@ describe('Action: Types', () => {
   it('should create FETCH_TYPES_SUCCESS when request is successful', () => {
     nock('https://forwarder-service.octoblu.dev')
       .get('/types')
-      .reply(200, { body: [{ name: 'type-1' }, { name: 'type-2'}]})
+      .reply(200, [{ name: 'type-1' }, { name: 'type-2'}])
 
     const expectedActions = [
       { type: types.FETCH_TYPES_REQUEST },
