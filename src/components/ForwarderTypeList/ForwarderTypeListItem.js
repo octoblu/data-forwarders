@@ -6,7 +6,7 @@ const propTypes = {
   forwarderType: PropTypes.object.isRequired,
 }
 
-const DataStoreItem = ({ forwarderType }) => {
+const ForwarderTypeListItem = ({ forwarderType }) => {
   return (
     <Link to="/">
       <img src={forwarderType.logoUrl} alt={forwarderType.name}/>
@@ -15,4 +15,4 @@ const DataStoreItem = ({ forwarderType }) => {
   )
 }
 
-export default DataStoreItem;
+export default ForwarderTypeListItem;

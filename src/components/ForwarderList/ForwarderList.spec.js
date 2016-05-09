@@ -6,7 +6,7 @@ import sinon from 'sinon';
 import { mount, shallow } from 'enzyme';
 
 import ForwarderList from './';
-import ForwarderListItem from '../ForwarderListItem';
+import ForwarderListItem from './ForwarderListItem';
 
 import fakeForwarders from '../../../test/fake-forwarders.json';
 

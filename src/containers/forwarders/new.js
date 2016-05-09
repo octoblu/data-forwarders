@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { fetchTypes } from '../../actions/types/types-actions'
-import DataStoreList from '../../components/DataStoreList/index'
+import ForwarderTypeList from '../../components/ForwarderTypeList'
 
 export default class ForwardersNew extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ export default class ForwardersNew extends React.Component {
         <p>Select the data store to forward messages to:</p>
 
         { forwarderTypes.length > 0 &&
-          <DataStoreList forwarderTypes={forwarderTypes} />
+          <ForwarderTypeList forwarderTypes={forwarderTypes} />
         }
       </div>
     );
