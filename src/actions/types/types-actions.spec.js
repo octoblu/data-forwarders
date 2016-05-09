@@ -15,13 +15,13 @@ describe('Action: Types', () => {
   })
 
   it('should create FETCH_TYPES_SUCCESS when request is successful', () => {
-    nock('https://forwarder.octoblu.dev')
+    nock('https://forwarder-service.octoblu.dev')
       .get('/types')
-      .reply(200, { body: { types: ['type-1', 'type-2'] }})
+      .reply(200, { body: [{ name: 'type-1' }, { name: 'type-2'}]})
 
     const expectedActions = [
       { type: types.FETCH_TYPES_REQUEST },
-      { type: types.FETCH_TYPES_SUCCESS, body: { types: ['type-1', 'type-2'] } }
+      { type: types.FETCH_TYPES_SUCCESS, forwarderTypes: [{ name: 'type-1' }, { name: 'type-2'}]}
     ]
 
     const store = mockStore({ types: [] })
@@ -33,7 +33,7 @@ describe('Action: Types', () => {
   });
 
   it('should create FETCH_TYPES_FAILURE when request fails', () => {
-    nock('https://forwarder.octoblu.dev/')
+    nock('https://forwarder-service.octoblu.dev')
       .get('/types')
       .reply(400)
 

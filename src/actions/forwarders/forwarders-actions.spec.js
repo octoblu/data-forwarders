@@ -15,13 +15,13 @@ describe('Action: Forwarders', () => {
   })
 
   it('should create FETCH_FORWARDERS_SUCCESS when request is successful', () => {
-    nock('https://forwarder.octoblu.dev/')
+    nock('https://forwarder-service.octoblu.dev')
       .get('/forwarders')
-      .reply(200, { body: { forwarders: ['do something'] }})
+      .reply(200, { body: ['do something']})
 
     const expectedActions = [
       { type: types.FETCH_FORWARDERS_REQUEST },
-      { type: types.FETCH_FORWARDERS_SUCCESS, body: { forwarders: ['do something']  } }
+      { type: types.FETCH_FORWARDERS_SUCCESS, body: ['do something'] }
     ]
 
     const store = mockStore({ forwarders: [] })
@@ -33,7 +33,7 @@ describe('Action: Forwarders', () => {
   });
 
   it('should create FETCH_FORWARDERS_FAILURE when request fails', () => {
-    nock('https://forwarder.octoblu.dev/')
+    nock('https://forwarder-service.octoblu.dev')
       .get('/forwarders')
       .reply(400)
 

@@ -1,8 +1,6 @@
-import superagent from 'superagent';
+import fetch from 'isomorphic-fetch'
 import * as types from '../../constants/action-types';
-
-const DEV_UUID  = 'eec6df11-c180-4f8c-b5d2-5943a1a1a5ef'
-const DEV_TOKEN = '15b4344d2b0751ffae74c19373c5bdff12a3dd50'
+import { getBearerToken } from '../../services/auth-service';
 
 function fetchTypesRequest() {
   return {
@@ -24,18 +22,13 @@ function fetchTypesFailure(error) {
   }
 }
 
-// export function fetchTypes(meshbluAuthBearer) {
 export function fetchTypes() {
   return dispatch => {
     dispatch(fetchTypesRequest())
-    return superagent
-      .get('https://forwarder-service.octoblu.dev/types')
-      .auth(DEV_UUID, DEV_TOKEN)
-      .end((error, response) => {
-        if(error) {
-          dispatch(fetchTypesFailure(error))
-        }
-        dispatch(fetchTypesSuccess(response.body))
-      })
+
+    return fetch('https://forwarder-service.octoblu.dev/types')
+      .then(res => res.json())
+      .then(json => dispatch(fetchTypesSuccess(json.body)))
+      .catch(error => dispatch(fetchTypesFailure(error)))
   }
 }

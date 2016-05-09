@@ -25,6 +25,7 @@
   "homepage": "https://github.com/octoblu/data-forwarders",
   "dependencies": {
     "atob": "^2.0.3",
+    "isomorphic-fetch": "^2.2.1",
     "meshblu": "^1.32.0",
     "react": "^15.0.1",
     "react-cookie": "^0.4.5",
@@ -34,7 +35,6 @@
     "react-router-redux": "^4.0.4",
     "redux": "^3.5.2",
     "redux-thunk": "^2.0.1",
-    "superagent": "^1.8.3",
     "zooid-ui": "^4.0.1"
   },
   "devDependencies": {

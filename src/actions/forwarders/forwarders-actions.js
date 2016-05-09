@@ -1,4 +1,4 @@
-import superagent from 'superagent'
+import fetch from 'isomorphic-fetch'
 import * as types from '../../constants/action-types';
 
 const DEV_UUID  = 'eec6df11-c180-4f8c-b5d2-5943a1a1a5ef'
@@ -27,14 +27,10 @@ function fetchForwardersFailure(error) {
 export function fetchForwarders() {
   return dispatch => {
     dispatch(fetchForwardersRequest())
-    return superagent
-      .get('https://forwarder-service.octoblu.dev/forwarders')
-      .auth(DEV_UUID, DEV_TOKEN)
-      .end((error, response) => {
-        if(error) {
-          dispatch(fetchForwardersFailure(error))
-        }
-        dispatch(fetchForwardersSuccess(response.body))
-      })
+
+    return fetch('https://forwarder-service.octoblu.dev/forwarders')
+      .then(res => res.json())
+      .then(json => dispatch(fetchForwardersSuccess(json.body)))
+      .catch(error => dispatch(fetchForwardersFailure(error)))
   }
 }

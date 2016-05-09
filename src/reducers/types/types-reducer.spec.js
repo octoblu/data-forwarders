@@ -27,10 +27,10 @@ describe('Reducer: Types', () => {
 
   it('should handle FETCH_TYPES_SUCCESS', () => {
     const items = [
-      { name: 'Types 1' },
-      { name: 'Types 2' }
+      { name: 'types-1' },
+      { name: 'types-2' }
     ];
-    expect(reducer(undefined, { type: types.FETCH_TYPES_SUCCESS, body: items }))
+    expect(reducer(undefined, { type: types.FETCH_TYPES_SUCCESS, forwarderTypes: items }))
       .to.deep.equal({
         items,
         error: null,

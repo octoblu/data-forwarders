@@ -29,6 +29,10 @@ export function fetchOctobluUser(callback) {
   meshbluHttp.whoami(callback)
 }
 
+export function getBearerToken() {
+  return cookie.load('meshbluBearerToken')
+}
+
 export function storeAuthentication(nextState, replace) {
   const bearerToken = decodeURIComponent(nextState.location.query.access_token)
   const redirectUri = nextState.location.query.redirect_uri

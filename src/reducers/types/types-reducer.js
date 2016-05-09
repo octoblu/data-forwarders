@@ -4,7 +4,7 @@ import _ from 'lodash'
 const initialState = {
   error: null,
   fetching: false,
-  forwarderTypes: []
+  items: []
 }
 
 export default function types(state = initialState, action) {
@@ -12,13 +12,13 @@ export default function types(state = initialState, action) {
     case actionTypes.FETCH_TYPES_REQUEST:
       return _.assign({}, state, {fetching: true})
 
-    case actionTypes.FETCH_TYPES_SUCCESS: {
-      const enabledForwarderTypes = _.filter(action.forwarderTypes, { 'enabled': true })
-      return _.assign({}, state, {forwarderTypes: enabledForwarderTypes, fetching: false})
-    }
-
     case actionTypes.FETCH_TYPES_FAILURE:
-      return _.assign({}, state, {error: action.error, forwarderTypes: [], fetching: false})
+      return _.assign({}, state, {error: action.error, items: [], fetching: false})
+
+    case actionTypes.FETCH_TYPES_SUCCESS: {
+      // const enabledForwarderTypes = _.filter(action.forwarderTypes, { 'enabled': true })
+      return _.assign({}, state, {items: action.forwarderTypes, fetching: false})
+    }
 
     default:
       return state
