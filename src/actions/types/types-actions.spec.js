@@ -60,7 +60,8 @@ describe('Action: Types', () => {
       forwarderTypeId
     }
 
-    expect(actions.setActiveForwarderType(forwarderTypes, forwarderTypeId)).to.deep.equal(expectedAction)
+    expect(actions.setActiveForwarderType(forwarderTypes, forwarderTypeId))
+      .to.deep.equal(expectedAction)
   })
 
   it('should create an action to unset active forwarder type', () => {

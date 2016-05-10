@@ -22,6 +22,27 @@ function fetchTypesFailure(error) {
   }
 }
 
+function fetchForwarderTypeConfigRequest(activeForwarderType) {
+  return {
+    type: types.FETCH_FORWARDER_TYPE_CONFIG_REQUEST,
+    activeForwarderType
+  }
+}
+
+function fetchForwarderTypeConfigSuccess(forwarderTypeConfigSchema) {
+  return {
+    type: types.FETCH_FORWARDER_TYPE_CONFIG_SUCCESS,
+    forwarderTypeConfigSchema
+  }
+}
+
+function fetchForwarderTypeConfigFailure(error) {
+  return {
+    type: types.FETCH_FORWARDER_TYPE_CONFIG_FAILURE,
+    error
+  }
+}
+
 export function fetchTypes() {
   return dispatch => {
     dispatch(fetchTypesRequest())
@@ -34,6 +55,23 @@ export function fetchTypes() {
       .then(res => res.json())
       .then(res => dispatch(fetchTypesSuccess(res)))
       .catch(ex => dispatch(fetchTypesFailure(ex)))
+  }
+}
+
+export function fetchForwarderTypeById(forwarderTypeId) {
+  return (dispatch, getState) => {
+    const activeForwarderType = _.find(getState().types.items, {deviceType: forwarderTypeId})
+
+    dispatch(fetchForwarderTypeConfigRequest(activeForwarderType))
+
+     const requestConfig = {
+       headers: { 'Authorization': `Bearer ${getBearerToken()}` }
+     };
+
+    return fetch(`${activeForwarderType.url}/schemas/v1/configure.json`, requestConfig)
+      .then(res => res.json())
+      .then(res => dispatch(fetchForwarderTypeConfigSuccess(res)))
+      .catch(ex => dispatch(fetchForwarderTypeConfigFailure(ex)))
   }
 }
 

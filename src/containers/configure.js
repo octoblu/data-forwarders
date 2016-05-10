@@ -2,7 +2,12 @@ import _ from 'lodash'
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchTypes, unsetActiveForwarderType, setActiveForwarderType } from '../actions/types/types-actions'
+import {
+  fetchTypes,
+  fetchForwarderTypeById,
+  unsetActiveForwarderType,
+  setActiveForwarderType
+} from '../actions/types/types-actions'
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -21,15 +26,19 @@ export class Configure extends React.Component {
       return
     }
 
-    dispatch(setActiveForwarderType(forwarderTypes, routeParams.forwarderType))
+    dispatch(fetchForwarderTypeById(routeParams.forwarderTypeId))
   }
 
   componentWillReceiveProps(nextProps) {
     const {activeForwarderType, dispatch, forwarderTypes, routeParams} = nextProps
 
     if (!forwarderTypes.length) return;
+    // if (!activeForwarderType) return;
 
-    dispatch(setActiveForwarderType(forwarderTypes, routeParams.forwarderType));
+    dispatch(fetchForwarderTypeById(routeParams.forwarderTypeId))
+    // console.log('CHECK', activeForwarderType.deviceType, this.props.activeForwarderType.deviceType);
+    // if (activeForwarderType.deviceType !== this.props.activeForwarderType.deviceType) {
+    // }
   }
 
   componentWillUnmount() {
