@@ -7,6 +7,7 @@ import ForwardersEdit from '../containers/forwarders/edit'
 import ForwardersIndex from '../containers/forwarders/index'
 import ForwardersNew from '../containers/forwarders/new'
 import ForwardersShow from '../containers/forwarders/show'
+import Configure from '../containers/configure'
 
 import Login from '../containers/login'
 import Logout from '../containers/logout'
@@ -25,6 +26,7 @@ const AppRoutes = ({ history }) => {
       <Route path="/forwarders">
         <IndexRoute component={ForwardersIndex}/>
         <Route path="new" component={ForwardersNew}/>
+        <Route path="new/:forwarderType" component={Configure}/>
         <Route path=":forwarderUuid" component={ForwardersShow}/>
         <Route path=":forwarderUuid/edit" component={ForwardersEdit}/>
       </Route>

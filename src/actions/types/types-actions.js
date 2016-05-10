@@ -36,3 +36,17 @@ export function fetchTypes() {
       .catch(ex => dispatch(fetchTypesFailure(ex)))
   }
 }
+
+export function setActiveForwarderType(forwarderTypes, forwarderTypeId) {
+  return {
+    type: types.SET_ACTIVE_FORWARDER_TYPE,
+    forwarderTypes,
+    forwarderTypeId
+  }
+}
+
+export function unsetActiveForwarderType() {
+  return {
+    type: types.UNSET_ACTIVE_FORWARDER_TYPE
+  }
+}

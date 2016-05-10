@@ -17,7 +17,6 @@ export default function types(state = initialState, action) {
 
     case actionTypes.FETCH_TYPES_SUCCESS: {
       // const enabledForwarderTypes = _.filter(action.forwarderTypes, { 'enabled': true })
-      console.log('ITEMS', action.forwarderTypes);
       return _.assign({}, state, {items: action.forwarderTypes, fetching: false})
     }
 
