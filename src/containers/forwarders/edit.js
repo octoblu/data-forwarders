@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import { fetchMyDevices } from '../../actions/device/device-actions'
 import { connect } from 'react-redux';
 
+import MyDevices from '../../components/MyDevices'
+
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
 }
@@ -21,34 +23,7 @@ class ForwardersEdit extends React.Component {
     if (fetching) return <div>Loading...</div>
     if (error) return <div>Error: {error.message}</div>
 
-    const deviceRows = _.map(devices, (device, index) => {
-      return (
-        <tr key={index}>
-          <td>{device.name}</td>
-          <td>{device.type}</td>
-          <td><input type="checkbox" /></td>
-          <td><input type="checkbox" /></td>
-          <td><input type="checkbox" /></td>
-          <td><input type="checkbox" /></td>
-        </tr>
-      )
-    })
-
-    return (
-      <table>
-        <thead>
-          <tr>
-            <th>Device Name</th>
-            <th>Device Type</th>
-            <th>broadcast.sent</th>
-            <th>broadcast.received</th>
-            <th>message.received</th>
-            <th>message.sent</th>
-          </tr>
-        </thead>
-        <tbody>{deviceRows}</tbody>
-      </table>
-    )
+    return <MyDevices devices={devices} />
   }
 }
 

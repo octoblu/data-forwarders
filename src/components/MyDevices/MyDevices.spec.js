@@ -5,15 +5,15 @@ import React from 'react';
 import sinon from 'sinon';
 import { mount, shallow } from 'enzyme';
 
-import ConfigEditor from './';
+import MyDevices from './';
 
 chai.use(chaiEnzyme());
 
-describe('<ConfigEditor />', () => {
+describe('<MyDevices />', () => {
   let sut;
 
   beforeEach(() => {
-    sut = shallow(<ConfigEditor />);
+    sut = shallow(<MyDevices />);
   });
 
   it('should exist', () => {
