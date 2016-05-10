@@ -14,24 +14,30 @@ export class Configure extends React.Component {
   }
 
   componentDidMount() {
-    const { dispatch, routeParams, types } = this.props
+    const { dispatch, routeParams, forwarderTypes } = this.props
 
-    if (!types.items.length) return dispatch(fetchTypes());
-    dispatch(setActiveForwarderType(types.items, routeParams.forwarderType))
+    if (!forwarderTypes.length) {
+      dispatch(fetchTypes())
+      return
+    }
+
+    dispatch(setActiveForwarderType(forwarderTypes, routeParams.forwarderType))
   }
 
-  componentWillReceiveProps({dispatch, routeParams, types}) {
-    if (!types.items.length) return;
+  componentWillReceiveProps(nextProps) {
+    const {activeForwarderType, dispatch, forwarderTypes, routeParams} = nextProps
 
-    dispatch(setActiveForwarderType(types.items, routeParams.forwarderType))
+    if (!forwarderTypes.length) return;
+
+    dispatch(setActiveForwarderType(forwarderTypes, routeParams.forwarderType));
   }
 
   componentWillUnmount() {
-    // this.props.dispatch(unsetActiveForwarderType())
+    this.props.dispatch(unsetActiveForwarderType())
   }
 
   render() {
-    const {activeForwarderType, types} = this.props
+    const { activeForwarderType } = this.props
 
     if (_.isEmpty(activeForwarderType)) return <div>Loading...</div>
 
@@ -46,7 +52,10 @@ export class Configure extends React.Component {
 Configure.propTypes = propTypes
 
 function mapStateToProps({ activeForwarderType, types }) {
-  return { activeForwarderType, types }
+  return {
+    activeForwarderType,
+    forwarderTypes: types.items
+  }
 }
 
 export default connect(mapStateToProps)(Configure)
