@@ -9,10 +9,11 @@ const MyDeviceItem = ({ device }) => {
   if (_.isEmpty(device)) return null;
 
   const { name, type } = device;
+  
   return (
     <tr>
-      <td>{device.name}</td>
-      <td>{device.type}</td>
+      <td>{name}</td>
+      <td>{type}</td>
       <td><input type="checkbox" /></td>
       <td><input type="checkbox" /></td>
       <td><input type="checkbox" /></td>

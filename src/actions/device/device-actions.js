@@ -32,8 +32,8 @@ export function fetchMyDevices() {
     const meshbluHttp   = new MeshbluHttp(meshbluConfig);
 
     const myDevicesQuery = {
+      configureWhitelist: {$in: [uuid]},
       discoverWhitelist: {$in: [uuid]},
-      configureWhitelist: {$in: [uuid]}
     }
 
     meshbluHttp.devices(myDevicesQuery, (error, devices) => {

@@ -20,4 +20,13 @@ describe('<MyDevices />', () => {
     expect(sut).to.be.present();
   });
 
+  it('should be blank when devices do not exist', () => {
+    expect(sut).to.be.blank();
+  });
+
+  describe('when given devices', () => {
+    it('should render each device', () {
+
+    });
+  });
 });

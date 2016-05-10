@@ -8,7 +8,7 @@ const propTypes = {
 }
 
 const MyDevices = ({ devices }) => {
-  if (_.isEmpty(devices))  return null;
+  if (_.isEmpty(devices)) return null;
 
   const deviceRows = _.map(devices, (device, index) => {
     return <MyDeviceItem device={device} key={index} />;
