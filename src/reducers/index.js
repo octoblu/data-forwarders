@@ -3,12 +3,14 @@ import { routerReducer } from 'react-router-redux'
 import forwardersReducer from './forwarders/forwarder-reducer';
 import typesReducer from './types/types-reducer';
 import activeForwarderTypeReducer from './active-type/active-type-reducer';
+import myDevicesReducer from './my-devices/my-devices-reducer';
 
 const rootReducer = combineReducers({
-  types: typesReducer,
   activeForwarderType: activeForwarderTypeReducer,
   forwarders: forwardersReducer,
-  routing: routerReducer
+  myDevices: myDevicesReducer,
+  routing: routerReducer,
+  types: typesReducer,
 })
 
 export default rootReducer

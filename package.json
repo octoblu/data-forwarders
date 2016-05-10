@@ -38,6 +38,7 @@
     "zooid-ui": "^4.0.1"
   },
   "devDependencies": {
+    "@octoblu/shmock": "^0.7.2",
     "autoprefixer": "^6.3.3",
     "babel-core": "^6.6.5",
     "babel-eslint": "^6.0.4",
