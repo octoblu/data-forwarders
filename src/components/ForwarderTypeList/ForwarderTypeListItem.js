@@ -8,7 +8,7 @@ const propTypes = {
 
 const ForwarderTypeListItem = ({ forwarderType }) => {
   return (
-    <Link to={`/forwarders/new/${forwarderType.deviceType}`}>
+    <Link to={`/new/${forwarderType.uuid}`}>
       <img src={forwarderType.logoUrl} alt={forwarderType.name} />
       {forwarderType.name}
     </Link>

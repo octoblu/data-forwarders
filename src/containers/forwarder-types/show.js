@@ -5,13 +5,9 @@ import { bindActionCreators } from 'redux'
 import { fetchTypes } from '../../actions/types/types-actions'
 import ForwarderTypeList from '../../components/ForwarderTypeList'
 
-export default class ForwardersNew extends React.Component {
+export default class ShowForwarderTypes extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-    this.props.dispatch(fetchTypes());
   }
 
   render() {
@@ -38,4 +34,4 @@ function mapStateToProps({types}) {
   return { error, fetching, items };
 };
 
-export default connect(mapStateToProps)(ForwardersNew);
+export default connect(mapStateToProps)(ShowForwarderTypes);

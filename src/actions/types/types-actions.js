@@ -60,7 +60,7 @@ export function fetchTypes() {
 
 export function fetchForwarderTypeById(forwarderTypeId) {
   return (dispatch, getState) => {
-    const activeForwarderType = _.find(getState().types.items, {deviceType: forwarderTypeId})
+    const activeForwarderType = _.find(getState().types.items, {uuid: forwarderTypeId})
 
     dispatch(fetchForwarderTypeConfigRequest(activeForwarderType))
 

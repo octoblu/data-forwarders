@@ -19,7 +19,6 @@ export function getMeshbluConfig(){
 
 export function fetchOctobluUser(callback) {
   let bearerToken  = cookie.load('meshbluBearerToken')
-
   if(!bearerToken){
     return callback(null, null)
   }
