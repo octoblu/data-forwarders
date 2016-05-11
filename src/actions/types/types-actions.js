@@ -68,7 +68,7 @@ export function fetchForwarderTypeById(forwarderTypeId) {
        headers: { 'Authorization': `Bearer ${getBearerToken()}` }
      };
 
-    return fetch(`${activeForwarderType.url}/schemas/v1/configure.json`, requestConfig)
+    return fetch(activeForwarderType.configurationUrl, requestConfig)
       .then(res => res.json())
       .then(res => dispatch(fetchForwarderTypeConfigSuccess(res)))
       .catch(ex => dispatch(fetchForwarderTypeConfigFailure(ex)))

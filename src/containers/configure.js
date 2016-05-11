@@ -30,12 +30,12 @@ export class Configure extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {activeForwarderType, dispatch, forwarderTypes, routeParams} = nextProps
+    const { activeForwarderType, dispatch, forwarderTypes, routeParams } = nextProps
 
     if (!forwarderTypes.length) return;
     // if (!activeForwarderType) return;
 
-    dispatch(fetchForwarderTypeById(routeParams.forwarderTypeId))
+    // dispatch(fetchForwarderTypeById(routeParams.forwarderTypeId))
     // console.log('CHECK', activeForwarderType.deviceType, this.props.activeForwarderType.deviceType);
     // if (activeForwarderType.deviceType !== this.props.activeForwarderType.deviceType) {
     // }

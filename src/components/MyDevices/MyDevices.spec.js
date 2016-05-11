@@ -25,7 +25,7 @@ describe('<MyDevices />', () => {
   });
 
   describe('when given devices', () => {
-    it('should render each device', () {
+    it('should render each device', () => {
 
     });
   });
