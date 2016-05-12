@@ -33,6 +33,7 @@
     "react-redux": "^4.4.0",
     "react-router": "^2.0.0",
     "react-router-redux": "^4.0.4",
+    "react-tabs": "^0.5.3",
     "redux": "^3.5.2",
     "redux-thunk": "^2.0.1",
     "zooid-meshblu-device-editor": "^5.0.0",
