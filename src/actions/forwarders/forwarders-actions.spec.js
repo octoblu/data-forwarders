@@ -49,4 +49,22 @@ describe('Action: Forwarders', () => {
         expect(store.getActions()).to.deep.equal(expectedActions)
       })
   })
+
+  // it('should create CREATE_FORWARDER_SUCCESS when request is 201', () => {
+  //   nock('https://data-forwarder-mongodb.octoblu.dev')
+  //     .post('/devices')
+  //     .reply(201)
+  //
+  //   const expectedActions = [
+  //     { type: types.CREATE_FORWARDER_REQUEST },
+  //     { type: types.CREATE_FORWARDER_SUCCESS, body: { name: 'mango'}}
+  //   ]
+  //
+  //   const store = mockStore({forwarders: []})
+  //
+  //   return store.dispatch(actions.createForwarder({name: 'mango'}))
+  //     .then(() => {
+  //       expect(store.getActions()).to.deep.equal(expectedActions)
+  //     })
+  // })
 })

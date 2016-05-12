@@ -1,8 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import * as types from '../../constants/action-types';
-
-const DEV_UUID  = 'eec6df11-c180-4f8c-b5d2-5943a1a1a5ef'
-const DEV_TOKEN = '732ccb5d2b2daf8df0df5b0dd469ec509c8e04a4'
+import { getBearerToken } from '../../services/auth-service';
 
 function fetchForwardersRequest() {
   return {
@@ -24,6 +22,26 @@ function fetchForwardersFailure(error) {
   }
 }
 
+function createForwarderRequest() {
+  return {
+    type: types.CREATE_FORWARDER_REQUEST
+  }
+}
+
+function createForwarderSuccess(forwarder) {
+  return {
+    type: types.CREATE_FORWARDER_SUCCESS,
+    forwarder
+  }
+}
+
+function createForwarderFailure(error) {
+  return {
+    type: types.CREATE_FORWARDER_FAILURE,
+    error
+  }
+}
+
 export function fetchForwarders() {
   return dispatch => {
     dispatch(fetchForwardersRequest())
@@ -32,5 +50,25 @@ export function fetchForwarders() {
       .then(res => res.json())
       .then(json => dispatch(fetchForwardersSuccess(json.body)))
       .catch(error => dispatch(fetchForwardersFailure(error)))
+  }
+}
+
+export function createForwarder(forwarderOptions) {
+  return (dispatch, getState) => {
+    dispatch(createForwarderRequest())
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${getBearerToken()}` },
+      body: forwarderOptions
+    };
+
+    const activeForwarderType = getState().activeForwarderType
+    const { createUrl } = activeForwarderType
+
+    return fetch(createUrl, requestOptions)
+      .then(res => res.json())
+      .then(json => dispatch(createForwarderSuccess(json.body)))
+      .catch(error => dispatch(createForwarderFailure(error)))
   }
 }

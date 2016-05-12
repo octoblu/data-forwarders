@@ -3,7 +3,8 @@ import * as actionTypes from '../../constants/action-types';
 const initialState = {
   items: [],
   error: null,
-  fetching: false
+  fetching: false,
+  selected: null
 }
 
 export default function forwarders(state = initialState, action) {
@@ -16,6 +17,15 @@ export default function forwarders(state = initialState, action) {
 
     case actionTypes.FETCH_FORWARDERS_FAILURE:
       return { ...initialState, error: action.error, fetching: false }
+
+    case actionTypes.CREATE_FORWARDER_REQUEST:
+      return { ...state, fetching: true }
+
+    case actionTypes.CREATE_FORWARDER_SUCCESS:
+      return { ...state, selected: action.forwarder, fetching: false }
+
+    case actionTypes.CREATE_FORWARDER_FAILURE:
+      return { ...state, error: action.error, fetching: false }
 
     default:
       return state

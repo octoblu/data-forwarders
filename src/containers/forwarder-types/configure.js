@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import {SchemaContainer} from 'zooid-meshblu-device-editor';
 
+import { createForwarder } from '../../actions/forwarders/forwarders-actions'
+
 import {
   fetchTypes,
   fetchForwarderTypeById,
@@ -32,6 +34,7 @@ export class Configure extends React.Component {
 
   handleSubmit(model) {
     console.log('Submit', model);
+    this.props.dispatch(createForwarder(model))
   }
 
   render() {
