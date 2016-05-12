@@ -1,9 +1,9 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import {Tab ,Tabs ,TabList ,TabPanel} from 'react-tabs';
+import { Tab ,Tabs ,TabList ,TabPanel } from 'react-tabs';
 
-import { fetchForwarderByUuid } from '../../actions/forwarders/forwarders-actions'
+import { deleteForwarderByUuid, fetchForwarderByUuid } from '../../actions/forwarders/forwarders-actions'
 import { fetchMyDevices } from '../../actions/device/device-actions'
 
 import MyDevices from '../../components/MyDevices'
@@ -16,6 +16,8 @@ const propTypes = {
 class ForwardersShow extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   componentDidMount() {
@@ -26,20 +28,31 @@ class ForwardersShow extends React.Component {
     dispatch(fetchMyDevices());
   }
 
+  handleDelete()  {
+    const {dispatch, routeParams} = this.props
+    const {forwarderUuid} = routeParams
+
+    dispatch(deleteForwarderByUuid(forwarderUuid))
+  }
+
   render() {
     const { forwarders, myDevices, routeParams } = this.props
-    const { forwarderUuid} = routeParams
+    const { forwarderUuid } = routeParams
 
 
     if (forwarders.fetching) return <div>Loading...</div>
     if (forwarders.error) return <div>Error: {error.message}</div>
+    if (_.isEmpty(forwarders.selected)) return null
 
-    const {name, type} = forwarders.selected
+    const { name, type } = forwarders.selected
+
     return (
       <div>
         <div>
           <h1>Forwarder: {name}</h1>
           <h2>Type: {type}</h2>
+
+          <button onClick={this.handleDelete}>Delete</button>
         </div>
 
         <Tabs>

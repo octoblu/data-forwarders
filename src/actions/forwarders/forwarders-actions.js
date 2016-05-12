@@ -69,6 +69,30 @@ function createForwarderFailure(error) {
   }
 }
 
+function deleteForwarderByUuidRequest() {
+  return {
+    type: types.DELETE_FORWARDER_BY_UUID_REQUEST
+  }
+}
+
+function deleteForwarderByUuidSuccess(forwarder) {
+  return dispatch => {
+    dispatch({
+      type: types.DELETE_FORWARDER_BY_UUID_SUCCESS,
+      forwarder
+    })
+
+    dispatch(push('/forwarders'))
+  }
+}
+
+function deleteForwarderByUuidFailure(error) {
+  return {
+    type: types.DELETE_FORWARDER_BY_UUID_FAILURE,
+    error
+  }
+}
+
 export function fetchForwarders() {
   return dispatch => {
     dispatch(fetchForwardersRequest())
@@ -81,6 +105,44 @@ export function fetchForwarders() {
       .then(res => res.json())
       .then(json => dispatch(fetchForwardersSuccess(json)))
       .catch(error => dispatch(fetchForwardersFailure(error)))
+  }
+}
+
+export function fetchForwarderByUuid(forwarderUuid) {
+  return dispatch => {
+    dispatch(fetchForwarderByUuidRequest())
+
+    const meshbluConfig = getMeshbluConfig()
+    const { uuid }      = meshbluConfig
+    const meshbluHttp   = new MeshbluHttp(meshbluConfig);
+
+    meshbluHttp.device(forwarderUuid, (error, forwarder) => {
+      if (error) {
+        dispatch(fetchForwarderByUuidFailure(error))
+        return
+      }
+
+      dispatch(fetchForwarderByUuidSuccess(forwarder))
+    })
+  }
+}
+
+export function deleteForwarderByUuid(forwarderUuid) {
+  return dispatch => {
+    dispatch(deleteForwarderByUuidRequest())
+
+    const meshbluConfig = getMeshbluConfig()
+    const { uuid }      = meshbluConfig
+    const meshbluHttp   = new MeshbluHttp(meshbluConfig);
+
+    meshbluHttp.unregister({uuid:forwarderUuid}, (error, forwarder) => {
+      if (error) {
+        dispatch(deleteForwarderByUuidFailure(error))
+        return
+      }
+
+      dispatch(deleteForwarderByUuidSuccess(forwarder))
+    })
   }
 }
 
