@@ -7,9 +7,9 @@ import ForwarderTypeList from '../../components/ForwarderTypeList'
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  error: PropTypes.object.isRequired,
   fetching: PropTypes.bool.isRequired,
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  error: PropTypes.object,
 }
 
 class ForwarderTypes extends React.Component {

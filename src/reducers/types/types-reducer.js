@@ -15,10 +15,8 @@ export default function types(state = initialState, action) {
     case actionTypes.FETCH_TYPES_FAILURE:
       return _.assign({}, state, {error: action.error, items: [], fetching: false})
 
-    case actionTypes.FETCH_TYPES_SUCCESS: {
-      // const enabledForwarderTypes = _.filter(action.forwarderTypes, { 'enabled': true })
+    case actionTypes.FETCH_TYPES_SUCCESS:
       return _.assign({}, state, {items: action.forwarderTypes, fetching: false})
-    }
 
     default:
       return state
