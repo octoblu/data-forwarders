@@ -9,13 +9,12 @@ const propTypes = {
 const ForwarderListItem = ({ forwarder }) => {
   if (_.isEmpty(forwarder)) return null;
 
-  const { name, subscriptions, type, uuid } = forwarder;
+  const { name, type, uuid } = forwarder;
 
   return (
     <div className="ForwarderListItem">
       <header className="ForwarderListItem-name">{name}</header>
       <div className="ForwarderListItem-type">Type: {type}</div>
-      <div className="ForwarderListItem-thingCount">Listens to {subscriptions.count} Things</div>
       <Link to={`/forwarders/${uuid}`}>Detail</Link>
     </div>
   )

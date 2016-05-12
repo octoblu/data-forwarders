@@ -4,7 +4,7 @@ const initialState = {
   items: [],
   error: null,
   fetching: false,
-  selected: null
+  selectedUuid: null
 }
 
 export default function forwarders(state = initialState, action) {
@@ -13,7 +13,7 @@ export default function forwarders(state = initialState, action) {
       return { ...initialState, fetching: true }
 
     case actionTypes.FETCH_FORWARDERS_SUCCESS:
-      return { ...initialState, items: action.body, fetching: false }
+      return { ...initialState, items: action.forwarders, fetching: false }
 
     case actionTypes.FETCH_FORWARDERS_FAILURE:
       return { ...initialState, error: action.error, fetching: false }
@@ -21,8 +21,15 @@ export default function forwarders(state = initialState, action) {
     case actionTypes.CREATE_FORWARDER_REQUEST:
       return { ...state, fetching: true }
 
-    case actionTypes.CREATE_FORWARDER_SUCCESS:
-      return { ...state, selected: action.forwarder, fetching: false }
+    case actionTypes.CREATE_FORWARDER_SUCCESS: {
+      const {forwarder} = action
+      return {
+        ...state,
+        items: [forwarder, ...state.items],
+        selectedUuid: forwarder.uuid,
+        fetching: false
+      }
+    }
 
     case actionTypes.CREATE_FORWARDER_FAILURE:
       return { ...state, error: action.error, fetching: false }

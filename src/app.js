@@ -4,13 +4,13 @@ import { Provider } from 'react-redux'
 import { applyMiddleware, createStore, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
 import { Router, Route, browserHistory } from 'react-router'
 
 import reducers from './reducers/'
 import AppRoutes from './config/routes'
 
-const createStoreWithMiddleware = applyMiddleware(thunkMiddleware, createLogger())
+const createStoreWithMiddleware = applyMiddleware(thunkMiddleware, createLogger(), routerMiddleware(browserHistory))
 
 // Add the reducer to your store on the `routing` key
 const store = createStore(reducers, createStoreWithMiddleware)

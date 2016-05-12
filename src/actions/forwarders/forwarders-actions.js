@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import * as types from '../../constants/action-types';
 import { getBearerToken } from '../../services/auth-service';
+import { push } from 'react-router-redux'
 
 function fetchForwardersRequest() {
   return {
@@ -8,10 +9,10 @@ function fetchForwardersRequest() {
   }
 }
 
-function fetchForwardersSuccess(body) {
+function fetchForwardersSuccess(forwarders) {
   return {
     type: types.FETCH_FORWARDERS_SUCCESS,
-    body
+    forwarders
   }
 }
 
@@ -29,9 +30,14 @@ function createForwarderRequest() {
 }
 
 function createForwarderSuccess(forwarder) {
-  return {
-    type: types.CREATE_FORWARDER_SUCCESS,
-    forwarder
+  console.log('createForwarderSuccess', forwarder);
+  return dispatch => {
+    dispatch({
+      type: types.CREATE_FORWARDER_SUCCESS,
+      forwarder
+    })
+
+    dispatch(push(`/forwarders/${forwarder.uuid}`))
   }
 }
 
@@ -46,9 +52,13 @@ export function fetchForwarders() {
   return dispatch => {
     dispatch(fetchForwardersRequest())
 
-    return fetch('https://forwarder-service.octoblu.dev/forwarders')
+    const requestOptions = {
+      headers: { 'Authorization': `Bearer ${getBearerToken()}` }
+    };
+
+    return fetch('https://forwarder-service.octoblu.dev/forwarders', requestOptions)
       .then(res => res.json())
-      .then(json => dispatch(fetchForwardersSuccess(json.body)))
+      .then(json => dispatch(fetchForwardersSuccess(json)))
       .catch(error => dispatch(fetchForwardersFailure(error)))
   }
 }
@@ -59,8 +69,12 @@ export function createForwarder(forwarderOptions) {
 
     const requestOptions = {
       method: 'POST',
-      headers: { 'Authorization': `Bearer ${getBearerToken()}` },
-      body: forwarderOptions
+      headers: {
+        'Authorization': `Bearer ${getBearerToken()}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(forwarderOptions)
     };
 
     const activeForwarderType = getState().activeForwarderType
@@ -68,7 +82,7 @@ export function createForwarder(forwarderOptions) {
 
     return fetch(createUrl, requestOptions)
       .then(res => res.json())
-      .then(json => dispatch(createForwarderSuccess(json.body)))
+      .then(json => dispatch(createForwarderSuccess(json)))
       .catch(error => dispatch(createForwarderFailure(error)))
   }
 }

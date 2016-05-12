@@ -7,12 +7,12 @@ import { fetchForwarders } from '../../actions/forwarders/forwarders-actions'
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
-  error: PropTypes.object.isRequired,
+  forwarders: PropTypes.array,
   fetching: PropTypes.bool.isRequired,
-  items: PropTypes.array.isRequired,
+  error: PropTypes.object,
 }
 
-export class ForwardersIndex extends React.Component {
+class ForwardersIndex extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -22,22 +22,25 @@ export class ForwardersIndex extends React.Component {
   }
 
   render() {
-    const { error, fetching, items } = this.props;
+    const { error, fetching, forwarders } = this.props;
 
-    if (this.props.fetching) return <div>Loading...</div>
+    if (fetching) return <div>Loading...</div>
     if (error) return <div>{`Error: ${error.message}`}</div>
-    if (_.isEmpty(items)) return <div>Empty State</div>
 
-    return <ForwarderList forwarders={items} />
+    return <ForwarderList forwarders={forwarders} />
   }
 }
 
 ForwardersIndex.propTypes = propTypes
 
-function mapStateToProps({ dispatch, forwarders }) {
+function mapStateToProps({ forwarders }) {
   const { error, fetching, items } = forwarders;
 
-  return { error, dispatch, fetching, items };
+  return {
+    error,
+    fetching,
+    forwarders: items
+  };
 }
 
 export default connect(mapStateToProps)(ForwardersIndex)
