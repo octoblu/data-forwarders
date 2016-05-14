@@ -17,11 +17,19 @@ describe('Action: Forwarders', () => {
   it('should create FETCH_FORWARDERS_SUCCESS when request is successful', () => {
     nock('https://forwarder-service.octoblu.dev')
       .get('/forwarders')
-      .reply(200, { body: ['do something']})
+      .reply(200, [
+        { name: "T'Challa", type: "forwarder:vibranium" },
+        { name: "Ororo", type: "forwarder:lightning" }
+      ]);
+
+    const forwarders = [
+      { name: "T'Challa", type: "forwarder:vibranium" },
+      { name: "Ororo", type: "forwarder:lightning" }
+    ]
 
     const expectedActions = [
       { type: types.FETCH_FORWARDERS_REQUEST },
-      { type: types.FETCH_FORWARDERS_SUCCESS, body: ['do something'] }
+      { type: types.FETCH_FORWARDERS_SUCCESS, forwarders }
     ]
 
     const store = mockStore({ forwarders: [] })

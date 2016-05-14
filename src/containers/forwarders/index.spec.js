@@ -5,7 +5,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import sinon from 'sinon';
 import { mount, shallow } from 'enzyme';
-
 import { ForwardersIndex } from './';
 import ForwarderList from '../../components/ForwarderList';
 import fakeFowarders from '../../../test/fake-forwarders.json';

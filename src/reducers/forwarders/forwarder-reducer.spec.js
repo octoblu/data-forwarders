@@ -9,7 +9,8 @@ describe('Reducer: Forwarder', () => {
     const initialState = {
       items: [],
       error: null,
-      fetching: false
+      fetching: false,
+      selected: null
     };
 
     expect(reducer(undefined, {})).to.deep.equal(initialState)

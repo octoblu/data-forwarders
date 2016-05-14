@@ -16,7 +16,7 @@ describe('<ForwarderList />', () => {
   let sut;
 
   beforeEach(() => {
-    sut = shallow(<ForwarderList />);
+    sut = shallow(<ForwarderList forwarder={[]}/>);
   });
 
   it('should exist', () => {

@@ -38,8 +38,8 @@ describe('<ForwarderListItem />', () => {
       expect(sut.find('header').first().text()).to.equal(name);
       expect(sut.find('.ForwarderListItem-type').first().text())
         .to.equal(`Type: ${type}`);
-      expect(sut.find('.ForwarderListItem-thingCount').first().text())
-        .to.equal(`Listens to ${subscriptions.count} Things`);
+      // expect(sut.find('.ForwarderListItem-thingCount').first().text())
+        // .to.equal(`Listens to ${subscriptions.count} Things`);
     });
 
     it('should render the detail link', () => {
