@@ -109,7 +109,6 @@ export function fetchForwarders() {
 }
 
 export function fetchForwarderByUuid(forwarderUuid) {
-  console.log('going to fetchForwarderByUuid')
   return dispatch => {
     dispatch(fetchForwarderByUuidRequest())
 
@@ -128,7 +127,7 @@ export function fetchForwarderByUuid(forwarderUuid) {
           dispatch(fetchForwarderByUuidFailure(error))
           return
         }
-        
+
         dispatch(fetchForwarderByUuidSuccess({device, subscriptions}));
 
       });
@@ -176,5 +175,51 @@ export function createForwarder(forwarderOptions) {
       .then(res => res.json())
       .then(json => dispatch(createForwarderSuccess(json)))
       .catch(error => dispatch(createForwarderFailure(error)))
+  }
+}
+
+
+function createSubscriptionRequest() {
+  return {
+    type: types.CREATE_FORWARDER_SUBSCRIPTION_REQUEST
+  }
+}
+
+function createSubscriptionSuccess(subscriptions) {
+  return {
+    type: types.CREATE_FORWARDER_SUBSCRIPTION_SUCCESS,
+    subscriptions
+  }
+}
+
+function createSubscriptionFailure(error) {
+  return {
+    type: types.CREATE_FORWARDER_SUBSCRIPTION_FAILURE,
+    error
+  }
+}
+
+export function createSubscription(subscription) {
+  return dispatch => {
+    dispatch(createSubscriptionRequest())
+
+    const meshbluConfig = getMeshbluConfig()
+    const { uuid }      = meshbluConfig
+    const meshbluHttp   = new MeshbluHttp(meshbluConfig);
+
+    meshbluHttp.createSubscription(subscription, (error, devices) => {
+      if (error) {
+        dispatch(createSubscriptionFailure(error))
+        return
+      }
+      meshbluHttp.listSubscriptions({subscriberUuid: subscription.subscriberUuid}, (error, subscriptions) => {
+        if (error) {
+          dispatch(createSubscriptionFailure(error))
+          return
+        }
+
+        dispatch(createSubscriptionSuccess(subscriptions));
+      });
+    })
   }
 }

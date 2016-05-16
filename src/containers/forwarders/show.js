@@ -6,14 +6,14 @@ import { SchemaContainer } from 'zooid-meshblu-device-editor';
 import MyDevices from '../../components/MyDevices';
 
 import {
-  fetchMyDevices,
-  createSubscription,
-  deleteSubscription
+  fetchMyDevices
 } from '../../actions/device/device-actions';
 
 import {
   deleteForwarderByUuid,
-  fetchForwarderByUuid
+  fetchForwarderByUuid,
+  createSubscription,
+  deleteSubscription
 } from '../../actions/forwarders/forwarders-actions';
 
 

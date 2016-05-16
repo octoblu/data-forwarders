@@ -1,4 +1,5 @@
 import * as actionTypes from '../../constants/action-types';
+import _ from 'lodash'
 
 const initialState = {
   items: [],
@@ -32,6 +33,12 @@ export default function forwarders(state = initialState, action) {
 
     case actionTypes.CREATE_FORWARDER_SUCCESS: {
       return { ...state, selected: action.forwarder, fetching: false }
+    }
+
+    case actionTypes.CREATE_FORWARDER_SUBSCRIPTION_SUCCESS: {
+      var forwarder = _.cloneDeep(state.selected)
+      forwarder.subscriptions = action.subscriptions
+      return { ...state, selected: forwarder, fetching: false }
     }
 
     case actionTypes.CREATE_FORWARDER_FAILURE:
