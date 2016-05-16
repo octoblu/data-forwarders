@@ -1,0 +1,54 @@
+{
+  "name": "My Splunk Forwarder",
+  "type": "forwarder:splunk",
+  "uuid": "uuid-of-the-thing",
+  "subscriptions": {
+    "count": 5,
+    "message.sent": ["uuid-1", "uuid-2"],
+    "message.received": ["uuid-3", "uuid-4"],
+    "broadcast.sent": ["uuid-6"]
+  },
+  "schemas": {
+    "version": "1.0.0",
+    "messages": [
+      {
+        "title": "YoDeets",
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "title": "YoAge",
+        "type": "object",
+        "properties": {
+          "age": {
+            "type": "integer",
+            "title": "Age"
+          }
+        }
+      }
+    ],
+    "configure": {
+      "type": "object",
+      "properties": {
+        "command" : {
+          "type" : "object",
+          "properties" : {
+            "server" : {
+              "type" : "string"
+            },
+            "key" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

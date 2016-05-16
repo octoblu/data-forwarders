@@ -1,16 +1,22 @@
 import url from 'url'
-import React from 'react'
+import React, { Component } from 'react'
 import { Spinner } from 'zooid-ui'
 
 import { CLIENT_ID, PROVIDER_URI } from '../constants/oauth'
+import { fetchOctobluUser } from '../services/auth-service'
 
-export default class Login extends React.Component {
+export default class Authenticated extends Component {
   state = {
     octobluUser: null
   }
 
   componentDidMount() {
-    this.redirectToLogin()
+    fetchOctobluUser((error, octobluUser) => {
+      if(error || !octobluUser) {
+        return this.redirectToLogin()
+      }
+      this.setState({octobluUser})
+    })
   }
 
   buildAuthenticateRedirectUri() {
@@ -45,7 +51,6 @@ export default class Login extends React.Component {
 
     window.location = uri
   }
-
 
   render() {
     const {octobluUser} = this.state

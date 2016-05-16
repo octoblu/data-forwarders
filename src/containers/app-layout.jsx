@@ -1,25 +1,28 @@
-import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import React from 'react'
+import { Link } from 'react-router'
+import { AppBar, AppBarPrimary, AppBarSecondary } from 'zooid-ui'
 
-var AppLayout = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <nav className="Page-nav">
-          <img src="//s3.amazonaws.com/octoblu-www/assets/images/octoblu-inverse.png" alt="Octoblu" className="Logo"/>
-          <ul className='list-unstyled Page-nav-list'>
-            <li><Link to="/logout">Logout</Link></li>
-          </ul>
-        </nav>
+import Authenticated from './authenticated'
 
-        <div className="Page">
-          {this.props.children}
-        </div>
-      </div>
-    );
-  }
-});
+import 'zooid-ui/dist/style.css'
 
-export default (AppLayout);
+const AppLayout = ({children}) => {
+  return (
+    <Authenticated>
+      <AppBar>
+        <AppBarPrimary>
+          Octoblu Forwarders
+        </AppBarPrimary>
+
+        <AppBarSecondary>
+          <Link to="/logout" className="AppBar-Link">Logout</Link>
+        </AppBarSecondary>
+      </AppBar>
+
+      {children}
+    </Authenticated>
+  );
+}
+
+
+export default AppLayout

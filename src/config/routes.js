@@ -1,48 +1,45 @@
-import React, { Component } from 'react';
-import { IndexRoute, Route } from 'react-router';
-import { ReduxRouter } from 'redux-react-router';
+import React, { Component } from 'react'
+import { IndexRoute, Route, Router } from 'react-router'
 
-import AppLayout from '../containers/app-layout';
-import Forwarder from '../containers/forwarders';
-import ForwarderDetail from '../containers/forwarder-detail';
-import ForwarderNew from '../containers/forwarders/forwarders-new';
-import ForwarderNewDataStore from '../containers/forwarders/forwarders-new-data-store';
-import ForwarderNewOptions from '../containers/forwarders/forwarders-new-options';
-import ForwarderNewIndex from '../containers/forwarders/forwarders-new-index';
-import ForwarderNewGateblu from '../containers/forwarders/forwarders-new-gateblu';
-import ForwarderNewSubscriptions from '../containers/forwarders/forwarders-new-subscriptions';
-import ForwarderNewRegister from '../containers/forwarders/forwarders-new-register';
-import Login from '../containers/login';
-import Logout from '../containers/logout';
-import NotFound from '../containers/not-found';
-import StyleGuide from '../containers/style-guide';
+import AppLayout from '../containers/app-layout'
+
+import ForwardersEdit from '../containers/forwarders/edit'
+import ForwardersIndex from '../containers/forwarders/index'
+import ForwardersShow from '../containers/forwarders/show'
+
+import ForwarderTypes from '../containers/forwarder-types/'
+import ConfigureForwarderTypes from '../containers/forwarder-types/configure'
+import ShowForwarderTypes from '../containers/forwarder-types/show'
+
+import Login from '../containers/login'
+import Logout from '../containers/logout'
+import NotFound from '../containers/not-found'
 
 
-class AppRoutes extends Component {
-  render() {
-    const {requireAuth} = this.props
-    return (
-      <ReduxRouter>
-        <Route path="/" onEnter={requireAuth} component={AppLayout}>
-          <IndexRoute component={Forwarder}/>
-          <Route path="/forwarders" component={Forwarder}/>
-          <Route path="/forwarder/:forwarderUUID" component={ForwarderDetail}/>
-          <Route path="/forwarders/new" component={ForwarderNew}>
-            <IndexRoute component={ForwarderNewIndex}/>
-            <Route path="store" component={ForwarderNewDataStore}/>
-            <Route path="options" component={ForwarderNewOptions}/>
-            <Route path="gateblu" component={ForwarderNewGateblu}/>
-            <Route path="subscriptions" component={ForwarderNewSubscriptions}/>
-            <Route path="register" component={ForwarderNewRegister}/>
-          </Route>
-        </Route>
+import { fetchOctobluUser, storeAuthentication } from '../services/auth-service'
 
-        <Route path="style-guide" component={StyleGuide}/>
-        <Route path="login" component={Login}/>
-        <Route path="logout" component={Logout}/>
-      </ReduxRouter>
-    );
-  }
-}
 
-module.exports = AppRoutes;
+const AppRoutes = ({ history }) => {
+  return (
+  <Router history={history}>
+    <Route path="/" component={AppLayout}>
+      <IndexRoute component={ForwardersIndex}/>
+
+      <Route path="new" component={ForwarderTypes}>
+        <IndexRoute component={ShowForwarderTypes}/>
+        <Route path=":forwarderTypeId" component={ConfigureForwarderTypes}/>
+      </Route>
+
+      <Route path="forwarders" component={ForwardersIndex} />
+      <Route path="forwarders/:forwarderUuid" component={ForwardersShow} />
+    </Route>
+
+    <Route path="authenticated" onEnter={storeAuthentication}/>
+    <Route path="login" component={Login}/>
+    <Route path="logout" component={Logout}/>
+
+    <Route path="*" component={NotFound}/>
+  </Router>
+)}
+
+export default AppRoutes
