@@ -223,3 +223,49 @@ export function createSubscription(subscription) {
     })
   }
 }
+
+
+function deleteSubscriptionRequest() {
+  return {
+    type: types.DELETE_FORWARDER_SUBSCRIPTION_REQUEST
+  }
+}
+
+function deleteSubscriptionSuccess(subscriptions) {
+  return {
+    type: types.DELETE_FORWARDER_SUBSCRIPTION_SUCCESS,
+    subscriptions
+  }
+}
+
+function deleteSubscriptionFailure(error) {
+  return {
+    type: types.DELETE_FORWARDER_SUBSCRIPTION_FAILURE,
+    error
+  }
+}
+
+export function deleteSubscription(subscription) {
+  return dispatch => {
+    dispatch(createSubscriptionRequest())
+
+    const meshbluConfig = getMeshbluConfig()
+    const { uuid }      = meshbluConfig
+    const meshbluHttp   = new MeshbluHttp(meshbluConfig);
+
+    meshbluHttp.deleteSubscription(subscription, (error, devices) => {
+      if (error) {
+        dispatch(deleteSubscriptionFailure(error))
+        return
+      }
+      meshbluHttp.listSubscriptions({subscriberUuid: subscription.subscriberUuid}, (error, subscriptions) => {
+        if (error) {
+          dispatch(deleteSubscriptionFailure(error))
+          return
+        }
+
+        dispatch(deleteSubscriptionSuccess(subscriptions));
+      });
+    })
+  }
+}

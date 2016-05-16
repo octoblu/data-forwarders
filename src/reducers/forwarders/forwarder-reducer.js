@@ -41,6 +41,12 @@ export default function forwarders(state = initialState, action) {
       return { ...state, selected: forwarder, fetching: false }
     }
 
+    case actionTypes.DELETE_FORWARDER_SUBSCRIPTION_SUCCESS: {
+      var forwarder = _.cloneDeep(state.selected)
+      forwarder.subscriptions = action.subscriptions
+      return { ...state, selected: forwarder, fetching: false }
+    }
+
     case actionTypes.CREATE_FORWARDER_FAILURE:
       return { ...state, error: action.error, fetching: false }
 
