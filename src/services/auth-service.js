@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import atob from 'atob'
 import cookie from 'react-cookie'
-
 import { CLIENT_ID, MESHBLU_HOST, PROVIDER_URI } from '../constants/oauth';
 
 export function getMeshbluConfig(){
@@ -12,7 +11,7 @@ export function getMeshbluConfig(){
   return {
     uuid: bearerTokenPieces[0],
     token: bearerTokenPieces[1],
-    server: MESHBLU_HOST,
+    hostname: MESHBLU_HOST,
     port: 443
   }
 }
