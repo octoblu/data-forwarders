@@ -212,16 +212,15 @@ export function createSubscription({emitterUuid, subscriberUuid, type}) {
       }
     }
 
-
     const createUrl = `${FORWARDER_SERVICE_HOST}/forwarders/${subscriberUuid}/subscriptions/${emitterUuid}/${type}`
 
     return fetch(createUrl, requestOptions)
-      .then(res => res.json())
-      .then(dispatch(createSubscriptionSuccess({emitterUuid, subscriberUuid, type})))
+      .then(() => {
+        dispatch(createSubscriptionSuccess({emitterUuid, subscriberUuid, type}))
+      })
       .catch(error => dispatch(createSubscriptionFailure(`Could not create subscription for Forwarder:${subscriberUuid}`)))
   }
 }
-
 
 function deleteSubscriptionRequest() {
   return {
@@ -229,7 +228,7 @@ function deleteSubscriptionRequest() {
   }
 }
 
-function deleteSubscriptionSuccess(subscriptions) {
+function deleteSubscriptionSuccess(subscription) {
   return {
     type: types.DELETE_FORWARDER_SUBSCRIPTION_SUCCESS,
     subscription
@@ -259,13 +258,13 @@ export function deleteSubscription({emitterUuid, subscriberUuid, type}) {
     const deleteUrl = `${FORWARDER_SERVICE_HOST}/forwarders/${subscriberUuid}/subscriptions/${emitterUuid}/${type}`
 
     return fetch(deleteUrl, requestOptions)
-      .then(res => res.json())
-      .then(dispatch(deleteSubscriptionSuccess({emitterUuid, subscriberUuid, type}))
-      .catch(dispatch(deleteSubscriptionFailure(`Could not delete subscription for Forwarder ${subscriberUuid}`)))
+      .then(() => dispatch(deleteSubscriptionSuccess({ emitterUuid, subscriberUuid, type })))
+      .catch(ex => {
+        error = new Error(`Could not delete subscription for Forwarder ${subscriberUuid}`)
+        dispatch(deleteSubscriptionFailure(error))
+      })
   }
 }
-
-
 
 function fetchSubscriptionsRequest() {
   return {

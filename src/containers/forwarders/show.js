@@ -52,7 +52,6 @@ class ForwardersShow extends React.Component {
       return dispatch(deleteSubscription(subscription));
     }
     dispatch(createSubscription(subscription));
-    return dispatch(fetchSubscriptions({forwarder.device.uuid}))
   }
 
   render() {
