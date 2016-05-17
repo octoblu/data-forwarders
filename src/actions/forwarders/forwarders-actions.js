@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import * as types from '../../constants/action-types';
+import config as types from '../../constants';
 import { getMeshbluConfig, getBearerToken } from '../../services/auth-service';
 import { push } from 'react-router-redux'
 
@@ -199,7 +200,7 @@ function createSubscriptionFailure(error) {
   }
 }
 
-export function createSubscription(subscription) {
+export function createSubscription({emitterUuid, subscriberUuid, type}) {
   return dispatch => {
     dispatch(createSubscriptionRequest())
 
@@ -207,6 +208,22 @@ export function createSubscription(subscription) {
     const { uuid }      = meshbluConfig
     const meshbluHttp   = new MeshbluHttp(meshbluConfig);
 
+    const requuestOptions = {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${getBearerToken()}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+
+
+    fetch(`${FORWARDER_SERVICE_HOST}/forwarders/${subscriberUuid}/subscriptions/${emitterUuid}/${type}`, requestOptions )
+
+    return fetch(createUrl, requestOptions)
+      .then(res => res.json())
+      .then(json => dispatch(createForwarderSuccess(json)))
+      .catch(error => dispatch(createForwarderFailure(error)))
     meshbluHttp.createSubscription(subscription, (error, devices) => {
       if (error) {
         dispatch(createSubscriptionFailure(error))
