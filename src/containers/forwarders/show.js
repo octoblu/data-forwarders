@@ -51,7 +51,8 @@ class ForwardersShow extends React.Component {
     if( _.some(forwarder.subscriptions, {emitterUuid: device.uuid, type: subscriptionType}) ) {
       return dispatch(deleteSubscription(subscription));
     }
-    return dispatch(createSubscription(subscription));
+    dispatch(createSubscription(subscription));
+    return dispatch(fetchSubscriptions({forwarder.device.uuid}))
   }
 
   render() {

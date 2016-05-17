@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import * as types from '../../constants/action-types';
-import config as types from '../../constants';
+import {FORWARDER_SERVICE_HOST} from '../../constants/index';
 import { getMeshbluConfig, getBearerToken } from '../../services/auth-service';
 import { push } from 'react-router-redux'
 
@@ -186,10 +186,10 @@ function createSubscriptionRequest() {
   }
 }
 
-function createSubscriptionSuccess(subscriptions) {
+function createSubscriptionSuccess(subscription) {
   return {
     type: types.CREATE_FORWARDER_SUBSCRIPTION_SUCCESS,
-    subscriptions
+    subscription
   }
 }
 
@@ -204,40 +204,21 @@ export function createSubscription({emitterUuid, subscriberUuid, type}) {
   return dispatch => {
     dispatch(createSubscriptionRequest())
 
-    const meshbluConfig = getMeshbluConfig()
-    const { uuid }      = meshbluConfig
-    const meshbluHttp   = new MeshbluHttp(meshbluConfig);
-
-    const requuestOptions = {
+    const requestOptions = {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${getBearerToken()}`,
-        'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     }
 
 
-    fetch(`${FORWARDER_SERVICE_HOST}/forwarders/${subscriberUuid}/subscriptions/${emitterUuid}/${type}`, requestOptions )
+    const createUrl = `${FORWARDER_SERVICE_HOST}/forwarders/${subscriberUuid}/subscriptions/${emitterUuid}/${type}`
 
     return fetch(createUrl, requestOptions)
       .then(res => res.json())
-      .then(json => dispatch(createForwarderSuccess(json)))
-      .catch(error => dispatch(createForwarderFailure(error)))
-    meshbluHttp.createSubscription(subscription, (error, devices) => {
-      if (error) {
-        dispatch(createSubscriptionFailure(error))
-        return
-      }
-      meshbluHttp.listSubscriptions({subscriberUuid: subscription.subscriberUuid}, (error, subscriptions) => {
-        if (error) {
-          dispatch(createSubscriptionFailure(error))
-          return
-        }
-
-        dispatch(createSubscriptionSuccess(subscriptions));
-      });
-    })
+      .then(dispatch(createSubscriptionSuccess({emitterUuid, subscriberUuid, type})))
+      .catch(error => dispatch(createSubscriptionFailure(`Could not create subscription for Forwarder:${subscriberUuid}`)))
   }
 }
 
@@ -251,7 +232,7 @@ function deleteSubscriptionRequest() {
 function deleteSubscriptionSuccess(subscriptions) {
   return {
     type: types.DELETE_FORWARDER_SUBSCRIPTION_SUCCESS,
-    subscriptions
+    subscription
   }
 }
 
@@ -262,27 +243,68 @@ function deleteSubscriptionFailure(error) {
   }
 }
 
-export function deleteSubscription(subscription) {
+export function deleteSubscription({emitterUuid, subscriberUuid, type}) {
   return dispatch => {
-    dispatch(createSubscriptionRequest())
+    dispatch(deleteSubscriptionRequest())
 
-    const meshbluConfig = getMeshbluConfig()
-    const { uuid }      = meshbluConfig
-    const meshbluHttp   = new MeshbluHttp(meshbluConfig);
-
-    meshbluHttp.deleteSubscription(subscription, (error, devices) => {
-      if (error) {
-        dispatch(deleteSubscriptionFailure(error))
-        return
+    const requestOptions = {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${getBearerToken()}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       }
-      meshbluHttp.listSubscriptions({subscriberUuid: subscription.subscriberUuid}, (error, subscriptions) => {
-        if (error) {
-          dispatch(deleteSubscriptionFailure(error))
-          return
-        }
+    }
 
-        dispatch(deleteSubscriptionSuccess(subscriptions));
-      });
-    })
+    const deleteUrl = `${FORWARDER_SERVICE_HOST}/forwarders/${subscriberUuid}/subscriptions/${emitterUuid}/${type}`
+
+    return fetch(deleteUrl, requestOptions)
+      .then(res => res.json())
+      .then(dispatch(deleteSubscriptionSuccess({emitterUuid, subscriberUuid, type}))
+      .catch(dispatch(deleteSubscriptionFailure(`Could not delete subscription for Forwarder ${subscriberUuid}`)))
+  }
+}
+
+
+
+function fetchSubscriptionsRequest() {
+  return {
+    type: types.FETCH_FORWARDER_SUBSCRIPTIONS_REQUEST
+  }
+}
+
+function fetchSubscriptionsSuccess(subscriptions) {
+  return {
+    type: types.FETCH_FORWARDER_SUBSCRIPTIONS_SUCCESS,
+    subscriptions
+  }
+}
+
+function fetchSubscriptionsFailure(error) {
+  return {
+    type: types.FETCH_FORWARDER_SUBSCRIPTIONS_FAILURE,
+    error
+  }
+}
+
+export function fetchSubscriptions({forwarderUuid}){
+  return dispatch => {
+    dispatch(fetchSubscriptionsRequest())
+
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${getBearerToken()}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const fetchSubscriptionUrl = `${FORWARDER_SERVICE_HOST}/forwarders/${forwarderUuid}/subscriptions`
+
+    return fetch(fetchSubscriptionUrl, requestOptions)
+      .then(res => res.json())
+      .then(json => dispatch(fetchSubscriptionsSuccess(json)))
+      .catch(dispatch(fetchSubscriptionsFailure(`Could not fetch forwarder subscriptions for forwarder ${forwarderUuid}`)))
   }
 }
