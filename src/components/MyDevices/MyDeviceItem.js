@@ -14,9 +14,8 @@ class MyDeviceItem extends React.Component {
     const isSubscribed       = _.some(subscriptions, {type: subscriptionType, emitterUuid: device.uuid});
     const toggleSubscription = _.partial(onToggleSubscription, {device, subscriptionType});
 
-    return <input type="checkbox" checked={isSubscribed} onChange={toggleSubscription} />
+    return <input type="checkbox" defaultChecked={isSubscribed} onChange={toggleSubscription} />
   }
-
 
   render() {
     const { device } = this.props

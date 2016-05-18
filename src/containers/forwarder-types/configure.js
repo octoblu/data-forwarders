@@ -33,7 +33,7 @@ export class Configure extends React.Component {
   }
 
   handleSubmit(model) {
-    console.log('Submit', model);
+    console.log('Model', model);
     this.props.dispatch(createForwarder(model))
   }
 

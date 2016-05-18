@@ -117,7 +117,10 @@ export function fetchForwarderByUuid(forwarderUuid) {
     const { uuid }      = meshbluConfig
     const meshbluHttp   = new MeshbluHttp(meshbluConfig);
 
+    console.log('meshbluConfig', forwarderUuid);
     meshbluHttp.device(forwarderUuid, (error, device) => {
+      console.log('Device:', device);
+
       if (error) {
         dispatch(fetchForwarderByUuidFailure(error))
         return
@@ -218,7 +221,10 @@ export function createSubscription({emitterUuid, subscriberUuid, type}) {
       .then(() => {
         dispatch(createSubscriptionSuccess({emitterUuid, subscriberUuid, type}))
       })
-      .catch(error => dispatch(createSubscriptionFailure(`Could not create subscription for Forwarder:${subscriberUuid}`)))
+      .catch(error => {
+        error = new Error(`Could not create subscription for Forwarder:${subscriberUuid}`)
+        dispatch(createSubscriptionFailure())
+      })
   }
 }
 
@@ -259,7 +265,7 @@ export function deleteSubscription({emitterUuid, subscriberUuid, type}) {
 
     return fetch(deleteUrl, requestOptions)
       .then(() => dispatch(deleteSubscriptionSuccess({ emitterUuid, subscriberUuid, type })))
-      .catch(ex => {
+      .catch(error => {
         error = new Error(`Could not delete subscription for Forwarder ${subscriberUuid}`)
         dispatch(deleteSubscriptionFailure(error))
       })

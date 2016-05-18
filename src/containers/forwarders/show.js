@@ -32,7 +32,7 @@ class ForwardersShow extends React.Component {
   componentDidMount() {
     const {dispatch, routeParams} = this.props
     const {forwarderUuid} = routeParams
-    console.log('calling fetchForwarderByUuid')
+    console.log('fetchForwarderByUuid()', forwarderUuid)
     dispatch(fetchForwarderByUuid(forwarderUuid))
     dispatch(fetchMyDevices());
   }
