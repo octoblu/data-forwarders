@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import atob from 'atob'
 import cookie from 'react-cookie'
-import { CLIENT_ID, MESHBLU_HOST, PROVIDER_URI } from '../constants/oauth';
+import { MESHBLU_HOST } from 'config';
 
 export function getMeshbluConfig(){
   const bearerToken         = cookie.load('meshbluBearerToken')
@@ -40,6 +40,5 @@ export function storeAuthentication(nextState, replace) {
 }
 
 export function destroyAuthentication() {
-  console.log('logging out');
   cookie.remove('meshbluBearerToken', { path: '/' })
 }

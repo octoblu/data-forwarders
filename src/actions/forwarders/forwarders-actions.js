@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import * as types from '../../constants/action-types';
-import {FORWARDER_SERVICE_HOST} from '../../constants/index';
+import { FORWARDER_SERVICE_HOST } from 'config';
 import { getMeshbluConfig, getBearerToken } from '../../services/auth-service';
 import { push } from 'react-router-redux'
 
@@ -52,7 +52,6 @@ function createForwarderRequest() {
 }
 
 function createForwarderSuccess(forwarder) {
-  console.log('createForwarderSuccess', forwarder);
   return dispatch => {
     dispatch({
       type: types.CREATE_FORWARDER_SUCCESS,
@@ -117,10 +116,7 @@ export function fetchForwarderByUuid(forwarderUuid) {
     const { uuid }      = meshbluConfig
     const meshbluHttp   = new MeshbluHttp(meshbluConfig);
 
-    console.log('meshbluConfig', forwarderUuid);
     meshbluHttp.device(forwarderUuid, (error, device) => {
-      console.log('Device:', device);
-
       if (error) {
         dispatch(fetchForwarderByUuidFailure(error))
         return

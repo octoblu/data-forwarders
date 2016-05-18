@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { AppBar, AppBarPrimary, AppBarSecondary } from 'zooid-ui'
-
 import Authenticated from './authenticated'
+
+import { ENV } from 'config'
 
 import 'zooid-ui/dist/style.css'
 
@@ -18,7 +19,6 @@ const AppLayout = ({children}) => {
           <Link to="/logout" className="AppBar-Link">Logout</Link>
         </AppBarSecondary>
       </AppBar>
-
       {children}
     </Authenticated>
   );

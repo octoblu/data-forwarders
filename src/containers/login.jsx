@@ -2,7 +2,7 @@ import url from 'url'
 import React from 'react'
 import { Spinner } from 'zooid-ui'
 
-import { CLIENT_ID, PROVIDER_URI } from '../constants/oauth'
+import { OAUTH_CLIENT_ID, OAUTH_PROVIDER_URI } from 'config'
 
 export default class Login extends React.Component {
   state = {
@@ -30,14 +30,14 @@ export default class Login extends React.Component {
   }
 
   redirectToLogin() {
-    const {protocol,host,port} = url.parse(PROVIDER_URI)
+    const {protocol,host,port} = url.parse(OAUTH_PROVIDER_URI)
     const uri = url.format({
       protocol: protocol,
       host: host,
       port: port,
       pathname: '/authorize',
       query: {
-        client_id: CLIENT_ID,
+        client_id: OAUTH_CLIENT_ID,
         redirect_uri: this.buildAuthenticateRedirectUri(),
         response_type: 'token'
       }

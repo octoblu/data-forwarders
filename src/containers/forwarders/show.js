@@ -5,9 +5,7 @@ import { SchemaContainer } from 'zooid-meshblu-device-editor';
 
 import MyDevices from '../../components/MyDevices';
 
-import {
-  fetchMyDevices
-} from '../../actions/device/device-actions';
+import { fetchMyDevices } from '../../actions/device/device-actions';
 
 import {
   deleteForwarderByUuid,
@@ -32,7 +30,7 @@ class ForwardersShow extends React.Component {
   componentDidMount() {
     const {dispatch, routeParams} = this.props
     const {forwarderUuid} = routeParams
-    console.log('fetchForwarderByUuid()', forwarderUuid)
+
     dispatch(fetchForwarderByUuid(forwarderUuid))
     dispatch(fetchMyDevices());
   }

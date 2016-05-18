@@ -8,7 +8,7 @@ import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
 import { Router, Route, browserHistory } from 'react-router'
 
 import reducers from './reducers/'
-import AppRoutes from './config/routes'
+import AppRoutes from './routes'
 
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware, createLogger(), routerMiddleware(browserHistory))
 

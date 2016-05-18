@@ -21,7 +21,11 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json']
+    root: path.resolve(__dirname),
+    extensions: ['', '.js', '.jsx', '.json'],
+    alias: {
+      config: path.join(__dirname, 'src', 'config', 'development')
+    }
   },
   module: {
     loaders: [
