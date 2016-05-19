@@ -36,8 +36,8 @@ class ForwardersShow extends React.Component {
   }
 
   handleDelete()  {
-    const {dispatch, routeParams} = this.props
-    const {forwarderUuid} = routeParams
+    const { dispatch, routeParams } = this.props
+    const { forwarderUuid }         = routeParams
 
     dispatch(deleteForwarderByUuid(forwarderUuid))
   }

@@ -1,8 +1,7 @@
 import _ from 'lodash'
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-
-import {SchemaContainer} from 'zooid-meshblu-device-editor';
+import { SchemaContainer } from 'zooid-meshblu-device-editor';
 
 import { createForwarder } from '../../actions/forwarders/forwarders-actions'
 
@@ -38,11 +37,13 @@ export class Configure extends React.Component {
 
   render() {
     const { activeForwarderType } = this.props
+
     if (_.isEmpty(activeForwarderType)) return <div>Loading...</div>
 
     const { configSchema } = activeForwarderType
 
     let schemaEditor = null
+    
     if (configSchema) {
       schemaEditor = (
         <SchemaContainer

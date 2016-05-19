@@ -143,7 +143,7 @@ export function deleteForwarderByUuid(forwarderUuid) {
     const { uuid }      = meshbluConfig
     const meshbluHttp   = new MeshbluHttp(meshbluConfig);
 
-    meshbluHttp.unregister({uuid:forwarderUuid}, (error, forwarder) => {
+    meshbluHttp.unregister(forwarderUuid, (error, forwarder) => {
       if (error) {
         dispatch(deleteForwarderByUuidFailure(error))
         return
