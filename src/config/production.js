@@ -1,5 +1,5 @@
 exports.ENV                    = 'production'
 exports.FORWARDER_SERVICE_HOST = 'https://forwarder-service.octoblu.com'
 exports.MESHBLU_HOST           = 'meshblu.octoblu.com'
-exports.OAUTH_CLIENT_ID        = ''
+exports.OAUTH_CLIENT_ID        = 'aa8d8a74-e96f-45e9-91d2-54ee401e50f5'
 exports.OAUTH_PROVIDER_URI     = 'https://oauth.octoblu.com'
