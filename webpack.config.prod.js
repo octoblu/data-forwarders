@@ -3,7 +3,7 @@ var webpack       = require('webpack');
 var autoprefixer  = require('autoprefixer');
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
   entry: [
     './src/app'
   ],
@@ -12,13 +12,18 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
-    new webpack.NoErrorsPlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
-    })
+    }),
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+     compress: {
+       warnings: false
+     }
+   })
   ],
   resolve: {
     root: path.resolve(__dirname),
