@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import ForwarderTypeListItem from './ForwarderTypeListItem'
-
+import './ForwarderTypeList.css'
 const propTypes = {
   forwarderTypes: PropTypes.array.isRequired,
 }
@@ -14,7 +14,7 @@ const ForwarderTypeList = ({ forwarderTypes }) => {
     return <ForwarderTypeListItem forwarderType={forwarderType} key={index} />
   })
 
-  return <div>{items}</div>
+  return <div className="ForwarderTypeList">{items}</div>
 }
 
 ForwarderTypeList.propTypes = propTypes

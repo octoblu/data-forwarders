@@ -3,18 +3,20 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { Card, DeviceIcon } from 'zooid-ui';
 
+import './ForwarderTypeListItem.css';
+
 const propTypes = {
   forwarderType: PropTypes.object.isRequired,
 }
 
 const ForwarderTypeListItem = ({ forwarderType }) => {
   return (
-    <Card>
-      <Link to={`/new/${forwarderType.uuid}`}>
-        <DeviceIcon type={forwarderType.deviceType} />
-        {forwarderType.name}
-      </Link>
-    </Card>
+    <Link to={`/new/${forwarderType.uuid}`} className="ForwarderTypeListItem">
+      <div className="ForwarderTypeListItem-body">
+        <DeviceIcon type={forwarderType.deviceType} className="ForwarderTypeListItem-bodyImage" />
+      </div>
+      <div className="ForwarderTypeListItem-name">{forwarderType.name}</div>
+    </Link>
   )
 }
 
