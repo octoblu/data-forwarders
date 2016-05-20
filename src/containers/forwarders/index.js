@@ -1,6 +1,9 @@
 import _ from 'lodash'
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import { Breadcrumb, Button, EmptyState, Message, Spinner, Page, PageHeader, PageTitle, PageActions } from 'zooid-ui';
+import { browserHistory } from 'react-router'
 
 import ForwarderList from '../../components/ForwarderList';
 import { fetchForwarders } from '../../actions/forwarders/forwarders-actions'
@@ -22,16 +25,38 @@ class ForwardersIndex extends React.Component {
   }
 
   render() {
-    const { error, fetching, forwarders } = this.props;
+    const { breadcrumbs, error, fetching, forwarders } = this.props;
 
-    if (fetching) return <div>Loading...</div>
-    if (error) return <div>{`Error: ${error.message}`}</div>
+    if (fetching) return <Spinner />
+    if (error) return <Message type="error"><strong>Error: </strong>{error.message}</Message>
 
-    return <ForwarderList forwarders={forwarders} />
+    if (_.isEmpty(forwarders)) return (
+      <EmptyState
+        title="It's like a desert here."
+        description="You don't have any Forwarders"
+        cta="Create a Forwarder"
+        action={() => { browserHistory.push('new') }}
+      />
+    );
+
+    return (
+      <div>
+        <Page>
+          <PageHeader>
+            <PageTitle>Forwarders</PageTitle>
+            <PageActions>
+              <Button kind="hollow-primary" onClick={() => { browserHistory.push('new')}}>Create Forwarder</Button>
+            </PageActions>
+          </PageHeader>
+
+          <ForwarderList forwarders={forwarders} />
+        </Page>
+      </div>
+    )
   }
 }
 
-ForwardersIndex.propTypes = propTypes
+ForwardersIndex.propTypes    = propTypes
 
 function mapStateToProps({ forwarders }) {
   const { error, fetching, items } = forwarders;

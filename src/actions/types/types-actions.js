@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import * as types from '../../constants/action-types';
 import { getBearerToken } from '../../services/auth-service';
+import { FORWARDER_SERVICE_HOST } from 'config';
 
 function fetchTypesRequest() {
   return {
@@ -51,7 +52,7 @@ export function fetchTypes() {
        headers: { 'Authorization': `Bearer ${getBearerToken()}` }
      };
 
-    return fetch('https://forwarder-service.octoblu.dev/types', requestConfig)
+    return fetch(`${FORWARDER_SERVICE_HOST}/types`, requestConfig)
       .then(res => res.json())
       .then(res => dispatch(fetchTypesSuccess(res)))
       .catch(ex => dispatch(fetchTypesFailure(ex)))

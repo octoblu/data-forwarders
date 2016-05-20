@@ -1,7 +1,9 @@
 import _ from 'lodash'
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { SchemaContainer } from 'zooid-meshblu-device-editor';
+import { Breadcrumb, Message, Spinner, Page, PageHeader, PageTitle, PageActions } from 'zooid-ui';
 
 import { createForwarder } from '../../actions/forwarders/forwarders-actions'
 
@@ -14,7 +16,17 @@ import {
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
+  breadcrumbs: PropTypes.array
 }
+
+const defaultProps = {
+  breadcrumbs: [
+    { component: <Link to="/">Forwarders</Link> },
+    { component: <Link to="/new">Create</Link> },
+    { label: 'Configure' }
+  ]
+}
+
 
 export class Configure extends React.Component {
   constructor(props) {
@@ -36,14 +48,13 @@ export class Configure extends React.Component {
   }
 
   render() {
-    const { activeForwarderType } = this.props
+    const { activeForwarderType, breadcrumbs } = this.props
 
-    if (_.isEmpty(activeForwarderType)) return <div>Loading...</div>
+    if (_.isEmpty(activeForwarderType)) return <Spinner />
 
     const { configSchema } = activeForwarderType
 
     let schemaEditor = null
-    
     if (configSchema) {
       schemaEditor = (
         <SchemaContainer
@@ -55,14 +66,22 @@ export class Configure extends React.Component {
 
     return (
       <div>
-        <h1>Configure - {activeForwarderType.name}</h1>
-        {schemaEditor}
+        <Breadcrumb fragments={breadcrumbs}/>
+
+        <Page>
+          <PageHeader>
+            <PageTitle>Configure - {activeForwarderType.name}</PageTitle>
+          </PageHeader>
+
+          {schemaEditor}
+        </Page>
       </div>
     )
   }
 }
 
-Configure.propTypes = propTypes
+Configure.propTypes    = propTypes
+Configure.defaultProps = defaultProps
 
 function mapStateToProps({ activeForwarderType, types }) {
   return {

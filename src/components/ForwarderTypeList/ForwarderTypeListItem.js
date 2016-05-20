@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import { Card, DeviceIcon } from 'zooid-ui';
 
 const propTypes = {
   forwarderType: PropTypes.object.isRequired,
@@ -8,10 +9,12 @@ const propTypes = {
 
 const ForwarderTypeListItem = ({ forwarderType }) => {
   return (
-    <Link to={`/new/${forwarderType.uuid}`}>
-      <img src={forwarderType.logoUrl} alt={forwarderType.name} />
-      {forwarderType.name}
-    </Link>
+    <Card>
+      <Link to={`/new/${forwarderType.uuid}`}>
+        <DeviceIcon type={forwarderType.deviceType} />
+        {forwarderType.name}
+      </Link>
+    </Card>
   )
 }
 

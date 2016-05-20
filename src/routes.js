@@ -5,6 +5,8 @@ import AppLayout from './containers/app-layout'
 import ForwardersEdit from './containers/forwarders/edit'
 import ForwardersIndex from './containers/forwarders/index'
 import ForwardersShow from './containers/forwarders/show'
+import ForwardersShowConfigure from './containers/forwarders/configure'
+import ForwardersShowSubscriptions from './containers/forwarders/subscriptions'
 import ForwarderTypes from './containers/forwarder-types/'
 import ConfigureForwarderTypes from './containers/forwarder-types/configure'
 import ShowForwarderTypes from './containers/forwarder-types/show'
@@ -27,7 +29,10 @@ const AppRoutes = ({ history }) => {
       </Route>
 
       <Route path="forwarders" component={ForwardersIndex} />
-      <Route path="forwarders/:forwarderUuid" component={ForwardersShow} />
+      <Route path="forwarders/:forwarderUuid" component={ForwardersShow}>
+        <IndexRoute component={ForwardersShowConfigure} />
+        <Route path="subscriptions" component={ForwardersShowSubscriptions} />
+      </Route>
     </Route>
 
     <Route path="authenticated" onEnter={storeAuthentication}/>

@@ -1,6 +1,6 @@
 {
   "name": "data-forwarders",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -36,7 +36,7 @@
     "react-tabs": "^0.5.3",
     "redux": "^3.5.2",
     "redux-thunk": "^2.0.1",
-    "zooid-meshblu-device-editor": "^5.0.0",
+    "zooid-meshblu-device-editor": "^8.0.2",
     "zooid-ui": "^5.1.0"
   },
   "devDependencies": {

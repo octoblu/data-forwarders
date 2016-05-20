@@ -101,10 +101,14 @@ export function fetchForwarders() {
       headers: { 'Authorization': `Bearer ${getBearerToken()}` }
     };
 
-    return fetch('https://forwarder-service.octoblu.dev/forwarders', requestOptions)
+    return fetch(`${FORWARDER_SERVICE_HOST}/forwarders`, requestOptions)
       .then(res => res.json())
-      .then(json => dispatch(fetchForwardersSuccess(json)))
-      .catch(error => dispatch(fetchForwardersFailure(error)))
+      .then((json) => {
+        dispatch(fetchForwardersSuccess(json))
+      })
+      .catch((error) => {
+        dispatch(fetchForwardersFailure(error))
+      })
   }
 }
 

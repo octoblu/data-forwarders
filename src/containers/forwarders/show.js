@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { Tab ,Tabs ,TabList ,TabPanel } from 'react-tabs';
+import { Breadcrumb, Button, Message, Nav, Spinner, Page, PageHeader, PageTitle, PageActions } from 'zooid-ui';
 import { SchemaContainer } from 'zooid-meshblu-device-editor';
 
 import MyDevices from '../../components/MyDevices';
 
 import { fetchMyDevices } from '../../actions/device/device-actions';
-
 import {
   deleteForwarderByUuid,
   fetchForwarderByUuid,
@@ -16,9 +17,18 @@ import {
 
 
 const propTypes = {
+  breadcrumbs: PropTypes.array,
+  children: PropTypes.node,
   dispatch: PropTypes.func.isRequired,
   forwarder: PropTypes.object,
 }
+
+const defaultProps = {
+  breadcrumbs: [
+    { component: <Link to="/">Forwarders</Link> }
+  ]
+}
+
 
 class ForwardersShow extends React.Component {
   constructor(props) {
@@ -54,12 +64,13 @@ class ForwardersShow extends React.Component {
 
   render() {
     const {
+      activeForwarderType,
+      children,
+      error,
       forwarder,
       fetching,
-      error,
       myDevices,
       routeParams,
-      activeForwarderType,
     } = this.props
 
     if (fetching) return <div>Loading...</div>
@@ -69,29 +80,45 @@ class ForwardersShow extends React.Component {
     const {device, subscriptions} = forwarder
     const { name, type, uuid } = device
 
+    const breadcrumbs = [{ component: <Link to="/">Forwarders</Link> }, { label: name }]
+
+    console.log('PROPS', this.props.route, this.props.location.pathname);
     return (
       <div>
-        <div>
-          <h1>Forwarder: {name}</h1>
-          <h2>Type: {type}</h2>
-          <h2>UUID: {uuid}</h2>
-          <button onClick={this.handleDelete}>Delete</button>
-        </div>
+        <Breadcrumb fragments={breadcrumbs} />
 
-        <Tabs>
-          <TabList>
-            <Tab>Configurations</Tab>
-            <Tab>Subscriptions</Tab>
-          </TabList>
+        <Page>
+          <PageHeader>
+            <PageTitle>{name}</PageTitle>
+            <PageActions>
+              <Button onClick={this.handleDelete} kind="hollow-danger">Delete</Button>
+            </PageActions>
+          </PageHeader>
 
-          <TabPanel>
-            <h2>Configure</h2>
-          </TabPanel>
+          <h4>Type: {type}</h4>
+          <h4>UUID: {uuid}</h4>
 
-          <TabPanel>
-            <MyDevices onToggleSubscription={this.toggleSubscription} devices={myDevices.items} subscriptions={subscriptions} />
-          </TabPanel>
-        </Tabs>
+          <Nav>
+            <Link
+              to={`/forwarders/${uuid}`}
+              activeClassName="Nav-item--active"
+              onlyActiveOnIndex={true}
+              className="Nav-item"
+            >
+              Configuration
+            </Link>
+
+            <Link
+              to={`/forwarders/${uuid}/subscriptions`}
+              activeClassName="Nav-item--active"
+              className="Nav-item"
+            >
+              Subscriptions
+            </Link>
+          </Nav>
+
+          {children}
+        </Page>
       </div>
     );
   }
@@ -99,6 +126,7 @@ class ForwardersShow extends React.Component {
 
 
 ForwardersShow.propTypes = propTypes
+ForwardersShow.defaultProps = defaultProps
 
 function mapStateToProps({ forwarders, myDevices, activeForwarderType }) {
 

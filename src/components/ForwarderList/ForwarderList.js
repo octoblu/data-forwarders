@@ -1,5 +1,7 @@
 import _ from 'lodash'
 import React, { PropTypes } from 'react';
+import { List } from 'zooid-ui'
+import { browserHistory } from 'react-router'
 
 import ForwarderListItem from './ForwarderListItem';
 
@@ -8,13 +10,13 @@ const propTypes = {
 };
 
 const ForwarderList = ({ forwarders }) => {
-  if (_.isEmpty(forwarders))  return null;
+  if (_.isEmpty(forwarders)) return null;
 
   const items = _.map(forwarders, (forwarder, index) => {
     return <ForwarderListItem forwarder={forwarder} key={index} />;
   })
 
-  return <div>{items}</div>;
+  return <List>{items}</List>;
 };
 
 ForwarderList.propTypes = propTypes;

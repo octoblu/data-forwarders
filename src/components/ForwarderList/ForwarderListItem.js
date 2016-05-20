@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import { ListItem } from 'zooid-ui'
+
 
 const propTypes = {
   forwarder: PropTypes.object.isRequired,
@@ -12,11 +14,11 @@ const ForwarderListItem = ({ forwarder }) => {
   const { name, type, uuid } = forwarder;
 
   return (
-    <div className="ForwarderListItem">
+    <ListItem className="ForwarderListItem">
       <header className="ForwarderListItem-name">{name}</header>
       <div className="ForwarderListItem-type">Type: {type}</div>
       <Link to={`/forwarders/${uuid}`}>Detail</Link>
-    </div>
+    </ListItem>
   )
 }
 
