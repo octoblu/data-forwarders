@@ -5,44 +5,28 @@ import { Tab ,Tabs ,TabList ,TabPanel } from 'react-tabs';
 import { Breadcrumb, Button, Message, Nav, Spinner, Page, PageHeader, PageTitle, PageActions } from 'zooid-ui';
 import { SchemaContainer } from 'zooid-meshblu-device-editor';
 
-import MyDevices from '../../components/MyDevices';
-
-import { fetchMyDevices } from '../../actions/device/device-actions';
 import {
   deleteForwarderByUuid,
   fetchForwarderByUuid,
-  createSubscription,
-  deleteSubscription
 } from '../../actions/forwarders/forwarders-actions';
 
-
 const propTypes = {
-  breadcrumbs: PropTypes.array,
   children: PropTypes.node,
   dispatch: PropTypes.func.isRequired,
   forwarder: PropTypes.object,
 }
 
-const defaultProps = {
-  breadcrumbs: [
-    { component: <Link to="/">Forwarders</Link> }
-  ]
-}
-
-
 class ForwardersShow extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleDelete = this.handleDelete.bind(this)
   }
 
   componentDidMount() {
-    const {dispatch, routeParams} = this.props
-    const {forwarderUuid} = routeParams
+    const { dispatch, routeParams } = this.props
+    const { forwarderUuid } = routeParams
 
     dispatch(fetchForwarderByUuid(forwarderUuid))
-    dispatch(fetchMyDevices());
   }
 
   handleDelete()  {
@@ -52,37 +36,17 @@ class ForwardersShow extends React.Component {
     dispatch(deleteForwarderByUuid(forwarderUuid))
   }
 
-  toggleSubscription = ({device, subscriptionType}) => {
-    const {dispatch, forwarder} = this.props
-    const subscription = { emitterUuid: device.uuid, subscriberUuid: forwarder.device.uuid, type: subscriptionType }
-
-    if( _.some(forwarder.subscriptions, {emitterUuid: device.uuid, type: subscriptionType}) ) {
-      return dispatch(deleteSubscription(subscription));
-    }
-    dispatch(createSubscription(subscription));
-  }
-
   render() {
-    const {
-      activeForwarderType,
-      children,
-      error,
-      forwarder,
-      fetching,
-      myDevices,
-      routeParams,
-    } = this.props
+    const { children, error, forwarder, fetching, routeParams } = this.props
 
     if (fetching) return <div>Loading...</div>
     if (error) return <div>Error: {error.message}</div>
     if (_.isEmpty(forwarder)) return null
 
-    const {device, subscriptions} = forwarder
-    const { name, type, uuid } = device
+    const { device, subscriptions } = forwarder
+    const { name, type, uuid }    = device
+    const breadcrumbs             = [{ component: <Link to="/">Forwarders</Link> }, { label: name }]
 
-    const breadcrumbs = [{ component: <Link to="/">Forwarders</Link> }, { label: name }]
-
-    console.log('PROPS', this.props.route, this.props.location.pathname);
     return (
       <div>
         <Breadcrumb fragments={breadcrumbs} />
@@ -124,18 +88,15 @@ class ForwardersShow extends React.Component {
   }
 }
 
-
 ForwardersShow.propTypes = propTypes
-ForwardersShow.defaultProps = defaultProps
 
-function mapStateToProps({ forwarders, myDevices, activeForwarderType }) {
+function mapStateToProps({ forwarders }) {
+  const { error, fetching, selected } = forwarders
 
   return {
-    forwarder: forwarders.selected,
-    fetching: forwarders.fetching,
-    error: forwarders.error,
-    myDevices,
-    activeForwarderType
+    error,
+    fetching,
+    forwarder: selected,
   }
 }
 

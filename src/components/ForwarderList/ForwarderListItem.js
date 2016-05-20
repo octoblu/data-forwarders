@@ -17,7 +17,7 @@ const ForwarderListItem = ({ forwarder }) => {
     <ListItem className="ForwarderListItem">
       <header className="ForwarderListItem-name">{name}</header>
       <div className="ForwarderListItem-type">Type: {type}</div>
-      <Link to={`/forwarders/${uuid}`}>Detail</Link>
+      <Link to={`/forwarders/${uuid}/subscriptions`}>Detail</Link>
     </ListItem>
   )
 }

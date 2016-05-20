@@ -13,7 +13,7 @@ const MyDevices = ({ devices, subscriptions, onToggleSubscription }) => {
   if (_.isEmpty(devices)) return null;
 
   const deviceRows = _.map(devices, (device, index) => {
-    const deviceSubscriptions = _.filter (subscriptions, {emitterUuid: device.uuid})
+    const deviceSubscriptions = _.filter(subscriptions, {emitterUuid: device.uuid})
     return <MyDeviceItem device={device} subscriptions={deviceSubscriptions} onToggleSubscription={onToggleSubscription} key={index} />;
    })
 

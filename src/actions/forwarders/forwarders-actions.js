@@ -183,9 +183,10 @@ export function createForwarder(forwarderOptions) {
 }
 
 
-function createSubscriptionRequest() {
+function createSubscriptionRequest(subscription) {
   return {
-    type: types.CREATE_FORWARDER_SUBSCRIPTION_REQUEST
+    type: types.CREATE_FORWARDER_SUBSCRIPTION_REQUEST,
+    subscription
   }
 }
 
@@ -205,7 +206,7 @@ function createSubscriptionFailure(error) {
 
 export function createSubscription({emitterUuid, subscriberUuid, type}) {
   return dispatch => {
-    dispatch(createSubscriptionRequest())
+    dispatch(createSubscriptionRequest({emitterUuid, subscriberUuid, type}))
 
     const requestOptions = {
       method: 'POST',
@@ -228,9 +229,10 @@ export function createSubscription({emitterUuid, subscriberUuid, type}) {
   }
 }
 
-function deleteSubscriptionRequest() {
+function deleteSubscriptionRequest(subscription) {
   return {
-    type: types.DELETE_FORWARDER_SUBSCRIPTION_REQUEST
+    type: types.DELETE_FORWARDER_SUBSCRIPTION_REQUEST,
+    subscription
   }
 }
 
@@ -250,7 +252,7 @@ function deleteSubscriptionFailure(error) {
 
 export function deleteSubscription({emitterUuid, subscriberUuid, type}) {
   return dispatch => {
-    dispatch(deleteSubscriptionRequest())
+    dispatch(deleteSubscriptionRequest({emitterUuid, subscriberUuid, type}))
 
     const requestOptions = {
       method: 'DELETE',
@@ -311,5 +313,17 @@ export function fetchSubscriptions({forwarderUuid}){
       .then(res => res.json())
       .then(json => dispatch(fetchSubscriptionsSuccess(json)))
       .catch(dispatch(fetchSubscriptionsFailure(`Could not fetch forwarder subscriptions for forwarder ${forwarderUuid}`)))
+  }
+}
+
+export function toggleSubscription({ device, subscriptionType }) {
+  return (dispatch, getState) => {
+    const forwarder = getState().forwarders.selected
+    const subscription = { emitterUuid: device.uuid, subscriberUuid: forwarder.device.uuid, type: subscriptionType }
+
+    if( _.some(forwarder.subscriptions, {emitterUuid: device.uuid, type: subscriptionType}) ) {
+      return dispatch(deleteSubscription(subscription));
+    }
+    dispatch(createSubscription(subscription));
   }
 }

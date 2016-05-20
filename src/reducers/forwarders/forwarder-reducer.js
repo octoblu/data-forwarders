@@ -31,9 +31,32 @@ export default function forwarders(state = initialState, action) {
     case actionTypes.CREATE_FORWARDER_REQUEST:
       return { ...state, fetching: true }
 
-    case actionTypes.CREATE_FORWARDER_SUCCESS: {
+    case actionTypes.CREATE_FORWARDER_SUCCESS:
       return { ...state, selected: action.forwarder, fetching: false }
+
+    case actionTypes.CREATE_FORWARDER_FAILURE:
+      return { ...state, error: action.error, fetching: false }
+
+    case actionTypes.CREATE_FORWARDER_SUBSCRIPTION_REQUEST: {
+      const { selected } = state
+      const { subscriptions } = state.selected
+      const optimisticSubscriptions = [ ...subscriptions, action.subscription ]
+
+      selected.subscriptions = optimisticSubscriptions
+
+      return { ...state, selected }
     }
+
+    case actionTypes.DELETE_FORWARDER_SUBSCRIPTION_REQUEST: {
+      const { selected } = state
+      const { subscriptions } = state.selected
+      const optimisticSubscriptions = _.reject(subscriptions, action.subscription)
+
+      selected.subscriptions = optimisticSubscriptions
+
+      return { ...state, selected }
+    }
+
     // case actionTypes.FETCH_FORWARDER_SUBSCRIPTIONS_REQUEST: {
     //   var forwarder = _.cloneDeep(state.selected)
     //   forwarder.subscriptions = action.subscriptions
@@ -55,9 +78,6 @@ export default function forwarders(state = initialState, action) {
     //   forwarder.subscriptions = action.subscriptions
     //   return { ...state, selected: forwarder, fetching: false }
     // }
-
-    case actionTypes.CREATE_FORWARDER_FAILURE:
-      return { ...state, error: action.error, fetching: false }
 
     default:
       return state
