@@ -65,17 +65,14 @@ export class Configure extends React.Component {
     }
 
     return (
-      <div>
-        <Breadcrumb fragments={breadcrumbs}/>
+      <Page width="small">
+        <PageHeader>
+          {/*<PageTitle>Configure - {activeForwarderType.name}</PageTitle>*/}
+          <Breadcrumb fragments={breadcrumbs}/>
+        </PageHeader>
 
-        <Page width="small">
-          <PageHeader>
-            <PageTitle>Configure - {activeForwarderType.name}</PageTitle>
-          </PageHeader>
-
-          {schemaEditor}
-        </Page>
-      </div>
+        {schemaEditor}
+      </Page>
     )
   }
 }

@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { ListItem } from 'zooid-ui'
 
+import './ForwarderListItem.css'
 
 const propTypes = {
   forwarder: PropTypes.object.isRequired,
@@ -15,9 +16,12 @@ const ForwarderListItem = ({ forwarder }) => {
 
   return (
     <ListItem className="ForwarderListItem">
-      <header className="ForwarderListItem-name">{name}</header>
+      <header className="ForwarderListItem-name">
+        <Link to={`/forwarders/${uuid}/subscriptions`}>
+          {name}
+        </Link>
+      </header>
       <div className="ForwarderListItem-type">Type: {type}</div>
-      <Link to={`/forwarders/${uuid}/subscriptions`}>Detail</Link>
     </ListItem>
   )
 }

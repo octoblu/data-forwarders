@@ -6,7 +6,6 @@
   width: 250px;
 }
 
-
 .ForwarderTypeListItem-body {
   display: flex;
   flex-direction: column;
@@ -19,7 +18,6 @@
   padding: 24px;
   margin-bottom: 6px;
 }
-
 
 .ForwarderTypeListItem:hover .ForwarderTypeListItem-body {
   border-color: #10A9FF;

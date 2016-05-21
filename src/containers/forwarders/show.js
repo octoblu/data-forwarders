@@ -48,42 +48,41 @@ class ForwardersShow extends React.Component {
     const breadcrumbs             = [{ component: <Link to="/">Forwarders</Link> }, { label: name }]
 
     return (
-      <div>
-        <Breadcrumb fragments={breadcrumbs} />
+      <Page width="small">
+        <PageHeader>
+          {/*<PageTitle>{name}</PageTitle>*/}
+          <Breadcrumb fragments={breadcrumbs} />
+          <PageActions>
+            <Button onClick={this.handleDelete} kind="hollow-danger" size="small">Delete</Button>
+          </PageActions>
+        </PageHeader>
 
-        <Page width="small">
-          <PageHeader>
-            <PageTitle>{name}</PageTitle>
-            <PageActions>
-              <Button onClick={this.handleDelete} kind="hollow-danger">Delete</Button>
-            </PageActions>
-          </PageHeader>
+        <div>
+          <div>Type: {type}</div>
+          <div>UUID: {uuid}</div>
+        </div>
 
-          <h4>Type: {type}</h4>
-          <h4>UUID: {uuid}</h4>
+        <Nav>
+          <Link
+            to={`/forwarders/${uuid}`}
+            activeClassName="Nav-item--active"
+            onlyActiveOnIndex={true}
+            className="Nav-item"
+          >
+            Configuration
+          </Link>
 
-          <Nav>
-            <Link
-              to={`/forwarders/${uuid}`}
-              activeClassName="Nav-item--active"
-              onlyActiveOnIndex={true}
-              className="Nav-item"
-            >
-              Configuration
-            </Link>
+          <Link
+            to={`/forwarders/${uuid}/subscriptions`}
+            activeClassName="Nav-item--active"
+            className="Nav-item"
+          >
+            Subscriptions
+          </Link>
+        </Nav>
 
-            <Link
-              to={`/forwarders/${uuid}/subscriptions`}
-              activeClassName="Nav-item--active"
-              className="Nav-item"
-            >
-              Subscriptions
-            </Link>
-          </Nav>
-
-          {children}
-        </Page>
-      </div>
+        {children}
+      </Page>
     );
   }
 }
