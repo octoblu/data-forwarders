@@ -2,14 +2,13 @@ import React, { Component } from 'react'
 import { IndexRoute, Route, Router } from 'react-router'
 
 import AppLayout from './containers/app-layout'
-import ForwardersEdit from './containers/forwarders/edit'
 import ForwardersIndex from './containers/forwarders/index'
 import ForwardersShow from './containers/forwarders/show'
 import ForwardersShowConfigure from './containers/forwarders/configure'
 import ForwardersShowSubscriptions from './containers/forwarders/subscriptions'
 import ForwarderTypes from './containers/forwarder-types/'
-import ConfigureForwarderTypes from './containers/forwarder-types/configure'
-import ShowForwarderTypes from './containers/forwarder-types/show'
+import ForwarderTypesConfigure from './containers/forwarder-types/configure'
+import ForwarderTypesShow from './containers/forwarder-types/show'
 
 import Login from './containers/login'
 import Logout from './containers/logout'
@@ -24,8 +23,8 @@ const AppRoutes = ({ history }) => {
       <IndexRoute component={ForwardersIndex}/>
 
       <Route path="new" component={ForwarderTypes}>
-        <IndexRoute component={ShowForwarderTypes}/>
-        <Route path=":forwarderTypeId" component={ConfigureForwarderTypes}/>
+        <IndexRoute component={ForwarderTypesShow}/>
+        <Route path=":forwarderTypeId" component={ForwarderTypesConfigure}/>
       </Route>
 
       <Route path="forwarders" component={ForwardersIndex} />

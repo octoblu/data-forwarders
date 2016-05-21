@@ -41,7 +41,7 @@ class ForwardersIndex extends React.Component {
 
     return (
       <div>
-        <Page>
+        <Page width="small">
           <PageHeader>
             <PageTitle>Forwarders</PageTitle>
             <PageActions>

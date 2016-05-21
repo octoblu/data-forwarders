@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   text-decoration: none;
-  width: 320px;
+  width: 250px;
 }
 
 
@@ -29,13 +29,13 @@
 
 .ForwarderTypeListItem-bodyImage {
   display: flex;
-  max-height: 180px;
+  max-height: 150px;
 }
 
 .ForwarderTypeListItem-name {
   text-align: center;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 300;
   text-align: center;
   padding: 6px 12px;
 }

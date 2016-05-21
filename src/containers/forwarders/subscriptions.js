@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { SchemaContainer } from 'zooid-meshblu-device-editor';
 
-import MyDevices from '../../components/MyDevices'
+import SubscriptionEditor from '../../components/SubscriptionEditor'
 import { toggleSubscription } from '../../actions/forwarders/forwarders-actions';
 import { fetchMyDevices } from '../../actions/device/device-actions';
 
@@ -34,7 +34,7 @@ class Subscriptions extends React.Component {
     if (_.isEmpty(subscriptions)) return null;
 
     return (
-      <MyDevices
+      <SubscriptionEditor
         devices={myDevices}
         subscriptions={subscriptions}
         onToggleSubscription={ this.handleToggleSubscription }

@@ -68,7 +68,7 @@ export class Configure extends React.Component {
       <div>
         <Breadcrumb fragments={breadcrumbs}/>
 
-        <Page>
+        <Page width="small">
           <PageHeader>
             <PageTitle>Configure - {activeForwarderType.name}</PageTitle>
           </PageHeader>

@@ -33,7 +33,7 @@ class ShowForwarderTypes extends React.Component {
       <div>
         <Breadcrumb fragments={breadcrumbs}/>
 
-        <Page>
+        <Page width="small">
           <PageHeader>
             <PageTitle>Select a Data Store</PageTitle>
           </PageHeader>

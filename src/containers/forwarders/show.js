@@ -51,7 +51,7 @@ class ForwardersShow extends React.Component {
       <div>
         <Breadcrumb fragments={breadcrumbs} />
 
-        <Page>
+        <Page width="small">
           <PageHeader>
             <PageTitle>{name}</PageTitle>
             <PageActions>
