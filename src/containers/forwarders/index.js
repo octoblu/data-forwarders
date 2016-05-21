@@ -45,7 +45,13 @@ class ForwardersIndex extends React.Component {
           {/*<PageTitle>Forwarders</PageTitle>*/}
           <Breadcrumb fragments={[{label: 'Forwarders'}]} />
           <PageActions>
-            <Button kind="hollow-primary" onClick={() => { browserHistory.push('new')}}>Create Forwarder</Button>
+            <Button
+              kind="hollow-primary"
+              onClick={() => { browserHistory.push('new')}}
+              size="small"
+            >
+              Create Forwarder
+            </Button>
           </PageActions>
         </PageHeader>
 
