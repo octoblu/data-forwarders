@@ -1,16 +1,18 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import forwardersReducer from './forwarders/forwarder-reducer';
-import typesReducer from './types/types-reducer';
-import activeForwarderTypeReducer from './active-type/active-type-reducer';
-import myDevicesReducer from './my-devices/my-devices-reducer';
+import activeForwarderType from './active-type/active-type-reducer';
+import forwarders from './forwarders/forwarder-reducer';
+import myDevices from './my-devices/my-devices-reducer';
+import toast from './toast';
+import types from './types/types-reducer';
 
 const rootReducer = combineReducers({
-  activeForwarderType: activeForwarderTypeReducer,
-  forwarders: forwardersReducer,
-  myDevices: myDevicesReducer,
+  activeForwarderType,
+  forwarders,
+  myDevices,
+  types ,
+  toast,
   routing: routerReducer,
-  types: typesReducer,
 })
 
 export default rootReducer

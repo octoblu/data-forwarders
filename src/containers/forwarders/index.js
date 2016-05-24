@@ -7,6 +7,7 @@ import { browserHistory } from 'react-router'
 
 import ForwarderList from '../../components/ForwarderList';
 import { fetchForwarders } from '../../actions/forwarders/forwarders-actions'
+import { setToast } from '../../actions/'
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -22,6 +23,8 @@ class ForwardersIndex extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(fetchForwarders());
+    console.log('Mounted');
+    this.props.dispatch(setToast('Belize 4 Lyfe'))
   }
 
   render() {

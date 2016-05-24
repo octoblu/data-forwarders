@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { IndexRoute, Route, Router } from 'react-router'
 
 import AppLayout from './containers/app-layout'
@@ -18,28 +18,29 @@ import { fetchOctobluUser, storeAuthentication } from './services/auth-service'
 
 const AppRoutes = ({ history }) => {
   return (
-  <Router history={history}>
-    <Route path="/" component={AppLayout}>
-      <IndexRoute component={ForwardersIndex}/>
+    <Router history={history}>
+      <Route path="/" component={AppLayout}>
+        <IndexRoute component={ForwardersIndex}/>
 
-      <Route path="new" component={ForwarderTypes}>
-        <IndexRoute component={ForwarderTypesShow}/>
-        <Route path=":forwarderTypeId" component={ForwarderTypesConfigure}/>
+        <Route path="new" component={ForwarderTypes}>
+          <IndexRoute component={ForwarderTypesShow}/>
+          <Route path=":forwarderTypeId" component={ForwarderTypesConfigure}/>
+        </Route>
+
+        <Route path="forwarders" component={ForwardersIndex} />
+        <Route path="forwarders/:forwarderUuid" component={ForwardersShow}>
+          <IndexRoute component={ForwardersShowConfigure} />
+          <Route path="subscriptions" component={ForwardersShowSubscriptions} />
+        </Route>
       </Route>
 
-      <Route path="forwarders" component={ForwardersIndex} />
-      <Route path="forwarders/:forwarderUuid" component={ForwardersShow}>
-        <IndexRoute component={ForwardersShowConfigure} />
-        <Route path="subscriptions" component={ForwardersShowSubscriptions} />
-      </Route>
-    </Route>
+      <Route path="authenticated" onEnter={storeAuthentication}/>
+      <Route path="login" component={Login}/>
+      <Route path="logout" component={Logout}/>
 
-    <Route path="authenticated" onEnter={storeAuthentication}/>
-    <Route path="login" component={Login}/>
-    <Route path="logout" component={Logout}/>
-
-    <Route path="*" component={NotFound}/>
-  </Router>
-)}
+      <Route path="*" component={NotFound}/>
+    </Router>
+  )
+}
 
 export default AppRoutes
