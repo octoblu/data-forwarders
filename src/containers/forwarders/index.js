@@ -23,8 +23,6 @@ class ForwardersIndex extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(fetchForwarders());
-    console.log('Mounted');
-    this.props.dispatch(setToast('Belize 4 Lyfe'))
   }
 
   render() {
@@ -64,7 +62,7 @@ class ForwardersIndex extends React.Component {
   }
 }
 
-ForwardersIndex.propTypes    = propTypes
+ForwardersIndex.propTypes = propTypes
 
 function mapStateToProps({ forwarders }) {
   const { error, fetching, items } = forwarders;

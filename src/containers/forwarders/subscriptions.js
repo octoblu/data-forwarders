@@ -6,6 +6,7 @@ import { SchemaContainer } from 'zooid-meshblu-device-editor';
 import SubscriptionEditor from '../../components/SubscriptionEditor'
 import { toggleSubscription } from '../../actions/forwarders/forwarders-actions';
 import { fetchMyDevices } from '../../actions/device/device-actions';
+import { setToast } from '../../actions'
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -25,8 +26,14 @@ class Subscriptions extends React.Component {
     this.props.dispatch(toggleSubscription({ device, subscriptionType }))
   }
 
+  componentWillReceiveProps({ error }) {
+    if (error) {
+      this.props.dispatch(setToast(error))
+    }
+  }
+
   render() {
-    const { fetching, subscriptions, myDevices } = this.props
+    const { fetching, subscriptions, myDevices, error } = this.props
 
     if (this.props.fetchingForwarders) return null
 
@@ -44,10 +51,10 @@ class Subscriptions extends React.Component {
 }
 
 function mapStateToProps({ forwarders, myDevices }) {
-  const { subscriptions }   = forwarders.selected
+  const { error, subscriptions }   = forwarders.selected
   const { fetching, items } = myDevices
 
-  return { subscriptions, myDevices: items, fetching: fetching, fetchingForwarders: forwarders.fetching }
+  return { subscriptions, myDevices: items, fetching: fetching, fetchingForwarders: forwarders.fetching, error }
 }
 
 export default connect(mapStateToProps)(Subscriptions)

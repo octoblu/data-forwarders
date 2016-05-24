@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import { Link } from 'react-router'
 import { TopBar, TopBarTitle } from 'zooid-ui'
 import Authenticated from './authenticated'
@@ -9,21 +10,24 @@ import { ENV } from 'config'
 import 'zooid-ui/dist/style.css'
 import '../schema-editor.css'
 
-const AppLayout = ({children}) => {
+const AppLayout = ({ children, toast }) => {
+  if (_.isError(toast)) toast = toast.message
+  
   return (
     <Authenticated>
       <TopBar>
-        <TopBarTitle>
-          Data Forwarders
-        </TopBarTitle>
+        <TopBarTitle>Data Forwarders</TopBarTitle>
       </TopBar>
 
       {children}
 
-      <Toast />
+      <Toast message={toast} />
     </Authenticated>
   );
 }
 
+function mapStateToProps({ toast }) {
+  return { toast }
+}
 
-export default AppLayout
+export default connect(mapStateToProps)(AppLayout)
