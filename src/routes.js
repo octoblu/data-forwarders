@@ -9,6 +9,7 @@ import ForwardersShowSubscriptions from './containers/forwarders/subscriptions'
 import ForwarderTypes from './containers/forwarder-types/'
 import ForwarderTypesConfigure from './containers/forwarder-types/configure'
 import ForwarderTypesShow from './containers/forwarder-types/show'
+import Landing from './containers/Landing'
 
 import Login from './containers/login'
 import Logout from './containers/logout'
@@ -19,6 +20,7 @@ import { fetchOctobluUser, storeAuthentication } from './services/auth-service'
 const AppRoutes = ({ history }) => {
   return (
     <Router history={history}>
+      <Route path="/home" component={Landing} />
       <Route path="/" component={AppLayout}>
         <IndexRoute component={ForwardersIndex}/>
 
