@@ -11,8 +11,6 @@ import 'zooid-ui/dist/style.css'
 import '../schema-editor.css'
 
 const AppLayout = ({ children, toast }) => {
-  if (_.isError(toast)) toast = toast.message
-  
   return (
     <Authenticated>
       <TopBar>

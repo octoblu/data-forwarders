@@ -1,6 +1,6 @@
 {
   "name": "data-forwarders",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -40,7 +40,8 @@
     "redux-actions": "^0.9.1",
     "redux-thunk": "^2.0.1",
     "zooid-meshblu-device-editor": "^8.0.2",
-    "zooid-ui": "^5.1.1"
+    "zooid-ui": "^5.1.1",
+    "zooid-ui-toast": "^1.0.2"
   },
   "devDependencies": {
     "@octoblu/shmock": "^0.7.2",
