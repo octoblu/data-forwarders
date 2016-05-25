@@ -59,6 +59,9 @@ module.exports = {
       }
     ]
   },
+  node: {
+    fs: 'empty'
+  },
   postcss: function (webpack) {
     return [
       autoprefixer

@@ -1,6 +1,6 @@
 {
   "name": "data-forwarders",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,7 @@
     "atob": "^2.0.3",
     "axios": "^0.11.1",
     "isomorphic-fetch": "^2.2.1",
+    "json-schema-ref-parser": "^3.1.2",
     "meshblu": "^1.32.0",
     "react": "^15.0.1",
     "react-cookie": "^0.4.5",

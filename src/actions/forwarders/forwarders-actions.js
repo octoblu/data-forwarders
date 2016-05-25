@@ -183,6 +183,38 @@ export function createForwarder(forwarderOptions) {
   }
 }
 
+export function updateForwarder(device, forwarderData){
+  return (dispatch, getState) => {
+    dispatch(updateForwarderRequest())
+
+    const meshbluConfig = getMeshbluConfig()
+    const meshbluHttp   = new MeshbluHttp(meshbluConfig);
+
+    meshbluHttp.update(device.uuid, forwarderData, (error) => {
+      if(error) return dispatch(updateForwarderFailure(error))
+      return dispatch(updateForwarderSuccess())
+    })
+   }
+}
+
+function updateForwarderRequest(){
+  return {
+    type: types.UPDATE_FORWARDER_REQUEST
+  }
+}
+
+function updateForwarderFailure(error){
+  return {
+    type: types.UPDATE_FORWARDER_FAILURE,
+    error
+  }
+}
+
+function updateForwarderSuccess() {
+  return {
+    type: types.UPDATE_FORWARDER_SUCCESS
+  }
+}
 
 function createSubscriptionRequest(subscription) {
   return {
