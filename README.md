@@ -21,13 +21,13 @@ Forward your Octoblu data to data stores such as
 - [x] Show error messages
 - [x] deploy toast to NPM
 - [x] Show subscription feedback
-- [ ] Edit forwarders
+- [x] Edit forwarders
   - [x] update forwarder
-  - [ ] show success/failure feedback
+  - [x] show success/failure feedback
 - [ ] Move ref parser implementation to zooid-meshblu-device-editor
 - [ ] Add confirmation alert on forwarder delete
-- [ ] Create Forwarder
-  - [ ] Show success/error feedback
+- [x] Create Forwarder
+  - [x] Show success/error feedback
 - [ ] Design Polish
 - [ ] Analytics?
 - [ ] Landing page
