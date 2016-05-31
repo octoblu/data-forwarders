@@ -4,11 +4,14 @@ import { Link } from 'react-router';
 import { Tab ,Tabs ,TabList ,TabPanel } from 'react-tabs';
 import { Breadcrumb, Button, Message, Nav, Spinner, Page, PageHeader, PageTitle, PageActions } from 'zooid-ui';
 import { SchemaContainer } from 'zooid-meshblu-device-editor';
+import { OCTOBLU_CLIENT_URL } from 'config'
 
 import {
   deleteForwarderByUuid,
   fetchForwarderByUuid,
 } from '../../actions/forwarders/forwarders-actions';
+
+import './show.css'
 
 const propTypes = {
   children: PropTypes.node,
@@ -44,15 +47,21 @@ class ForwardersShow extends React.Component {
     if (_.isEmpty(forwarder)) return null
 
     const { device, subscriptions } = forwarder
-    const { name, type, uuid }    = device
-    const breadcrumbs             = [{ component: <Link to="/">Forwarders</Link> }, { label: name }]
+    const { name, type, uuid }      = device
+    const breadcrumbs               = [{ component: <Link to="/">Forwarders</Link> }, { label: name }]
 
     return (
       <Page width="small">
         <PageHeader>
-          {/*<PageTitle>{name}</PageTitle>*/}
           <Breadcrumb fragments={breadcrumbs} />
-          <PageActions>
+          <PageActions className="ForwarderShow-pageActions">
+            <Button
+              href={`${OCTOBLU_CLIENT_URL}/device/${uuid}`}
+              kind="hollow-primary"
+              size="small"
+            >
+              View in Octoblu
+            </Button>
             <Button onClick={this.handleDelete} kind="hollow-danger" size="small">Delete</Button>
           </PageActions>
         </PageHeader>
