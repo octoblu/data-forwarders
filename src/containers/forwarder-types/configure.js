@@ -9,9 +9,7 @@ import { createForwarder } from '../../actions/forwarders/forwarders-actions'
 
 import {
   fetchTypes,
-  fetchForwarderTypeById,
-  unsetActiveForwarderType,
-  setActiveForwarderType
+  fetchForwarderTypeByDeviceType
 } from '../../actions/types/types-actions'
 
 const propTypes = {
@@ -39,7 +37,7 @@ export class Configure extends React.Component {
     const { dispatch, routeParams, forwarderTypes } = this.props
 
     if (forwarderTypes.length) {
-      dispatch(fetchForwarderTypeById(routeParams.forwarderTypeId))
+      dispatch(fetchForwarderTypeByDeviceType(routeParams.forwarderDeviceType))
     }
   }
 

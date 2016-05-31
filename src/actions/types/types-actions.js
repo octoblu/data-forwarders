@@ -59,9 +59,9 @@ export function fetchTypes() {
   }
 }
 
-export function fetchForwarderTypeById(forwarderTypeId) {
+export function fetchForwarderTypeByDeviceType(forwarderDeviceType) {
   return (dispatch, getState) => {
-    const activeForwarderType = _.find(getState().types.items, {uuid: forwarderTypeId})
+    const activeForwarderType = _.find(getState().types.items, {deviceType: forwarderDeviceType})
 
     dispatch(fetchForwarderTypeConfigRequest(activeForwarderType))
 
@@ -73,19 +73,5 @@ export function fetchForwarderTypeById(forwarderTypeId) {
       .then(res => res.json())
       .then(res => dispatch(fetchForwarderTypeConfigSuccess(res)))
       .catch(ex => dispatch(fetchForwarderTypeConfigFailure(ex)))
-  }
-}
-
-export function setActiveForwarderType(forwarderTypes, forwarderTypeId) {
-  return {
-    type: types.SET_ACTIVE_FORWARDER_TYPE,
-    forwarderTypes,
-    forwarderTypeId
-  }
-}
-
-export function unsetActiveForwarderType() {
-  return {
-    type: types.UNSET_ACTIVE_FORWARDER_TYPE
   }
 }

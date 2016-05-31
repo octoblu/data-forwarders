@@ -49,26 +49,4 @@ describe('Action: Types', () => {
         expect(store.getActions()).to.deep.equal(expectedActions)
       })
   })
-
-  it('should create an action to set active forwarder type', () => {
-    const forwarderTypes = [{ id: 'Prince' }, { id: 'The-Time' }]
-    const forwarderTypeId = 'The-Time'
-
-    const expectedAction = {
-      type: types.SET_ACTIVE_FORWARDER_TYPE,
-      forwarderTypes,
-      forwarderTypeId
-    }
-
-    expect(actions.setActiveForwarderType(forwarderTypes, forwarderTypeId))
-      .to.deep.equal(expectedAction)
-  })
-
-  it('should create an action to unset active forwarder type', () => {
-    const expectedAction = {
-      type: types.UNSET_ACTIVE_FORWARDER_TYPE,
-    }
-
-    expect(actions.unsetActiveForwarderType()).to.deep.equal(expectedAction)
-  })
 })

@@ -11,7 +11,7 @@ const propTypes = {
 
 const ForwarderTypeListItem = ({ forwarderType }) => {
   return (
-    <Link to={`/new/${forwarderType.uuid}`} className="ForwarderTypeListItem">
+    <Link to={`/new/${forwarderType.deviceType}`} className="ForwarderTypeListItem">
       <div className="ForwarderTypeListItem-body">
         <DeviceIcon type={forwarderType.deviceType} className="ForwarderTypeListItem-bodyImage" />
       </div>

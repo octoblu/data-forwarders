@@ -24,7 +24,7 @@ const AppRoutes = ({ history }) => {
 
         <Route path="new" component={ForwarderTypes}>
           <IndexRoute component={ForwarderTypesShow}/>
-          <Route path=":forwarderTypeId" component={ForwarderTypesConfigure}/>
+          <Route path=":forwarderDeviceType" component={ForwarderTypesConfigure}/>
         </Route>
 
         <Route path="forwarders" component={ForwardersIndex} />
