@@ -36,6 +36,7 @@ export function storeAuthentication(nextState, replace) {
   const redirectUri = nextState.location.query.redirect_uri
 
   cookie.save('meshbluBearerToken', bearerToken, {path: '/'})
+
   replace(redirectUri)
 }
 

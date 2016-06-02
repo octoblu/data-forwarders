@@ -2,6 +2,13 @@
   background: #1961A0;
 }
 
+.Forwarder-EmptyState {
+  width: 800px;
+  background: #FFF;
+  margin: 50px auto;
+  padding: 50px;
+}
+
 .ForwarderShow-headerWrap {
   margin: 0 auto;
   padding: 32px 0 0;

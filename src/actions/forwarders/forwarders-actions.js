@@ -6,13 +6,15 @@ import { push } from 'react-router-redux'
 import { getMeshbluConfig, getBearerToken } from '../../services/auth-service';
 import * as types from '../../constants/action-types';
 
-const forwarderServiceRequest = axios.create({
-  baseURL: FORWARDER_SERVICE_HOST,
-  headers: {
-    'Authorization': `Bearer ${getBearerToken()}`,
-    'Content-Type': 'application/json'
-  }
-});
+function forwarderServiceRequest() {
+  return axios.create({
+    baseURL: FORWARDER_SERVICE_HOST,
+    headers: {
+      'Authorization': `Bearer ${getBearerToken()}`,
+      'Content-Type': 'application/json'
+    }
+  })
+}
 
 function fetchForwardersRequest() {
   return {
@@ -40,7 +42,7 @@ export function fetchForwarders() {
 
     const fetchForwardersUri = '/forwarders'
 
-    return forwarderServiceRequest.get(fetchForwardersUri)
+    return forwarderServiceRequest().get(fetchForwardersUri)
       .then(response => dispatch(fetchForwardersSuccess(response.data)))
       .catch(error => dispatch(fetchForwardersFailure(new Error('Could not fetch Forwarders'))))
   }
@@ -244,7 +246,7 @@ export function createSubscription({emitterUuid, subscriberUuid, type}) {
 
     const createSubscriptionUri = `/forwarders/${subscriberUuid}/subscriptions/${emitterUuid}/${type}`
 
-    return forwarderServiceRequest.post(createSubscriptionUri)
+    return forwarderServiceRequest().post(createSubscriptionUri)
       .then(response => dispatch(createSubscriptionSuccess({emitterUuid, subscriberUuid, type})))
       .catch(error => {
         error = new Error(`Failed: Create subscription`)
@@ -281,7 +283,7 @@ export function deleteSubscription({emitterUuid, subscriberUuid, type}) {
 
     const deleteSubscriptionUri = `/forwarders/${subscriberUuid}/subscriptions/${emitterUuid}/${type}`
 
-    return forwarderServiceRequest.delete(deleteSubscriptionUri)
+    return forwarderServiceRequest().delete(deleteSubscriptionUri)
       .then(response => dispatch(deleteSubscriptionSuccess({ emitterUuid, subscriberUuid, type })))
       .catch((error) => {
         error = new Error(`Failed: Delete subscription`)

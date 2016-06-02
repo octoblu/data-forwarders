@@ -15,7 +15,7 @@ export default class Authenticated extends Component {
       if(error || !octobluUser) {
         return this.redirectToLogin()
       }
-      this.setState({octobluUser})
+      this.setState({ octobluUser })
     })
   }
 
@@ -53,8 +53,9 @@ export default class Authenticated extends Component {
   }
 
   render() {
-    const {octobluUser} = this.state
-    const {children} = this.props
+    const { octobluUser } = this.state
+    const { children }    = this.props
+
     if (!octobluUser) return <Spinner size="large"/>
     return <div>{children}</div>
   }

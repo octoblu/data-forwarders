@@ -33,6 +33,7 @@ class ForwardersIndex extends React.Component {
 
     if (_.isEmpty(forwarders)) return (
       <EmptyState
+        className="Forwarder-EmptyState"
         title="It's like a desert here."
         description="You don't have any Forwarders"
         cta="Create a Forwarder"

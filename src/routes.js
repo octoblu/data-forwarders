@@ -14,7 +14,7 @@ import Login from './containers/login'
 import Logout from './containers/logout'
 import NotFound from './containers/not-found'
 
-import { fetchOctobluUser, storeAuthentication } from './services/auth-service'
+import { storeAuthentication } from './services/auth-service'
 
 const AppRoutes = ({ history }) => {
   return (
