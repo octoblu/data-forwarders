@@ -46,52 +46,56 @@ class ForwardersShow extends React.Component {
     if (error) return <div>Error: {error.message}</div>
     if (_.isEmpty(forwarder)) return null
 
-    const { device, subscriptions } = forwarder
+    const { device } = forwarder
     const { name, type, uuid }      = device
     const breadcrumbs               = [{ component: <Link to="/">Forwarders</Link> }, { label: name }]
 
     return (
-      <Page width="small">
-        <PageHeader>
-          <Breadcrumb fragments={breadcrumbs} />
-          <PageActions className="ForwarderShow-pageActions">
-            <Button
-              href={`${OCTOBLU_CLIENT_URL}/device/${uuid}`}
-              kind="hollow-primary"
-              size="small"
-            >
-              View in Octoblu
-            </Button>
-            <Button onClick={this.handleDelete} kind="hollow-danger" size="small">Delete</Button>
-          </PageActions>
-        </PageHeader>
+      <div>
+        <header className="ForwarderShow-header">
+          <Page width="small" className="ForwarderShow-headerWrap">
 
-        <div>
-          <div>Type: {type}</div>
-          <div>UUID: {uuid}</div>
-        </div>
+            <PageHeader>
+              <Breadcrumb fragments={breadcrumbs} />
 
-        <Nav>
-          <Link
-            to={`/forwarders/${uuid}`}
-            activeClassName="Nav-item--active"
-            onlyActiveOnIndex={true}
-            className="Nav-item"
-          >
-            Configuration
-          </Link>
+              <PageActions className="ForwarderShow-pageActions">
+                <Button
+                  href={`${OCTOBLU_CLIENT_URL}/device/${uuid}`}
+                  kind="hollow-primary"
+                  size="small"
+                >
+                  View in Octoblu
+                </Button>
+                <Button onClick={this.handleDelete} kind="hollow-danger" size="small">Delete</Button>
+              </PageActions>
+            </PageHeader>
 
-          <Link
-            to={`/forwarders/${uuid}/subscriptions`}
-            activeClassName="Nav-item--active"
-            className="Nav-item"
-          >
-            Subscriptions
-          </Link>
-        </Nav>
+            <Nav>
+              <Link
+                to={`/forwarders/${uuid}`}
+                activeClassName="Nav-item--active"
+                onlyActiveOnIndex={true}
+                className="Nav-item"
+              >
+                Configuration
+              </Link>
 
-        {children}
-      </Page>
+              <Link
+                to={`/forwarders/${uuid}/subscriptions`}
+                activeClassName="Nav-item--active"
+                className="Nav-item"
+              >
+                Subscriptions
+              </Link>
+            </Nav>
+          </Page>
+        </header>
+
+        <Page width="small">
+          {children}
+        </Page>
+
+      </div>
     );
   }
 }

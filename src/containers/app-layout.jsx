@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router'
-import { TopBar, TopBarTitle } from 'zooid-ui'
+import { AppBar } from 'zooid-ui'
 import Authenticated from './authenticated'
 import Toast from 'zooid-ui-toast'
 
@@ -13,9 +13,7 @@ import '../schema-editor.css'
 const AppLayout = ({ children, toast }) => {
   return (
     <Authenticated>
-      <TopBar>
-        <TopBarTitle>Data Forwarders</TopBarTitle>
-      </TopBar>
+      <AppBar title="Data Forwarders" />
 
       {children}
 

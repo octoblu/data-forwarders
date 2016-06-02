@@ -32,10 +32,18 @@ const SubscriptionEditor = ({ devices, subscriptions, onToggleSubscription }) =>
         <tr>
           <th>Name</th>
           <th>Type</th>
-          <th className="SubscriptionEditor-tableCellCenter">Broadcast Sent</th>
-          <th className="SubscriptionEditor-tableCellCenter">Broadcast Received</th>
-          <th className="SubscriptionEditor-tableCellCenter">Message Sent</th>
-          <th className="SubscriptionEditor-tableCellCenter">Message Received</th>
+          <th className="SubscriptionEditor-tableCellCenter">
+            Broadcast<br/>Sent
+          </th>
+          <th className="SubscriptionEditor-tableCellCenter">
+            Broadcast<br/>Received
+          </th>
+          <th className="SubscriptionEditor-tableCellCenter">
+            Message<br/>Sent
+          </th>
+          <th className="SubscriptionEditor-tableCellCenter">
+            Message<br/>Received
+          </th>
         </tr>
       </thead>
       <tbody>
