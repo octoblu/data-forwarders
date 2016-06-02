@@ -41,23 +41,29 @@ class ForwardersIndex extends React.Component {
     );
 
     return (
-      <Page width="small">
-        <PageHeader>
-          {/*<PageTitle>Forwarders</PageTitle>*/}
-          <Breadcrumb fragments={[{label: 'Forwarders'}]} />
-          <PageActions>
-            <Button
-              kind="hollow-primary"
-              onClick={() => { browserHistory.push('new')}}
-              size="small"
-            >
-              Create Forwarder
-            </Button>
-          </PageActions>
-        </PageHeader>
+      <div>
+        <header className="ForwarderShow-header">
+          <Page width="small" className="ForwarderShow-headerWrap">
 
-        <ForwarderList forwarders={forwarders} />
-      </Page>
+            <PageHeader>
+              <Breadcrumb fragments={[{label: 'Forwarders'}]} />
+              <PageActions className="ForwarderShow-pageActions">
+                <Button
+                  kind="hollow-primary"
+                  onClick={() => { browserHistory.push('new')}}
+                  size="small"
+                >
+                  Create Forwarder
+                </Button>
+              </PageActions>
+            </PageHeader>
+          </Page>
+        </header>
+
+        <Page width="small">
+          <ForwarderList forwarders={forwarders} />
+        </Page>
+      </div>
     )
   }
 }

@@ -19,6 +19,10 @@
   color: #FFF;
 }
 
+.ForwarderShow-pageActions .Button--delete {
+  border: none;
+}
+
 .ForwarderShow-pageActions .Button:hover {
   color: #FFF;
   background: rgba(255, 255, 255, 0.1);

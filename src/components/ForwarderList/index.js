@@ -17,7 +17,11 @@ const ForwarderList = ({ forwarders }) => {
     return <ForwarderListItem forwarder={forwarder} key={index} />;
   })
 
-  return <div className="ForwarderList">{items}</div>;
+  return (
+    <div className="ForwarderList">
+      {items}
+    </div>
+  );
 };
 
 ForwarderList.propTypes = propTypes;

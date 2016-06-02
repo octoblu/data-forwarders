@@ -63,14 +63,17 @@ export class Configure extends React.Component {
     }
 
     return (
-      <Page width="small">
-        <PageHeader>
-          {/*<PageTitle>Configure - {activeForwarderType.name}</PageTitle>*/}
-          <Breadcrumb fragments={breadcrumbs}/>
-        </PageHeader>
+      <div>
+        <header className="ForwarderShow-header">
+          <Page width="small" className="ForwarderShow-headerWrap">
+            <PageHeader>
+              <Breadcrumb fragments={breadcrumbs}/>
+            </PageHeader>
+          </Page>
+        </header>
 
-        {schemaEditor}
-      </Page>
+        <Page width="small">{schemaEditor}</Page>
+      </div>
     )
   }
 }

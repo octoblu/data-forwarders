@@ -48,16 +48,8 @@ module.exports = {
         loader: "style-loader!css-loader!postcss-loader"
       },
       {
-        test: /\.jpg$/,
-        loader: "url-loader?limit=10000&minetype=image/jpg"
-      },
-      {
-        test: /\.png$/,
-        loader: "url-loader?limit=10000&minetype=image/png"
-      },
-      {
-        test: /\.svg$/,
-        loader: "file-loader"
+        test: /\.jpe?g$|\.gif$|\.png$|\.svg$/i,
+        loader: 'url-loader?limit=10000',
       }
     ]
   },

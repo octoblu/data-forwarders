@@ -1,3 +1,7 @@
+.SubscriptionEditor-table {
+  width: 100%;
+}
+
 .SubscriptionEditor-table td,
 .SubscriptionEditor-table th {
   text-align: left;

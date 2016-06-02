@@ -30,14 +30,19 @@ class ShowForwarderTypes extends React.Component {
     if (error) return <Message type="error"><strong>Error: </strong>{error.message}</Message>
 
     return (
-      <Page width="small">
-        <PageHeader>
-          <Breadcrumb fragments={breadcrumbs}/>
-          {/*<PageTitle>Select a Data Store</PageTitle>*/}
-        </PageHeader>
+      <div>
+        <header className="ForwarderShow-header">
+          <Page width="small" className="ForwarderShow-headerWrap">
+            <PageHeader>
+              <Breadcrumb fragments={breadcrumbs}/>
+            </PageHeader>
+          </Page>
+        </header>
 
-        <ForwarderTypeList forwarderTypes={items} />
-      </Page>
+        <Page width="small">
+          <ForwarderTypeList forwarderTypes={items} />
+        </Page>
+      </div>
     );
   }
 }

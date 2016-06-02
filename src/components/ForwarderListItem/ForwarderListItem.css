@@ -1,4 +1,5 @@
 .ForwarderListItem {
+  float: left;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -6,9 +7,13 @@
   width: 250px;
   height: 250px;
   background: #FFF;
-  margin-bottom: 25px;
+  margin: 0 25px 25px 0;
   border-radius: 2px;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.25),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+}
+
+.ForwarderListItem:nth-child(3n) {
+  margin-right: 0;
 }
 
 .ForwarderListItem-image {
@@ -28,6 +33,7 @@
 }
 
 .ForwarderListItem-titleText {
+  text-decoration: none;
 }
 
 .ForwarderListItem-type { }
