@@ -1,6 +1,6 @@
 {
   "name": "data-forwarders",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,6 @@
     "react": "^15.1.0",
     "react-cookie": "^0.4.6",
     "react-dom": "^15.1.0",
-    "react-icons": "^2.1.0",
     "react-redux": "^4.4.0",
     "react-router": "^2.4.1",
     "react-router-redux": "^4.0.4",
