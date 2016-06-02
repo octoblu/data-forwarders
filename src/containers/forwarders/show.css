@@ -8,7 +8,8 @@
 }
 
 .ForwarderShow-headerWrap .Page-header {
-  margin-bottom: 16px;
+  margin-bottom: 0;
+  padding-bottom: 16px;
 }
 
 .ForwarderShow-pageActions .Button {
