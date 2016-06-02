@@ -105,7 +105,7 @@ function createForwarderSuccess(forwarder) {
       forwarder
     })
 
-    dispatch(push(`/forwarders/${forwarder.uuid}`))
+    dispatch(push(`/forwarders/${forwarder.uuid}/subscriptions`))
   }
 }
 
