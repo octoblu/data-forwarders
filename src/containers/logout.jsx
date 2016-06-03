@@ -1,4 +1,6 @@
 import React from 'react';
+import cookie from 'react-cookie'
+
 import { destroyAuthentication } from '../services/auth-service'
 
 export default class Logout extends React.Component {
@@ -7,7 +9,7 @@ export default class Logout extends React.Component {
     window.location = '/';
   }
 
-  render(){
+  render() {
     return null;
   }
 }

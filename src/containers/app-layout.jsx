@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router'
-import { AppBar, AppBarPrimary } from 'zooid-ui'
+import { AppBar, AppBarPrimary, AppBarSecondary } from 'zooid-ui'
 import Authenticated from './authenticated'
 import Toast from 'zooid-ui-toast'
 
@@ -22,9 +22,13 @@ const AppLayout = ({ children, toast }) => {
           <nav className="OctobluAppBar-nav OctobluAppBar-nav--primary" role="navigation">
             <a className="OctobluAppBar-link" href="/">Data Forwarders</a>
           </nav>
+
         </AppBarPrimary>
+        
+        <AppBarSecondary>
+          <Link to="/logout" className="OctobluAppBar-link">Sign out</Link>
+        </AppBarSecondary>
       </AppBar>
-      {/*<div class="AppBar-section AppBar-section--primary"><nav class="OctobluAppBar-nav OctobluAppBar-nav--primary" role="navigation"><a class="OctobluAppBar-link" href="https://app.octoblu.com/things">Things</a><a class="OctobluAppBar-link OctobluAppBar-link--is-selected" href="https://app.octoblu.com/design">Design</a><a class="OctobluAppBar-link" href="https://app.octoblu.com/bluprints">Bluprints</a></nav></div>*/}
 
       {children}
 
