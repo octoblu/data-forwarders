@@ -1,0 +1,15 @@
+.LandingPageContent {
+  text-align: center;
+}
+
+.LandingPageContent .Card-grid {
+  margin-bottom: 18px;
+}
+
+.LandingPageContent-header {
+  margin-bottom: 24px;
+}
+
+.LandingPageContent-subHeader {
+  margin-bottom: 12px;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppBar, AppBarPrimary, AppBarSecondary, Button, DeviceIcon, Page } from 'zooid-ui'
-import { Card, CardHeader, CardBody, CardFooter, CardGrid } from '../components/Card/'
+import LandingPageContent from '../components/LandingPageContent'
 
 export default class LandingPage extends React.Component {
   render() {
@@ -20,53 +20,11 @@ export default class LandingPage extends React.Component {
 
           <AppBarSecondary>
             <a href="https://meshblu-forwarders.readme.io" className="OctobluAppBar-link">Docs</a>
+            <a href="#" className="OctobluAppBar-link">Need Help?</a>
           </AppBarSecondary>
         </AppBar>
 
-        <Page width="small" className="LandingPage">
-
-          <h1 className="LandingPage-header">Octoblu Data Forwarders</h1>
-
-          <p>
-            Forward data from your IoT devices.
-          </p>
-
-          <section>
-            <header>Supported Forwarders</header>
-
-            <CardGrid>
-              <Card>
-                <CardBody>
-                  <DeviceIcon type="forwarder:msazure" className="Card-image"/>
-                </CardBody>
-                <CardFooter text="Microsoft Azure Service Bus" />
-              </Card>
-
-              <Card>
-                <CardBody>
-                  <DeviceIcon type="forwarder:elasticsearch" className="Card-image"/>
-                </CardBody>
-                <CardFooter text="Elastic Search" />
-              </Card>
-
-              <Card>
-                <CardBody>
-                  <DeviceIcon type="forwarder:splunk" className="Card-image"/>
-                </CardBody>
-                <CardFooter text="Splunk" />
-              </Card>
-
-              <Card>
-                <CardBody>
-                  <DeviceIcon type="forwarder:mongodb" className="Card-image"/>
-                </CardBody>
-                <CardFooter text="MongoDB" />
-              </Card>
-            </CardGrid>
-          </section>
-
-          <Button to="/login" kind="primary" size="large" block>Get Started</Button>
-        </Page>
+        <LandingPageContent />
       </div>
     )
   }
