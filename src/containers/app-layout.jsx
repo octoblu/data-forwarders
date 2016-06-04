@@ -24,7 +24,7 @@ const AppLayout = ({ children, toast }) => {
           </nav>
 
         </AppBarPrimary>
-        
+
         <AppBarSecondary>
           <Link to="/logout" className="OctobluAppBar-link">Sign out</Link>
         </AppBarSecondary>
@@ -32,7 +32,7 @@ const AppLayout = ({ children, toast }) => {
 
       {children}
 
-      <Toast message={toast} />
+      <Toast message={toast} timeout={30000} />
     </Authenticated>
   );
 }

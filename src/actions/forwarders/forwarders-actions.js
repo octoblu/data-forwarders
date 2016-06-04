@@ -5,6 +5,7 @@ import { push } from 'react-router-redux'
 
 import { getMeshbluConfig, getBearerToken } from '../../services/auth-service';
 import * as types from '../../constants/action-types';
+import { setToast } from '../../actions/'
 
 function forwarderServiceRequest() {
   return axios.create({
@@ -108,6 +109,7 @@ function createForwarderSuccess(forwarder) {
     })
 
     dispatch(push(`/forwarders/${forwarder.uuid}/subscriptions`))
+    dispatch(setToast('Forwarder created'))
   }
 }
 
@@ -194,7 +196,10 @@ export function updateForwarder(device, forwarderData){
 
     meshbluHttp.update(device.uuid, forwarderData, (error) => {
       if(error) return dispatch(updateForwarderFailure(error))
-      return dispatch(updateForwarderSuccess())
+
+      dispatch(updateForwarderSuccess())
+      dispatch(setToast('Forwarder Updated'))
+
     })
    }
 }
