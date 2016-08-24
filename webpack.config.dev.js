@@ -53,26 +53,24 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ],
+  node: {
+    fs: 'empty'
+  },
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loaders: ['babel'],
         include: path.join(__dirname, 'src')
       },
       {
         test: /\.css$/,
         include: [
-          path.join(__dirname, 'node_modules'),
           path.join(__dirname, 'src'),
+          path.join(__dirname, 'node_modules'),
         ],
         loader: 'style-loader!css-loader!postcss-loader'
       },
-      // {
-      //   test:   /\.css$/,
-      //   loader: 'style-loader!css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]&importLoaders=1!postcss-loader',
-      //   include: path.join(__dirname, 'src')
-      // },
       {
         test: /\.json$/,
         include: [

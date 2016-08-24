@@ -1,29 +1,25 @@
 language: node_js
-sudo: false
 node_js:
 - '5'
 branches:
   only:
   - /^v[0-9]/
 env:
-  global:
-  - AWS_ACCESS_KEY_ID=AKIAJH2D5IPIRHYJT5IA
-  - secure: AAMgy5BiAWkVyxFaHvM/z0grZcN53HpRqvL5xJdPboJC3nqe7GrLnICGg7zgKNdSQ0hB3SD0fMxYkBqBMPfQW8uL2YM2niEuWuKxTkxgQzU011yQXh8CL5itnstx5RtU+soKHs4oDv6JtP1XASkxH5z0RaWrnfNU9WhvJaYTh0Mt7Fad13juQE0cfmhqlFpQiwIeNkoy0yaiD5NKmPOYCuZkbikEiEVfqJ7PKebhbwu/DIjaqyKMeF7v9PaYw77FzI3RsCxsarVGEUfxw3YDJSOL/G+qlVhI/XttN2C3EH0Fsq0gKq3MAAwjZRxHpL984NUygUyQZisYJp3q2gNRmG0yjJlCW5chizCpwsXdIBelinXX0+XoMNnxzT0Om2Q41tTWdhieTCVX8SpE4eLXezv8Ya0gLnADnvctyHvc+MVeELaYehRuqe/Vrb4qE+0BNE6Em+tXDT9pMuFZwQVqrlChgI7BOVCcuOBbcRsAU4v8XMEDhqDpAOsgdfw27nfiv0NZVnXXDtwU5EnlM0nMwfVL1GAi1L/7tWSpmcVLjqXYOeYL5QVcNHOEdw0e2nq5avPzoCRL9LYF4dt01zfwGe/QlgCWWVgGj1/SUMfcBxAJY5UmgdC96eN/ao6OnABS1PL4nK4sMOGUFQDWGGojVEi5jVQlbnxszwf+DY5loiM=
-before_deploy:
+  global: CDN=https://forwarder-static.octoblu.com
+after_success:
 - npm run build
-- cp index.html dist
-- for file in `find dist -type f`; do gzip --best $file && mv $file.gz $file; done
-after_deploy:
-- "./deploy/invalidate-cloudfront.sh $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $TRAVIS_BRANCH"
+- export PKG_VERSION="$(node -e 'console.log(require("./package.json").version)')"
+- if [ -z "$PKG_VERSION" ]; then echo 'Missing PKG_VERSION env' && exit 1; fi
+- mkdir -p dpl_assets/v$PKG_VERSION
+- cp -r dist/* dpl_assets/v$PKG_VERSION
 deploy:
 - provider: s3
   access_key_id: AKIAJH2D5IPIRHYJT5IA
-  secret_access_key:
+  secret_access_key: &1
     secure: WGcV4IxOdlRsyOIOpRdbIH/cOTUCWHhWVsdqgK4y64ePh+0bXY5KN6WKKgmFPfXt1wxOp1/4pV8TRVGLj50gXsbPZSm8JslWBNxx9uSbu8Din5vNowm49CwkRyGNW+aBe+DBX2t0S4HQScmAvL64dRCA0WXyhn68KJOv6S2v+/0t7U/m9h0V4Q24ABYG6tCY2zPKtZ+HmmPC/pwdJDdl9cqPLcZzocVXj32e/xa+M1Yavu19d9wZi/Dsxm7zw2L/3NRWFRjBu0bm/YUDVm8E0k/uu8RYdQhzVoPJcwZuiPFSlyCzSLa9Ci5tglJieMoH2CBBwYgVPswklcQ57V/EXua8DwFml2OD77uxH1jfMd12EfWfD8XBLVRSDlf1uZbU7qV+0079wCK1NFO4837joWPDot9QLhnQFaVeoa3qHjPpwofqBOBfg6CVqgLJjmwIY9DJsn8dhqm1U1kmcGX3zyibvNDLvpZa+kZPV+xj21y6a91WybYclkpe3uG6Dy17GmwcH8AdjicjWukkl/t9J2v6Win9Ipm9zMPaNmEAuSA91CT7pAAZ7Chi8RRXKONl4B6bjnHGEuRDToGk/yXQG+I0acSLI6cJB7t48s6SCo0XczxCPZGHv5Kkcs0TxyQh4TxAd89iICOGHhy6qm3DezNzhBs59CoxKMj69jSeOrA=
-  bucket: forwarder.octoblu.com
-  region: us-west-2
+  bucket: forwarder-static.octoblu.com
+  local_dir: dpl_assets
   skip_cleanup: true
-  detect_encoding: true
-  local-dir: dist
+  region: us-west-2
   on:
     tags: true

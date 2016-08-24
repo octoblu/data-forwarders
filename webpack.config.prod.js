@@ -2,7 +2,7 @@ var path         = require('path');
 var webpack      = require('webpack');
 var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+var PKG_VERSION = require('./package.json').version
 
 // Assert this just to be safe.
 // Development builds of React are slow and not intended for production.
@@ -17,7 +17,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   output: {
     // The build folder.
@@ -25,10 +25,10 @@ module.exports = {
     // Generated JS file names (with nested folders).
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.
-    filename: 'static/js/[name].[chunkhash:8].js',
-    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[name].[chunkhash:8].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
-    publicPath: '/'
+    publicPath: process.env.CDN + '/v' + PKG_VERSION
   },
   resolve: {
     extensions: ['', '.js', '.jsx', '.json'],
@@ -78,10 +78,13 @@ module.exports = {
       }
     }),
   ],
+  node: {
+    fs: 'empty'
+  },
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loaders: ['babel'],
         include: path.join(__dirname, 'src')
       },
@@ -93,11 +96,6 @@ module.exports = {
         ],
         loader: 'style-loader!css-loader!postcss-loader'
       },
-      // {
-      //   test:   /\.css$/,
-      //   loader: 'style-loader!css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]&importLoaders=1!postcss-loader',
-      //   include: path.join(__dirname, 'src')
-      // },
       {
         test: /\.json$/,
         include: [
@@ -115,7 +113,7 @@ module.exports = {
         ],
         loader: 'file',
         query: {
-          name: 'static/media/[name].[hash:8].[ext]'
+          name: '/files/[name].[ext]'
         }
       },
       // A special case for favicon.ico to place it into build root directory.
@@ -124,7 +122,7 @@ module.exports = {
         include: [ path.join(__dirname, 'src') ],
         loader: 'file',
         query: {
-          name: 'favicon.ico?[hash:8]'
+          name: '/favicon.ico'
         }
       },
       // "html" loader is used to process template page (index.html) to resolve
