@@ -10,8 +10,6 @@ export default class Logout extends React.Component {
   }
 
   render() {
-    return null;
+    return null
   }
 }
-
-export default Logout
