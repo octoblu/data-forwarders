@@ -1,6 +1,6 @@
 {
   "name": "forwarder-ui",
-  "version": "4.0.7",
+  "version": "4.0.9",
   "description": "",
   "main": "index.js",
   "scripts": {
