@@ -23,7 +23,7 @@ server {
     access_log off;
 
     if ($http_x_forwarded_proto = 'http') {
-      return 301 https://$http_x_forwarded_host$request_uri;
+      return 301 https://$host$request_uri;
     }
 
     root /usr/share/nginx/html;
