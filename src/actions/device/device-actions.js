@@ -1,7 +1,8 @@
 import fetch from 'isomorphic-fetch'
 
-import * as types from '../../constants/action-types';
+import * as types from  '../../constants/action-types';
 import { getMeshbluConfig } from '../../services/auth-service'
+import MeshbluHttp from 'browser-meshblu-http'
 
 function fetchMyDevicesRequest() {
   return {
@@ -23,26 +24,38 @@ function fetchMyDevicesFailure(error) {
   }
 }
 
-export function fetchMyDevices() {
+export function fetchMyDevices(meshbluConfig = getMeshbluConfig()) {
   return dispatch => {
     dispatch(fetchMyDevicesRequest())
 
-    const meshbluConfig = getMeshbluConfig()
-    const { uuid }      = meshbluConfig
-    const meshbluHttp   = new MeshbluHttp(meshbluConfig);
+    return new Promise((resolve, reject) => {
+      const { uuid }      = meshbluConfig
+      const meshbluHttp   = new MeshbluHttp(meshbluConfig);
 
-    const myDevicesQuery = {
-      configureWhitelist: {$in: [uuid]},
-      discoverWhitelist: {$in: [uuid]},
-    }
-
-    meshbluHttp.devices(myDevicesQuery, (error, devices) => {
-      if (error) {
-        dispatch(fetchMyDevicesFailure(error))
-        return
+      const myDevicesQuery = {
+        '$or' :[
+          {
+            configureWhitelist: {$in: [uuid]},
+            discoverWhitelist: {$in: [uuid]},
+          },
+          {
+            'meshblu.whitelists.configure.update': {
+              '$in': [{'uuid' : uuid }]
+            },
+            'meshblu.whitelists.discover.view': {
+              '$in': [{'uuid': uuid}]
+            }
+          }
+        ]
       }
 
-      dispatch(fetchMyDevicesSuccess(devices))
+      meshbluHttp.search(myDevicesQuery,  (error, devices) => {
+        if (error) {
+          return reject(dispatch(fetchMyDevicesFailure(error)))
+        }
+
+        return resolve(dispatch(fetchMyDevicesSuccess(devices)))
+      })
     })
   }
 }

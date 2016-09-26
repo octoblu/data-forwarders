@@ -21,7 +21,8 @@ describe('Reducer: Forwarder', () => {
       .to.deep.equal({
        items: [],
        error: null,
-       fetching: true
+       fetching: true,
+       selected: null
      })
   })
 
@@ -30,11 +31,12 @@ describe('Reducer: Forwarder', () => {
       { name: 'Forwarder 1' },
       { name: 'Forwarder 2' }
     ];
-    expect(reducer(undefined, { type: types.FETCH_FORWARDERS_SUCCESS, body: items }))
+    expect(reducer(undefined, { type: types.FETCH_FORWARDERS_SUCCESS, forwarders: items }))
       .to.deep.equal({
         items,
         error: null,
-        fetching: false
+        fetching: false,
+        selected: null
       })
   });
 
@@ -46,7 +48,8 @@ describe('Reducer: Forwarder', () => {
     .to.deep.equal({
       items: [],
       error: new Error('Bad Request'),
-      fetching: false
+      fetching: false,
+      selected: null
     });
   });
 })
