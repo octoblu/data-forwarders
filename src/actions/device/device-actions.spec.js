@@ -22,20 +22,38 @@ describe('Device Actions', () => {
 
   let userAuth
   let searchQuery = {
-    '$or' :[
-      {
-        configureWhitelist: {$in: ['some-uuid']},
-        discoverWhitelist: {$in: ['some-uuid']},
-      },
-      {
-        'meshblu.whitelists.configure.update': {
-          '$in': [{'uuid' : 'some-uuid' }]
+    '$and':{
+      '$or' :[
+        {
+          configureWhitelist: {$in: ['some-uuid']},
+          discoverWhitelist: {$in: ['some-uuid']},
         },
-        'meshblu.whitelists.discover.view': {
-          '$in': [{'uuid': 'some-uuid'}]
+        {
+          'meshblu.whitelists.configure.update': {
+            '$in': [{'uuid' : 'some-uuid' }]
+          },
+          'meshblu.whitelists.discover.view': {
+            '$in': [{'uuid': 'some-uuid'}]
+          }
         }
-      }
-    ]
+      ],
+      '$or': [
+        {
+          configureWhitelist: {$nin: ['*']},
+          discoverWhitelist: {$nin: ['*']},
+        },
+        {
+          'meshblu.whitelists.configure.update': {
+            '$nin': [{'uuid' : '*' }]
+          },
+          'meshblu.whitelists.discover.view': {
+            '$nin': [{'uuid': '*'}]
+          }
+        }
+
+      ]
+    },
+
   }
 
   beforeEach(() => {

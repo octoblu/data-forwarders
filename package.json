@@ -1,6 +1,6 @@
 {
   "name": "forwarder-ui",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -75,6 +75,7 @@
     "cross-env": "^1.0.8",
     "css-loader": "^0.23.1",
     "css-modules-require-hook": "^4.0.2",
+    "env-test": "^1.0.0",
     "enzyme": "^2.2.0",
     "eslint": "^2.8.0",
     "eslint-config-airbnb": "^8.0.0",

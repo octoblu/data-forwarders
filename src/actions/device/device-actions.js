@@ -33,20 +33,38 @@ export function fetchMyDevices(meshbluConfig = getMeshbluConfig()) {
       const meshbluHttp   = new MeshbluHttp(meshbluConfig);
 
       const myDevicesQuery = {
-        '$or' :[
-          {
-            configureWhitelist: {$in: [uuid]},
-            discoverWhitelist: {$in: [uuid]},
-          },
-          {
-            'meshblu.whitelists.configure.update': {
-              '$in': [{'uuid' : uuid }]
+        '$and':{
+          '$or' :[
+            {
+              configureWhitelist: {$in: [uuid]},
+              discoverWhitelist: {$in: [uuid]},
             },
-            'meshblu.whitelists.discover.view': {
-              '$in': [{'uuid': uuid}]
+            {
+              'meshblu.whitelists.configure.update': {
+                '$in': [{'uuid' : uuid }]
+              },
+              'meshblu.whitelists.discover.view': {
+                '$in': [{'uuid': uuid}]
+              }
             }
-          }
-        ]
+          ],
+          '$or': [
+            {
+              configureWhitelist: {$nin: ['*']},
+              discoverWhitelist: {$nin: ['*']},
+            },
+            {
+              'meshblu.whitelists.configure.update': {
+                '$nin': [{'uuid' : '*' }]
+              },
+              'meshblu.whitelists.discover.view': {
+                '$nin': [{'uuid': '*'}]
+              }
+            }
+
+          ]
+        },
+
       }
 
       meshbluHttp.search(myDevicesQuery,  (error, devices) => {
