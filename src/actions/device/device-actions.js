@@ -32,42 +32,23 @@ export function fetchMyDevices(meshbluConfig = getMeshbluConfig()) {
       const { uuid }      = meshbluConfig
       const meshbluHttp   = new MeshbluHttp(meshbluConfig);
 
-      const myDevicesQuery = {
-        '$and':{
-          '$or' :[
-            {
-              configureWhitelist: {$in: [uuid]},
-              discoverWhitelist: {$in: [uuid]},
-            },
-            {
-              'meshblu.whitelists.configure.update': {
-                '$in': [{'uuid' : uuid }]
-              },
-              'meshblu.whitelists.discover.view': {
-                '$in': [{'uuid': uuid}]
-              }
-            }
-          ],
-          '$or': [
-            {
-              configureWhitelist: {$nin: ['*']},
-              discoverWhitelist: {$nin: ['*']},
-            },
-            {
-              'meshblu.whitelists.configure.update': {
-                '$nin': [{'uuid' : '*' }]
-              },
-              'meshblu.whitelists.discover.view': {
-                '$nin': [{'uuid': '*'}]
-              }
-            }
+      const myDevicesQuery ={
+        query: {
 
-          ]
+            '$or' :[
+              {
+                'configureWhitelist': {'$in': [uuid]},
+                'discoverWhitelist': {'$in': [uuid]},
+              },
+              {
+                'meshblu.whitelists.configure.update.uuid': uuid,
+                'meshblu.whitelists.discover.view.uuid': uuid
+              }
+            ]
         },
-
+        projection: {}
       }
-
-      meshbluHttp.search(myDevicesQuery,  (error, devices) => {
+      meshbluHttp.search(myDevicesQuery,(error, devices) => {
         if (error) {
           return reject(dispatch(fetchMyDevicesFailure(error)))
         }
