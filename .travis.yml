@@ -1,25 +1,35 @@
 language: node_js
 node_js:
-- '5'
+  - '5'
 branches:
   only:
-  - /^v[0-9]/
+    - '/^v[0-9]/'
 env:
-  global: CDN=https://forwarder-static.octoblu.com
+  global: 'CDN=https://forwarder-static.octoblu.com'
 after_success:
-- npm run build
-- export PKG_VERSION="$(node -e 'console.log(require("./package.json").version)')"
-- if [ -z "$PKG_VERSION" ]; then echo 'Missing PKG_VERSION env' && exit 1; fi
-- mkdir -p dpl_assets/v$PKG_VERSION
-- cp -r dist/* dpl_assets/v$PKG_VERSION
+  - npm run build
+  - >-
+    export PKG_VERSION="$(node -e
+    'console.log(require("./package.json").version)')"
+  - 'if [ -z "$PKG_VERSION" ]; then echo ''Missing PKG_VERSION env'' && exit 1; fi'
+  - mkdir -p dpl_assets/v$PKG_VERSION
+  - cp -r dist/* dpl_assets/v$PKG_VERSION
+  - npm run coverage
+  - 'npm run mocha:json'
+  - 'bash <(curl -s https://codecov.io/bash)'
+  - 'bash <(curl -s https://codecov.octoblu.com/bash)'
 deploy:
-- provider: s3
-  access_key_id: AKIAJH2D5IPIRHYJT5IA
-  secret_access_key: &1
-    secure: WGcV4IxOdlRsyOIOpRdbIH/cOTUCWHhWVsdqgK4y64ePh+0bXY5KN6WKKgmFPfXt1wxOp1/4pV8TRVGLj50gXsbPZSm8JslWBNxx9uSbu8Din5vNowm49CwkRyGNW+aBe+DBX2t0S4HQScmAvL64dRCA0WXyhn68KJOv6S2v+/0t7U/m9h0V4Q24ABYG6tCY2zPKtZ+HmmPC/pwdJDdl9cqPLcZzocVXj32e/xa+M1Yavu19d9wZi/Dsxm7zw2L/3NRWFRjBu0bm/YUDVm8E0k/uu8RYdQhzVoPJcwZuiPFSlyCzSLa9Ci5tglJieMoH2CBBwYgVPswklcQ57V/EXua8DwFml2OD77uxH1jfMd12EfWfD8XBLVRSDlf1uZbU7qV+0079wCK1NFO4837joWPDot9QLhnQFaVeoa3qHjPpwofqBOBfg6CVqgLJjmwIY9DJsn8dhqm1U1kmcGX3zyibvNDLvpZa+kZPV+xj21y6a91WybYclkpe3uG6Dy17GmwcH8AdjicjWukkl/t9J2v6Win9Ipm9zMPaNmEAuSA91CT7pAAZ7Chi8RRXKONl4B6bjnHGEuRDToGk/yXQG+I0acSLI6cJB7t48s6SCo0XczxCPZGHv5Kkcs0TxyQh4TxAd89iICOGHhy6qm3DezNzhBs59CoxKMj69jSeOrA=
-  bucket: forwarder-static.octoblu.com
-  local_dir: dpl_assets
-  skip_cleanup: true
-  region: us-west-2
-  on:
-    tags: true
+  - provider: s3
+    access_key_id: AKIAJH2D5IPIRHYJT5IA
+    secret_access_key:
+      secure: >-
+        WGcV4IxOdlRsyOIOpRdbIH/cOTUCWHhWVsdqgK4y64ePh+0bXY5KN6WKKgmFPfXt1wxOp1/4pV8TRVGLj50gXsbPZSm8JslWBNxx9uSbu8Din5vNowm49CwkRyGNW+aBe+DBX2t0S4HQScmAvL64dRCA0WXyhn68KJOv6S2v+/0t7U/m9h0V4Q24ABYG6tCY2zPKtZ+HmmPC/pwdJDdl9cqPLcZzocVXj32e/xa+M1Yavu19d9wZi/Dsxm7zw2L/3NRWFRjBu0bm/YUDVm8E0k/uu8RYdQhzVoPJcwZuiPFSlyCzSLa9Ci5tglJieMoH2CBBwYgVPswklcQ57V/EXua8DwFml2OD77uxH1jfMd12EfWfD8XBLVRSDlf1uZbU7qV+0079wCK1NFO4837joWPDot9QLhnQFaVeoa3qHjPpwofqBOBfg6CVqgLJjmwIY9DJsn8dhqm1U1kmcGX3zyibvNDLvpZa+kZPV+xj21y6a91WybYclkpe3uG6Dy17GmwcH8AdjicjWukkl/t9J2v6Win9Ipm9zMPaNmEAuSA91CT7pAAZ7Chi8RRXKONl4B6bjnHGEuRDToGk/yXQG+I0acSLI6cJB7t48s6SCo0XczxCPZGHv5Kkcs0TxyQh4TxAd89iICOGHhy6qm3DezNzhBs59CoxKMj69jSeOrA=
+    bucket: forwarder-static.octoblu.com
+    local_dir: dpl_assets
+    skip_cleanup: true
+    region: us-west-2
+    'on':
+      tags: true
+notifications:
+  webhooks:
+    - 'https://beekeeper.octoblu.com/webhooks/travis:ci'
