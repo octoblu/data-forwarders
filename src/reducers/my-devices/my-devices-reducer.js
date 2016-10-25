@@ -16,7 +16,10 @@ export default function types(state = initialState, action) {
       return { ...initialState, error: action.error }
 
     case actionTypes.FETCH_MY_DEVICES_SUCCESS: {
-      return { ...initialState, items: action.devices, fetching: false }
+      const devices = _.reject(action.devices, (device) => {
+        return _.startsWith(device.type, 'forwarder')
+      })
+      return { ...initialState, items: devices, fetching: false }
     }
 
     default:
