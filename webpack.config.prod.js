@@ -78,23 +78,22 @@ module.exports = {
       }
     }),
   ],
-  node: {
-    fs: 'empty'
-  },
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         loaders: ['babel'],
         include: path.join(__dirname, 'src')
       },
       {
         test: /\.css$/,
-        include: [
-          path.join(__dirname, 'node_modules'),
-          path.join(__dirname, 'src'),
-        ],
+        include: path.join(__dirname, 'node_modules'),
         loader: 'style-loader!css-loader!postcss-loader'
+      },
+      {
+        test:   /\.css$/,
+        loader: 'style-loader!css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]&importLoaders=1!postcss-loader',
+        include: path.join(__dirname, 'src')
       },
       {
         test: /\.json$/,
@@ -136,7 +135,19 @@ module.exports = {
       }
     ]
   },
-  postcss: function (webpack) {
-    return [ autoprefixer ];
+  node: {
+    fs: 'empty'
+  },
+  postcss: function() {
+    return [
+     autoprefixer({
+       browsers: [
+         '>1%',
+         'last 4 versions',
+         'Firefox ESR',
+         'not ie < 9', // React doesn't support IE8 anyway
+       ]
+     }),
+    ];
   }
 };

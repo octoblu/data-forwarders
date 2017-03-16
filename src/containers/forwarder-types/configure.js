@@ -25,7 +25,6 @@ const defaultProps = {
   ]
 }
 
-
 export class Configure extends React.Component {
   constructor(props) {
     super(props);

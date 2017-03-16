@@ -4,12 +4,8 @@ var path              = require('path');
 var webpack           = require('webpack');
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'eval',
   entry: [
-    // 'eventsource-polyfill',
-    // 'webpack-hot-middleware/client',
-    // './src/index'
-
     // Include WebpackDevServer client. It connects to WebpackDevServer via
     // sockets and waits for recompile notifications. When WebpackDevServer
     // recompiles, it sends a message to the client by socket. If only CSS
@@ -51,25 +47,24 @@ module.exports = {
       template: path.join(__dirname, 'index.html'),
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoErrorsPlugin()
   ],
-  node: {
-    fs: 'empty'
-  },
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         loaders: ['babel'],
         include: path.join(__dirname, 'src')
       },
       {
         test: /\.css$/,
-        include: [
-          path.join(__dirname, 'src'),
-          path.join(__dirname, 'node_modules'),
-        ],
+        include: path.join(__dirname, 'node_modules'),
         loader: 'style-loader!css-loader!postcss-loader'
+      },
+      {
+        test:   /\.css$/,
+        include: path.join(__dirname, 'src'),
+        loader: 'style-loader!css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]&importLoaders=1!postcss-loader'
       },
       {
         test: /\.json$/,
@@ -111,7 +106,20 @@ module.exports = {
       }
     ]
   },
-  postcss: function () {
-    return [ autoprefixer ];
+  node: {
+    fs: 'empty'
+  },
+  // We use PostCSS for autoprefixing only.
+  postcss: function() {
+    return [
+      autoprefixer({
+        browsers: [
+          '>1%',
+          'last 4 versions',
+          'Firefox ESR',
+          'not ie < 9', // React doesn't support IE8 anyway
+        ]
+      }),
+    ];
   }
 };

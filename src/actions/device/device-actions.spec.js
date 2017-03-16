@@ -1,7 +1,7 @@
 import chai, { expect } from 'chai';
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import shmock from 'shmock'
+import shmock from '@octoblu/shmock'
 import * as types from '../../constants/action-types'
 import * as actions from './device-actions'
 import enableDestroy from 'server-destroy'
