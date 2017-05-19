@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from "react"
 
-import './Card.css'
+import styles from "./Card.css"
 
 const propTypes = {
   children: PropTypes.node,
@@ -10,7 +10,7 @@ const propTypes = {
 const CardBody = ({ children, text }) => {
   children = text || children
 
-  return <main className="Card-body">{children}</main>
+  return <main className={styles.CardBody}>{children}</main>
 }
 
 CardBody.propTypes = propTypes

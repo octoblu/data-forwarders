@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from "react"
 
-import './Card.css'
+import styles from "./Card.css"
 
 const propTypes = {
   children: PropTypes.node,
@@ -10,7 +10,7 @@ const propTypes = {
 const CardFooter = ({ children, text }) => {
   children = text || children
 
-  return <footer className="Card-footer">{children}</footer>
+  return <footer className={styles.CardFooter}>{children}</footer>
 }
 
 CardFooter.propTypes = propTypes

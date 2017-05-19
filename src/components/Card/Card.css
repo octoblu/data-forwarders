@@ -13,33 +13,33 @@
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.25),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
 }
 
-.Card-header {
+.CardHeader {
   background: pink;
 }
 
-.Card-body {
+.CardBody {
   display: flex;
   flex: 1;
   justify-content: center;
   align-items: center;
 }
 
-.Card-image {
+.CardImage {
   width: 80%;
   height: auto;
 }
 
 
-.Card-footer {
+.CardFooter {
   border-top: 1px solid rgba(0,0,0,.1);
   padding: 12px;
 }
 
-.Card-footerText {
+.CardFooterText {
   text-decoration: none;
 }
 
-.Card-grid {
+.CardGrid {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

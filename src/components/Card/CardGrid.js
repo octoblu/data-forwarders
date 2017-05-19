@@ -1,12 +1,12 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from "react"
 
-import './Card.css'
+import styles from "./Card.css"
 
 const propTypes = {
   children: PropTypes.node,
 }
 
-const CardGrid = ({ children }) => <div className="Card-grid">{children}</div>
+const CardGrid = ({ children }) => <div className={styles.CardGrid}>{children}</div>
 
 CardGrid.propTypes = propTypes
 

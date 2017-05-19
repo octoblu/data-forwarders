@@ -16,24 +16,22 @@
   margin-right: 0;
 }
 
-.ForwarderListItem-image {
+.ForwarderListItemImage {
   width: 220px;
   height: auto;
 }
 
-.ForwarderListItem-body {
+.ForwarderListItemBody {
   display: flex;
   flex: 1;
   justify-content: center;
 }
 
-.ForwarderListItem-title {
+.ForwarderListItemTitle {
   border-top: 1px solid rgba(0,0,0,.1);
   padding: 12px;
 }
 
-.ForwarderListItem-titleText {
+.ForwarderListItemTitleText {
   text-decoration: none;
 }
-
-.ForwarderListItem-type { }

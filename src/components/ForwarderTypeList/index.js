@@ -1,9 +1,9 @@
-import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import _ from "lodash"
+import React, { PropTypes } from "react"
 
-import ForwarderTypeListItem from '../ForwarderTypeListItem'
+import ForwarderTypeListItem from "../ForwarderTypeListItem"
 
-import './ForwarderTypeList.css'
+import styles from "./ForwarderTypeList.css"
 
 const propTypes = {
   forwarderTypes: PropTypes.array.isRequired,
@@ -16,7 +16,7 @@ const ForwarderTypeList = ({ forwarderTypes }) => {
     return <ForwarderTypeListItem forwarderType={forwarderType} key={index} />
   })
 
-  return <div className="ForwarderTypeList">{items}</div>
+  return <div className={styles.ForwarderTypeList}>{items}</div>
 }
 
 ForwarderTypeList.propTypes = propTypes

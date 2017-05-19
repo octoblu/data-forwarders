@@ -1,25 +1,27 @@
-.ForwarderShow-header {
-  background: #1961A0;
+.ForwarderShowHeader {
+  background: #FFF;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
-.Forwarder-EmptyState {
+.ForwarderEmptyState {
   width: 800px;
   background: #FFF;
   margin: 50px auto;
   padding: 50px;
 }
 
-.ForwarderShow-headerWrap {
+.ForwarderShowHeaderWrap {
   margin: 0 auto;
   padding: 32px 0 0;
 }
 
-.ForwarderShow-headerWrap .Page-header {
+.ForwarderShowHeaderWrap .PageHeader {
   margin-bottom: 0;
   padding-bottom: 16px;
 }
 
-.ForwarderShow-pageActions .Button {
+.ForwarderShowPageActions .Button {
   border: 1px solid #FFF;
   margin-left: 16px;
   padding: 6px 12px;
@@ -27,17 +29,18 @@
   color: #FFF;
 }
 
-.ForwarderShow-pageActions .Button--delete {
+.ForwarderShowPageActions .Button--delete {
   border: none;
 }
 
-.ForwarderShow-pageActions .Button:hover {
+.ForwarderShowPageActions .Button:hover {
   color: #FFF;
   background: rgba(255, 255, 255, 0.1);
 }
 
 
-.Breadcrumb-fragment {
+
+.breadcrumb .Breadcrumb-fragment {
   color: #FFF;
 }
 

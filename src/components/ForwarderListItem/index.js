@@ -1,30 +1,27 @@
-import _ from 'lodash'
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import { DeviceIcon, ListItem } from 'zooid-ui'
+import _ from "lodash"
+import React, { PropTypes } from "react"
+import { Link } from "react-router"
+import DeviceIcon from "zooid-device-icon"
 
-import './ForwarderListItem.css'
+import styles from "./ForwarderListItem.css"
 
 const propTypes = {
   forwarder: PropTypes.object.isRequired,
-};
+}
 
 const ForwarderListItem = ({ forwarder }) => {
-  if (_.isEmpty(forwarder)) return null;
+  if (_.isEmpty(forwarder)) return null
 
-  const { name, type, uuid } = forwarder;
+  const { name, type, uuid } = forwarder
 
   return (
-    <div className="ForwarderListItem">
-      <div className="ForwarderListItem-body">
-        <DeviceIcon type={type} className="ForwarderListItem-image" />
+    <div className={styles.ForwarderListItem}>
+      <div className={styles.ForwarderListItemBody}>
+        <DeviceIcon type={type} className={styles.ForwarderListItemImage} />
       </div>
-      
-      <div className="ForwarderListItem-title">
-        <Link
-          to={`/forwarders/${uuid}/subscriptions`}
-          className="ForwarderListItem-titleText"
-        >
+
+      <div className={styles.ForwarderListItemTitle}>
+        <Link to={`/forwarders/${uuid}/subscriptions`} className={styles.ForwarderListItemTitleText}>
           {name}
         </Link>
       </div>
@@ -32,6 +29,6 @@ const ForwarderListItem = ({ forwarder }) => {
   )
 }
 
-ForwarderListItem.propTypes = propTypes;
+ForwarderListItem.propTypes = propTypes
 
-export default ForwarderListItem;
+export default ForwarderListItem

@@ -1,6 +1,6 @@
 {
   "name": "forwarder-ui",
-  "version": "5.0.5",
+  "version": "5.0.6",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -80,6 +80,7 @@
     "style-loader": "^0.14.1",
     "url-loader": "^0.5.8",
     "webpack": "^1.13.1",
+    "zooid-device-icon": "^1.0.12",
     "zooid-meshblu-device-editor": "^10.0.6",
     "zooid-ui": "^8.0.3",
     "zooid-ui-toast": "^1.1.1"

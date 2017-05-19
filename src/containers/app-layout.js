@@ -1,14 +1,14 @@
-import React from 'react'
-import { connect } from 'react-redux';
-import { Link } from 'react-router'
-import { AppBar, AppBarPrimary, AppBarSecondary } from 'zooid-ui'
-import Authenticated from './authenticated'
-import Toast from 'zooid-ui-toast'
+import React from "react"
+import { connect } from "react-redux"
+import { Link } from "react-router"
+import { AppBar, AppBarPrimary, AppBarSecondary } from "zooid-ui"
+import Authenticated from "./authenticated"
+import Toast from "zooid-ui-toast"
 
-import { ENV } from 'config'
+import { ENV } from "config"
 
-import 'zooid-ui/dist/style.css'
-import '../schema-editor.css'
+import "zooid-ui/dist/style.css"
+import "../schema-editor.css"
 
 const AppLayout = ({ children, toast }) => {
   return (
@@ -16,7 +16,7 @@ const AppLayout = ({ children, toast }) => {
       <AppBar>
         <AppBarPrimary>
           <a className="OctobluAppBar-link OctobluAppBar-link--logo" href="https://app.octoblu.com">
-            <img className="OctobluAppBar-logo" src="//d2zw6j512x6z0x.cloudfront.net/master/d48dc0bf063ecc1477d1163831ee8ff17efbbfae/assets/images/octoblu_logo.png"/>
+            <img className="OctobluAppBar-logo" src="//d2zw6j512x6z0x.cloudfront.net/master/d48dc0bf063ecc1477d1163831ee8ff17efbbfae/assets/images/octoblu_logo.png" />
           </a>
 
           <nav className="OctobluAppBar-nav OctobluAppBar-nav--primary" role="navigation">
@@ -34,7 +34,7 @@ const AppLayout = ({ children, toast }) => {
 
       <Toast message={toast} timeout={30000} />
     </Authenticated>
-  );
+  )
 }
 
 function mapStateToProps({ toast }) {

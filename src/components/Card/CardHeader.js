@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from "react"
 
-import './Card.css'
+import styles from "./Card.css"
 
 const propTypes = {
   children: PropTypes.node,
@@ -10,7 +10,7 @@ const propTypes = {
 const CardHeader = ({ children, text }) => {
   children = text || children
 
-  return <header className="Card-header">{children}</header>
+  return <header className={styles.CardHeader}>{children}</header>
 }
 
 CardHeader.propTypes = propTypes

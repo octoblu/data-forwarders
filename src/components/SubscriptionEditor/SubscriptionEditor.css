@@ -1,19 +1,19 @@
-.SubscriptionEditor-table {
+.SubscriptionEditorTable {
   width: 100%;
 }
 
-.SubscriptionEditor-table td,
-.SubscriptionEditor-table th {
+.SubscriptionEditorTable td,
+.SubscriptionEditorTable th {
   text-align: left;
   padding: 10px;
   border-bottom: 1px solid #e6eaed;
 }
 
-.SubscriptionEditor-table tr:nth-child(even) {
+.SubscriptionEditorTable tr:nth-child(even) {
   background-color: #fafbfb;
 }
 
-.SubscriptionEditor-table td.SubscriptionEditor-tableCellCenter,
-.SubscriptionEditor-table th.SubscriptionEditor-tableCellCenter {
+.SubscriptionEditorTable td.SubscriptionEditorTableCellCenter,
+.SubscriptionEditorTable th.SubscriptionEditorTableCellCenter {
   text-align: center;
 }
